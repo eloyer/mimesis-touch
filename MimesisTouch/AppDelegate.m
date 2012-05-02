@@ -10,8 +10,10 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
 #import "RootViewController.h"
+#import "NarrativeModel.h"
+#import "NarrativeView.h"
+#import "NarrativeController.h"
 
 @implementation AppDelegate
 
@@ -110,7 +112,25 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	
+	// triggers initialization of the model
+	NarrativeModel *model = [NarrativeModel sharedInstance];
+    [model parseNarrativeScript:@"narrative_data"];
+	
+	// initialize the controller
+	narrativeController = [[NarrativeController alloc] init];
+	narrativeController.model = [NarrativeModel sharedInstance];
+    [model addObserver:narrativeController];
+    
+	// initialize the view
+	CCScene *scene = [CCScene node];
+	narrativeView = [[NarrativeView alloc] initWithController:narrativeController];
+	[model addObserver:narrativeView];
+	[scene addChild: narrativeView];
+	[[CCDirector sharedDirector] runWithScene: scene];
+	narrativeController.view = narrativeView;
+    
 }
 
 

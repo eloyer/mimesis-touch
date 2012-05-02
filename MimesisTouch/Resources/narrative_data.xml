@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<narrative>
+    
+	<initialSetting settingRef="bus"/>
+	
+	<setting id="bus">
+        
+        
+        <!-- SHOTS -->
+        
+		<initialShot shotRef="wideShot"/>
+        
+	   	<shot id="wideShot">    
+			<adjacentShot direction="zoomIn" shotRef="mediumShot"/>
+		</shot>          
+		<shot id="mediumShot">
+			<adjacentShot direction="zoomOut" shotRef="wideShot"/>
+			<adjacentShot direction="zoomIn" shotRef="closeUpShot"/>
+		</shot>
+		<shot id="closeUpShot">
+	   		<adjacentShot direction="zoomOut" shotRef="mediumShot"/>
+   			<adjacentShot direction="zoomIn" shotRef="thoughtSpaceShot"/>
+		</shot>
+		<shot id="thoughtSpaceShot" muted="true" internal="true">
+      		<adjacentShot direction="zoomOut" shotRef="closeUpShot"/>
+		</shot>
+        
+        
+        <!-- EVENT STRUCTURE -->
+		
+		<eventStructure>   
+			<eventClause type="introduction" minCount="1" maxCount="1" exitTo="risingAction"/>
+ 			<!--<eventClause type="risingAction" minCount="1" maxCount="1" exitTo="complicatingAction"/>
+             <eventClause type="complicatingAction" minCount="1" maxCount="1" exitTo="fallingAction"/>
+             <eventClause type="fallingAction" minCount="1" maxCount="1" exitTo="coda"/>
+             <eventClause type="coda" minCount="1" maxCount="1"/>-->
+   		</eventStructure> 
+		
+        
+        <!-- PROPS -->
+        
+		<prop id="bus"/>
+		
+		<prop id="busInt"/>
+        
+		<prop id="CU-busInt"/>
+        
+        <prop id="manHatProp" topicRef="hatTopic"/>
+        
+        
+        <!-- TOPICS -->
+        
+        <!-- Note that if a topic's identifier is "hatTopic" then its view class must be named "HatTopic". -->
+        
+        <topic id="hatTopic" description="the man's hat"/>
+		
+        
+        <!-- ACTORS -->
+        
+		<actor id="narrator" name="Narrator">
+		</actor>
+		
+		<actor id="man" name="Man" subjectivePronoun="he" objectivePronoun="his">
+ 		</actor>
+        
+		<actor id="girl" name="Girl" subjectivePronoun="she" objectivePronoun="her">
+            <sentiment topicRef="hatTopic" transparency="0.0">
+                <emotion name="sad" internalStrength="1" externalStrength="0" description="dislike for">
+                    <demonstration operator=">" value="1">
+                        <event random="true">
+                            <eventAtom itemRef="girl" command="say" content="I hate it with every fiber of my being."/>
+                        </event>
+                    </demonstration>
+                    <demonstration>
+                        <event random="true">
+                            <eventAtom itemRef="girl" command="say" content="I think it's hideous."/>
+                            <eventAtom itemRef="girl" command="say" content="Yuck!"/>
+                            <eventAtom itemRef="girl" command="say" content="You don't want to know."/>
+                        </event>
+                    </demonstration>
+                </emotion>
+                <emotion name="happy" internalStrength="0" externalStrength="1" description="appreciation of">
+                    <demonstration operator=">" value="1">
+                        <event><eventAtom itemRef="girl" command="say" content="It is SO amazing!"/></event>
+                    </demonstration>
+                    <demonstration>
+                        <event><eventAtom itemRef="girl" command="say" content="It's very nice."/></event>
+                    </demonstration>
+                </emotion>
+            </sentiment>
+ 		</actor>
+        
+        
+        <!-- EVENT GROUPS -->
+        
+    	<eventGroup id="groupA" type="introduction">
+            
+ 			<initialEvent eventRef="manQuestion"/>
+            
+            <event id="manQuestion" maxCount="1">
+                <eventAtom itemRef="man" command="say" content="Do you like my hat?" topic="hatTopic"/>
+                <eventAtom itemRef="girl" command="expressSentiment" content="hatTopic"/>
+            </event>
+            
+            <event id="repeatQuestion">
+                <eventAtom itemRef="man" command="say" content="How about now?" topic="hatTopic"/>
+                <eventAtom itemRef="girl" command="expressSentiment" content="hatTopic"/>
+            </event>
+            
+            <event id="nothing" weight="3">
+                <eventAtom itemRef="system" command="wait"/>
+            </event>
+            
+            <event id="passingTime">
+                <eventAtom itemRef="narrator" command="say" content="Time continued to pass."/>
+            </event>
+            
+            <endConditions>
+                <!-- this ensures the event group never ends, since the 'unknown' topic doesn't exist -->
+                <condition itemRef="girl" property="sentiment:unknown" operator="changed" value="true"/>
+            </endConditions>
+            
+		</eventGroup>
+        
+	</setting>
+    
+    <!-- 
+     could have a "playIfConditionsMet" command that only plays the targeted event if its conditions are met 
+     and possibly a command that stops the user from being able to trigger shot changes until restarted, or until time has passed
+     
+     <eventAtom itemRef="girl" command="modifyEmotion" content="manClothes:annoyance:internal:1"/>
+     <eventAtom itemRef="girl" command="setEmotion" content="manClothes:annoyance:internal:0"/>
+     <eventAtom itemRef="girl" command="setTransparency" content="manClothes:.7"/>
+     <eventAtom itemRef="girl" command="expressSentiment" content="manClothes"/>
+     <eventAtom itemRef="system" command="playEvent" content="exclamation"/>
+     
+     <condition itemRef="girl" property="sentiment:hatTopic" operator="changed" value="true"/>
+     
+     transparency - how much the character shows their current emotions
+     internalState - what the character is currently feeling inside
+     externalState - what the character believes she should be feeling
+     visibleState - what the character is currently projecting
+     
+     think command
+     
+     transparency determines whether the emotional state is allowed to show through
+     
+     topic - defines an object of thought/speech/emotion.
+     
+     feeling - defines a character's emotional response to a topic
+     can specify an internal state (optional) - how the character feels inside when the topic comes up
+     can specify an external state (optional) - emotion the character projects when the topic comes up
+     
+     when you manually set a feeling or transparency, it attaches to the last thing that was discussed (probability?)
+     
+     every time you adjust a feeling, you are appending that value - if it's a feeling atom that already exists, then you just increment the value
+     this has the built in effect of making change more difficult to effect, builds in the history
+     
+     would be good to have events that can be triggered when thresholds are crossed - narrator events, for example, when a person's
+     feelings change
+     
+     girl.feelings.internal.manClothes.sad.increment();
+     girl.feelings.increment('internal','manClothes','annoyed');
+     
+     girl.increment('internal','annoyance','manClothes');
+     
+     -->
+	
+</narrative>
