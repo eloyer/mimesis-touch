@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class RootViewController;
-@class NarrativeView;
+@class MimesisNarrativeView;
 @class NarrativeController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow                    *window;
 	RootViewController          *viewController;
-	NarrativeView               *narrativeView;							// primary view for the application
+	MimesisNarrativeView        *narrativeView;							// primary view for the application
 	NarrativeController			*narrativeController;					// primary controller for the application
 }
 

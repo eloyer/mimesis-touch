@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A215D1971551FBF400F63ADE /* mimesis_narrative.xml in Resources */ = {isa = PBXBuildFile; fileRef = A215D1961551FBF400F63ADE /* mimesis_narrative.xml */; };
+		A215D19A1551FD9800F63ADE /* ocean_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1991551FD9800F63ADE /* ocean_background.png */; };
+		A215D19E1551FDE600F63ADE /* WideShot.m in Sources */ = {isa = PBXBuildFile; fileRef = A215D19D1551FDE600F63ADE /* WideShot.m */; };
+		A215D1A51551FFFF00F63ADE /* MimesisNarrativeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A215D1A41551FFFF00F63ADE /* MimesisNarrativeView.m */; };
+		A215D1B41553526A00F63ADE /* anglerfish_icon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1B01553526900F63ADE /* anglerfish_icon-hd.png */; };
+		A215D1B51553526A00F63ADE /* anglerfish_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1B11553526900F63ADE /* anglerfish_icon.png */; };
+		A215D1B61553526A00F63ADE /* octopus_icon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1B21553526A00F63ADE /* octopus_icon-hd.png */; };
+		A215D1B71553526A00F63ADE /* octopus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1B31553526A00F63ADE /* octopus_icon.png */; };
+		A215D1B81553541900F63ADE /* IconNarratorView.m in Sources */ = {isa = PBXBuildFile; fileRef = A215D1AB15534E2900F63ADE /* IconNarratorView.m */; };
+		A215D1BF1553A1F100F63ADE /* Octopus.m in Sources */ = {isa = PBXBuildFile; fileRef = A215D1BE1553A1F100F63ADE /* Octopus.m */; };
 		A29F55BF1551F12300888F59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55BE1551F12300888F59 /* QuartzCore.framework */; };
 		A29F55C11551F12300888F59 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C01551F12300888F59 /* OpenGLES.framework */; };
 		A29F55C31551F12300888F59 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C21551F12300888F59 /* OpenAL.framework */; };
@@ -155,6 +165,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A215D1961551FBF400F63ADE /* mimesis_narrative.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = mimesis_narrative.xml; path = Resources/mimesis_narrative.xml; sourceTree = "<group>"; };
+		A215D1991551FD9800F63ADE /* ocean_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ocean_background.png; sourceTree = "<group>"; };
+		A215D19C1551FDE600F63ADE /* WideShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WideShot.h; path = "Custom Views/WideShot.h"; sourceTree = "<group>"; };
+		A215D19D1551FDE600F63ADE /* WideShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WideShot.m; path = "Custom Views/WideShot.m"; sourceTree = "<group>"; };
+		A215D1A31551FFFF00F63ADE /* MimesisNarrativeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MimesisNarrativeView.h; path = "Custom Views/MimesisNarrativeView.h"; sourceTree = "<group>"; };
+		A215D1A41551FFFF00F63ADE /* MimesisNarrativeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MimesisNarrativeView.m; path = "Custom Views/MimesisNarrativeView.m"; sourceTree = "<group>"; };
+		A215D1AA15534E2900F63ADE /* IconNarratorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IconNarratorView.h; sourceTree = "<group>"; };
+		A215D1AB15534E2900F63ADE /* IconNarratorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IconNarratorView.m; sourceTree = "<group>"; };
+		A215D1B01553526900F63ADE /* anglerfish_icon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anglerfish_icon-hd.png"; sourceTree = "<group>"; };
+		A215D1B11553526900F63ADE /* anglerfish_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anglerfish_icon.png; sourceTree = "<group>"; };
+		A215D1B21553526A00F63ADE /* octopus_icon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "octopus_icon-hd.png"; sourceTree = "<group>"; };
+		A215D1B31553526A00F63ADE /* octopus_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octopus_icon.png; sourceTree = "<group>"; };
+		A215D1BD1553A1F100F63ADE /* Octopus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Octopus.h; path = "Custom Views/Octopus.h"; sourceTree = "<group>"; };
+		A215D1BE1553A1F100F63ADE /* Octopus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Octopus.m; path = "Custom Views/Octopus.m"; sourceTree = "<group>"; };
 		A29F55BA1551F12300888F59 /* MimesisTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimesisTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A29F55BE1551F12300888F59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A29F55C01551F12300888F59 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -467,6 +491,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A215D19B1551FDA800F63ADE /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				A215D1AA15534E2900F63ADE /* IconNarratorView.h */,
+				A215D1AB15534E2900F63ADE /* IconNarratorView.m */,
+				A215D19C1551FDE600F63ADE /* WideShot.h */,
+				A215D19D1551FDE600F63ADE /* WideShot.m */,
+				A215D1A31551FFFF00F63ADE /* MimesisNarrativeView.h */,
+				A215D1A41551FFFF00F63ADE /* MimesisNarrativeView.m */,
+				A215D1BD1553A1F100F63ADE /* Octopus.h */,
+				A215D1BE1553A1F100F63ADE /* Octopus.m */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		A29F55AF1551F12300888F59 = {
 			isa = PBXGroup;
 			children = (
@@ -502,6 +541,7 @@
 		A29F55CE1551F12300888F59 /* MimesisTouch */ = {
 			isa = PBXGroup;
 			children = (
+				A215D19B1551FDA800F63ADE /* Custom Views */,
 				A29F57201551F12500888F59 /* AppDelegate.h */,
 				A29F57211551F12500888F59 /* AppDelegate.m */,
 				A29F57231551F12500888F59 /* RootViewController.h */,
@@ -533,6 +573,12 @@
 				A29F55E01551F12300888F59 /* Info.plist */,
 				A29F55E11551F12300888F59 /* iTunesArtwork */,
 				A29F578C1551F47500888F59 /* narrative_data.xml */,
+				A215D1961551FBF400F63ADE /* mimesis_narrative.xml */,
+				A215D1991551FD9800F63ADE /* ocean_background.png */,
+				A215D1B01553526900F63ADE /* anglerfish_icon-hd.png */,
+				A215D1B11553526900F63ADE /* anglerfish_icon.png */,
+				A215D1B21553526A00F63ADE /* octopus_icon-hd.png */,
+				A215D1B31553526A00F63ADE /* octopus_icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1003,6 +1049,12 @@
 				A29F57861551F1F500888F59 /* icon-pause.png in Resources */,
 				A29F57871551F1F500888F59 /* narration_bg.png in Resources */,
 				A29F578D1551F47500888F59 /* narrative_data.xml in Resources */,
+				A215D1971551FBF400F63ADE /* mimesis_narrative.xml in Resources */,
+				A215D19A1551FD9800F63ADE /* ocean_background.png in Resources */,
+				A215D1B41553526A00F63ADE /* anglerfish_icon-hd.png in Resources */,
+				A215D1B51553526A00F63ADE /* anglerfish_icon.png in Resources */,
+				A215D1B61553526A00F63ADE /* octopus_icon-hd.png in Resources */,
+				A215D1B71553526A00F63ADE /* octopus_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,6 +1065,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A215D1B81553541900F63ADE /* IconNarratorView.m in Sources */,
 				A29F55E71551F12300888F59 /* CCAction.m in Sources */,
 				A29F55EA1551F12300888F59 /* CCActionCamera.m in Sources */,
 				A29F55ED1551F12300888F59 /* CCActionEase.m in Sources */,
@@ -1137,6 +1190,9 @@
 				A29F577A1551F1B500888F59 /* TopicView.m in Sources */,
 				A29F57801551F1DD00888F59 /* TreeNode.m in Sources */,
 				A29F57811551F1DD00888F59 /* XMLParser.m in Sources */,
+				A215D19E1551FDE600F63ADE /* WideShot.m in Sources */,
+				A215D1A51551FFFF00F63ADE /* MimesisNarrativeView.m in Sources */,
+				A215D1BF1553A1F100F63ADE /* Octopus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1189,7 +1245,7 @@
 				GCC_PREFIX_HEADER = MimesisTouch/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = MimesisTouch/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1206,7 +1262,7 @@
 				GCC_PREFIX_HEADER = MimesisTouch/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = MimesisTouch/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1234,6 +1290,7 @@
 				A29F572E1551F12500888F59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

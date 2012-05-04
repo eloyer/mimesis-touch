@@ -12,7 +12,7 @@
 #import "GameConfig.h"
 #import "RootViewController.h"
 #import "NarrativeModel.h"
-#import "NarrativeView.h"
+#import "MimesisNarrativeView.h"
 #import "NarrativeController.h"
 
 @implementation AppDelegate
@@ -91,7 +91,7 @@
 #endif
 	
 	[director setAnimationInterval:1.0/60];
-	[director setDisplayFPS:YES];
+	//[director setDisplayFPS:YES];
 	
 	
 	// make the OpenGLView a child of the view controller
@@ -113,10 +113,12 @@
 	
 	// Run the intro Scene
 	//[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+    
+	srand(time(NULL));
 	
 	// triggers initialization of the model
 	NarrativeModel *model = [NarrativeModel sharedInstance];
-    [model parseNarrativeScript:@"narrative_data"];
+    [model parseNarrativeScript:@"mimesis_narrative"];
 	
 	// initialize the controller
 	narrativeController = [[NarrativeController alloc] init];
@@ -125,7 +127,7 @@
     
 	// initialize the view
 	CCScene *scene = [CCScene node];
-	narrativeView = [[NarrativeView alloc] initWithController:narrativeController];
+	narrativeView = [[MimesisNarrativeView alloc] initWithController:narrativeController];
 	[model addObserver:narrativeView];
 	[scene addChild: narrativeView];
 	[[CCDirector sharedDirector] runWithScene: scene];
