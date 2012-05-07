@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>octopus-1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1026, 1010}, {156, 294}}</string>
+			<key>offset</key>
+			<string>{-39, -23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{167, 46}, {156, 294}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1138, 2}, {272, 208}}</string>
+			<key>offset</key>
+			<string>{20, 15}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{168, 51}, {272, 208}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{304, 1010}, {106, 288}}</string>
+			<key>offset</key>
+			<string>{-44, -21}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{187, 47}, {106, 288}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-12.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1012, 722}, {144, 272}}</string>
+			<key>offset</key>
+			<string>{-62, -13}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{150, 47}, {144, 272}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-13.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{820, 462}, {170, 252}}</string>
+			<key>offset</key>
+			<string>{-66, -3}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{133, 47}, {170, 252}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-14.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{744, 220}, {196, 228}}</string>
+			<key>offset</key>
+			<string>{-88, 8}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{98, 48}, {196, 228}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-15.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{542, 220}, {200, 224}}</string>
+			<key>offset</key>
+			<string>{-108, 10}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{76, 48}, {200, 224}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-16.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1756, 220}, {222, 240}}</string>
+			<key>offset</key>
+			<string>{-106, 3}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{67, 47}, {222, 240}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-17.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{266, 220}, {274, 222}}</string>
+			<key>offset</key>
+			<string>{-140, 13}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{7, 46}, {274, 222}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-18.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 220}, {262, 220}}</string>
+			<key>offset</key>
+			<string>{-104, 13}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{49, 47}, {262, 220}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-19.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{754, 722}, {256, 270}}</string>
+			<key>offset</key>
+			<string>{-117, 28}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{39, 7}, {256, 270}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{852, 1010}, {172, 292}}</string>
+			<key>offset</key>
+			<string>{-14, -24}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{184, 48}, {172, 292}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-20.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{412, 1010}, {108, 288}}</string>
+			<key>offset</key>
+			<string>{-45, -23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{185, 49}, {108, 288}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-21.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{724, 1010}, {126, 288}}</string>
+			<key>offset</key>
+			<string>{-53, -23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{168, 49}, {126, 288}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-22.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1158, 722}, {138, 274}}</string>
+			<key>offset</key>
+			<string>{-56, -15}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{159, 48}, {138, 274}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-23.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{992, 462}, {142, 254}}</string>
+			<key>offset</key>
+			<string>{-53, -5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{160, 48}, {142, 254}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-24.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1344, 462}, {176, 256}}</string>
+			<key>offset</key>
+			<string>{-39, -6}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{157, 48}, {176, 256}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-25.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1136, 462}, {206, 256}}</string>
+			<key>offset</key>
+			<string>{-21, -5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{160, 47}, {206, 256}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-26.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1262, 220}, {234, 234}}</string>
+			<key>offset</key>
+			<string>{-13, 5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{154, 48}, {234, 234}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-27.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1498, 220}, {256, 236}}</string>
+			<key>offset</key>
+			<string>{-26, 5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{130, 47}, {256, 236}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-28.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{942, 220}, {318, 230}}</string>
+			<key>offset</key>
+			<string>{-56, 7}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{69, 48}, {318, 230}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-29.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1412, 2}, {306, 212}}</string>
+			<key>offset</key>
+			<string>{-45, 37}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{86, 27}, {306, 212}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1504, 722}, {182, 276}}</string>
+			<key>offset</key>
+			<string>{-27, -14}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{166, 46}, {182, 276}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-30.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1184, 1010}, {98, 296}}</string>
+			<key>offset</key>
+			<string>{-48, -22}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{187, 44}, {98, 296}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-31.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{522, 1010}, {200, 288}}</string>
+			<key>offset</key>
+			<string>{-17, -23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{167, 49}, {200, 288}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-32.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 1010}, {300, 288}}</string>
+			<key>offset</key>
+			<string>{10, -23}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{144, 49}, {300, 288}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-33.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{378, 722}, {374, 264}}</string>
+			<key>offset</key>
+			<string>{21, -10}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{118, 48}, {374, 264}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-34.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 722}, {374, 262}}</string>
+			<key>offset</key>
+			<string>{-10, 7}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{87, 32}, {374, 262}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-35.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 462}, {400, 244}}</string>
+			<key>offset</key>
+			<string>{-19, 11}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{65, 37}, {400, 244}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-36.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1284, 1010}, {390, 298}}</string>
+			<key>offset</key>
+			<string>{21, 21}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{110, 0}, {390, 298}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-37.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{404, 462}, {414, 246}}</string>
+			<key>offset</key>
+			<string>{13, 47}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{90, 0}, {414, 246}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-38.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{720, 2}, {416, 204}}</string>
+			<key>offset</key>
+			<string>{71, 38}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{147, 30}, {416, 204}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-39.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2, 2}, {422, 186}}</string>
+			<key>offset</key>
+			<string>{68, 46}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{141, 31}, {422, 186}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1298, 722}, {204, 276}}</string>
+			<key>offset</key>
+			<string>{-4, -15}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{178, 47}, {204, 276}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1688, 722}, {258, 286}}</string>
+			<key>offset</key>
+			<string>{-7, -20}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{148, 47}, {258, 286}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1522, 462}, {256, 258}}</string>
+			<key>offset</key>
+			<string>{-21, -5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{135, 46}, {256, 258}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1780, 462}, {254, 258}}</string>
+			<key>offset</key>
+			<string>{-22, -5}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{135, 46}, {254, 258}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1720, 2}, {286, 216}}</string>
+			<key>offset</key>
+			<string>{20, 15}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{161, 47}, {286, 216}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+		<key>octopus-9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{426, 2}, {292, 196}}</string>
+			<key>offset</key>
+			<string>{45, 21}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{183, 51}, {292, 196}}</string>
+			<key>sourceSize</key>
+			<string>{568, 340}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>size</key>
+		<string>{2048, 2048}</string>
+	</dict>
+</dict>
+</plist>

@@ -44,6 +44,13 @@
 			[self addChild:octopus];
 		}		
         
+		// anglerfish actor view
+		Actor *anglerfishActor = [model.currentSetting.actors objectForKey:@"anglerfish"];
+		if (anglerfishActor != nil) {
+			anglerfish = [[Anglerfish alloc] initWithModel:anglerfishActor controller:controller];
+			[self addChild:anglerfish];
+		}		
+        
         //[self watchForPan:@selector(panning:) number:1];
         [self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionUp number:1];
         [self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionDown number:1];
@@ -142,11 +149,11 @@
             switch (recognizer.direction) {
                     
                 case UISwipeGestureRecognizerDirectionUp:
-                    [octopus.actor modifyTransparency:0.1];
+                    [octopus.actor setMood:@"aggressive"];                
                     break;
                     
                 case UISwipeGestureRecognizerDirectionDown:
-                    [octopus.actor modifyTransparency:-0.1];
+                    [octopus.actor setMood:@"oblivious"];                
                     break;
                     
             }
@@ -164,36 +171,50 @@
 - (void)pinching:(UIPinchGestureRecognizer *)recognizer {
     
     //CGPoint p;
-    //CGPoint v;
+    //CGFloat v;
     
     switch( recognizer.state ) {
+            
         case UIGestureRecognizerStatePossible:
         case UIGestureRecognizerStateBegan:
             //p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
             //(do something when the pan begins)
-            NSLog(@"pinch began");
+            //NSLog(@"pinch began");
+            initialPinchVelocity = 0;
             break;
+            
         case UIGestureRecognizerStateChanged:
-            //p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
-            //(do something while the pan is in progress)
-            NSLog(@"pinch in progress");
-            break;
-        case UIGestureRecognizerStateFailed:
-            break;
-        case UIGestureRecognizerStateEnded:
-            NSLog(@"pinch ended");
-            if (recognizer.scale > 1) {
-                [octopus.actor setMood:@"aggressive"];                
+            //NSLog(@"pinch in progress %f", recognizer.velocity);
+            if (initialPinchVelocity == 0) {
+                initialPinchVelocity = recognizer.velocity;
+            }
+            if ((recognizer.velocity > 0) || (initialPinchVelocity > 0)) {
+                [octopus setTransparencyVelocity:recognizer.velocity * .005];
             } else {
-                [octopus.actor setMood:@"oblivious"];                
+                [octopus setTransparencyVelocity:recognizer.velocity * .02];
             }
             break;
+            
+        case UIGestureRecognizerStateFailed:
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            //NSLog(@"pinch ended");
+            [octopus endTransparencyGesture];
+            if (recognizer.scale > 1) {
+                [octopus.actor modifyTransparency:0.1];
+            } else {
+                [octopus.actor modifyTransparency:-0.1];
+            }
+            break;
+            
         case UIGestureRecognizerStateCancelled:
             //(do something when the pan ends)
             //(the below gets the velocity; good for letting player "fling" things)
             //v = [recognizer velocityInView:[CCDirector sharedDirector].openGLView];
-            NSLog(@"pinch cancelled");
+            //NSLog(@"pinch cancelled");
             break;
+            
     }
     
 }

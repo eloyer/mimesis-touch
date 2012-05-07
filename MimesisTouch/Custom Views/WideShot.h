@@ -10,11 +10,14 @@
 #import "cocos2d.h"
 
 @class Octopus;
+@class Anglerfish;
 
 @interface WideShot : ShotView {
 
     CCSprite        *background;            // sprite for the background
     Octopus         *octopus;               // actor view for the octopus
+    Anglerfish      *anglerfish;            // actor view for the anglerfish
+    CGFloat         initialPinchVelocity;   // velocity at start of pinch
 
 }
 
