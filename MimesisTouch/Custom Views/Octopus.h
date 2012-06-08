@@ -18,10 +18,17 @@
     CGFloat             transparency;                       // current prospective transparency
     CGFloat             maxTransparencyVelocity;            // maximum velocity of transparency during the current gesture
     bool                isTransparencyGestureActive;        // contains true if a transparency gesture is currently being executed
+    CGSize              winSize;                            // size of the window
+    CGFloat             sinValue;                           // value for sin wave bobbing
    
 }
 
+- (void) startTransparencyGesture;
 - (void) setTransparencyVelocity:(CGFloat)velocity;
 - (void) endTransparencyGesture;
+- (void) poke;
+- (BOOL) containsPoint:(CGPoint)point;
+- (void) updatePoseForSprite:(CCSprite *)sprite withTransparency:(CGFloat)t;
+- (void) updatePose;
 
 @end

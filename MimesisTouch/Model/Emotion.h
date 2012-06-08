@@ -11,17 +11,21 @@
 ///  character feels about a topic.
 
 #import <Foundation/Foundation.h>
+#import "PropertyChangeTracker.h"
+
+// TODO add changes to main GeNIE repo.
 
 @class TreeNode;
 @class Event;
 
-@interface Emotion : NSObject {
+@interface Emotion : NSObject <PropertyChangeTrackerDelegate> {
     
     NSString                *name;                              // Name of the emotion
     NSString                *description;                       // Description of the emotion
     CGFloat                 internalStrength;                   // Internal strength of the emotion
     CGFloat                 externalStrength;                   // External strength of the emotion
     NSMutableArray          *demonstrations;                    // Expressions of the emotion
+    PropertyChangeTracker   *propTracker;                   ///< Class which tracks changes to properties.
     
 }
 
@@ -31,6 +35,7 @@
 @property (readwrite) CGFloat externalStrength;
 
 - (id) initWithNode:(TreeNode *)node;
+- (void) modifyStrength:(CGFloat)amount internal:(BOOL)internal;
 - (Event *) getEvent:(BOOL)isInternal;
 
 @end

@@ -11,6 +11,7 @@
 #import "IconNarratorView.h"
 #import "Shot.h"
 #import "WideShot.h"
+#import "ThoughtSpaceShot.h"
 #import "AdministrativeView.h"
 
 @implementation MimesisNarrativeView
@@ -66,22 +67,12 @@
 			[self addChild:currentShotView];
 			
         // THOUGHT SPACE SHOT
-		/*} else if ([shot.identifier isEqualToString:@"thoughtSpaceShot"]) {
-			
-			// both the close up and the thought space are handled by the same shot view,
-			// so only remove the current shot view if we aren't currently rendering either one
-			if (![currentShotView.shot.identifier isEqualToString:@"closeUpShot"]) {
-				[self cleanupShotView];
-				currentShotView = [[CloseUp_ThoughtSpace alloc] initWithModel:shot controller:controller];
-				[self addChild:currentShotView];
-				
-                // otherwise, just tell the current view to change shots
-			} else {
-				[(CloseUp_ThoughtSpace *)currentShotView setCurrentShot:shot];
-			}*/
+		} else if ([shot.identifier isEqualToString:@"thoughtSpaceShot"]) {
+			[self cleanupShotView];
+			currentShotView = [[ThoughtSpaceShot alloc] initWithModel:shot controller:controller];
+			[self addChild:currentShotView];
 			
 		}
-		
 		
 	}
 	

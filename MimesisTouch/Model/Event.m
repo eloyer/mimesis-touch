@@ -160,7 +160,7 @@
 - (BOOL) play {
 	
 	if ((playCount < maxCount) || (maxCount == 99999)) {
-		DLog(@"play event %@", identifier);
+		NSLog(@"%@ PLAY ------------", identifier);
         
         if (parentEventAtom) {
             [parentEventAtom release];
@@ -179,6 +179,7 @@
         
         return true;
 	} else {
+		NSLog(@"%@ COULD NOT PLAY", identifier);
         return false;
     }
 	
@@ -191,6 +192,7 @@
  */
 - (void) playNested:(EventAtom*)eventAtom {
     
+    NSLog(@"%@ PLAY NESTED ------------", identifier);
     if ([self play]) parentEventAtom = [eventAtom retain];
     
 }
@@ -205,7 +207,7 @@
 	BOOL anyConditionMet;
 	BOOL allConditionsMet;
     
-    //DLog(@"-----check start conditions met: %@", identifier);
+    NSLog(@"%@ check start conditions met", identifier);
 	
 	if (playCount < maxCount) {
 		
@@ -240,16 +242,23 @@
 	}
     
     //DLog(@"result: %@ %@ %@ %@", startConditionsOperator, (startConditionsMet) ? @"true" : @"false", (allConditionsMet) ? @"true" : @"false", (anyConditionMet) ? @"true" : @"false");
-	
+    
+    NSLog(@"%@ START CONDITIONS MET", identifier);
+    
 	return startConditionsMet;
 }
 
+// TODO: Add this change to the main GeNIE repo
+
 /**
- * Adds an event atom to the queue of atoms to be played immediately.
+ * Adds an event atom to the queue of atoms to be played immediately, if the queue
+ * doesn't contain it already.
  * @param The event atom to be played immediately.
  */
 - (void) enqueueImmediateEventAtom:(EventAtom *)eventAtom {
-    [immediateEventAtoms addObject:eventAtom];
+    if (![immediateEventAtoms containsObject:eventAtom]) {
+        [immediateEventAtoms addObject:eventAtom];
+    }
 }
 
 /**
@@ -262,7 +271,7 @@
     NarrativeModel *model = [NarrativeModel sharedInstance];
     Event *event = nil;
     BOOL alreadyPlayed = false;
-	DLog(@"atom: %@ %@ %@", eventAtom.itemRef, eventAtom.command, eventAtom.content);
+	NSLog(@"%@ ATOM EXECUTE: %@ %@", eventAtom.itemRef, eventAtom.command, eventAtom.content);
     
     // system commands
     if ([currentEventAtom.itemRef isEqualToString:@"system"]) {
@@ -296,11 +305,11 @@
  * @param notification The notification that the event atom has been completed.
  */
 - (void) handleEventAtomEnd:(NSNotification *)notification {
-    
-    //DLog(@"event %@ got atom end message", identifier);
 	
 	EventAtom *eventAtom = [notification object];
     int index;
+    
+    NSLog(@"%@ ATOM END", identifier);
     
     // if it was an immediate event atom, remove it from the list
     index = [immediateEventAtoms indexOfObject:eventAtom];
@@ -315,7 +324,7 @@
 		
         // if there are immediate event atoms to be played, then play the next one
         if ([immediateEventAtoms count] > 0) {
-            DLog(@"event %@: start immediate atom", identifier);
+            NSLog(@"%@ START IMMEDIATE ATOM", identifier);
             self.currentEventAtom = [immediateEventAtoms objectAtIndex:0];
 			[self executeEventAtom:currentEventAtom];
 
@@ -332,12 +341,12 @@
 			self.isCompleted = TRUE;
             
             // and notify that the event is done
-            //DLog(@"event %@: I am done", identifier);
+            NSLog(@"%@ DONE", identifier);
             [[NSNotificationCenter defaultCenter] postNotificationName:@"EventEnd" object:self];
             
             // this is a nested event; notify that the parent event atom is done
             if (parentEventAtom) {
-                //DLog(@"event %@: tell parent event", identifier);
+                NSLog(@"%@ NOTIFYING PARENT", identifier);
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"EventAtomEnd" object:parentEventAtom];
             }
 		}

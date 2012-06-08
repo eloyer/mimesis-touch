@@ -26,6 +26,8 @@
 #pragma mark -
 #pragma mark Instance methods
 
+// TODO add changes to main GeNIE repo.
+
 /**
  * Initializes a new Emotion.
  * @param node A TreeNode representing the XML in the narrative script that defines the emotion.
@@ -42,6 +44,8 @@
 		self.description = [node attributeForKey:@"description"];
 		self.internalStrength = [[node attributeForKey:@"internalStrength"] floatValue];
 		self.externalStrength = [[node attributeForKey:@"externalStrength"] floatValue];
+        
+        propTracker = [[PropertyChangeTracker alloc] initWithDelegate:self];
 		
 		// parse demonstrations
 		demonstrations = [[NSMutableArray alloc] init];
@@ -61,11 +65,47 @@
 	self.name = nil;
     self.description = nil;
     [demonstrations release];
+    [propTracker release];
 	[super dealloc];
 }
 
 #pragma mark -
+#pragma mark Delegate methods
+
+/**
+ * Adds the specified property to the list of changed properties.
+ * @param propertyName The name of the property that was changed.
+ */
+- (void) addChangedProperty:(NSString *)propertyName {
+    [propTracker _addChangedProperty:propertyName];
+}
+
+/**
+ * Returns true if the specified property was changed recently, and
+ * removes the property from the list of changed properties.
+ * @param propertyName The name of the property that was changed.
+ */
+- (BOOL) propertyWasChanged:(NSString *)propertyName {
+    return [propTracker _propertyWasChanged:propertyName];
+}
+
+#pragma mark -
 #pragma mark Utility methods
+
+/**
+ * Modifies the internal or external strength of the emotion by the specified amount.
+ * @param amount The amount by which to modify the emotion's strength.
+ * @param internal If true, the modification will be applied to the emotion's internal strength (external otherwise).
+ */
+- (void) modifyStrength:(CGFloat)amount internal:(BOOL)internal {
+    if (internal) {
+        internalStrength += amount;
+        [self addChangedProperty:@"internalStrength"];
+    } else {
+        externalStrength += amount;
+        [self addChangedProperty:@"externalStrength"];
+    }
+}
 
 /**
  * Returns an event matching the current intensity (either internal or external) of

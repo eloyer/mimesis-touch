@@ -16,7 +16,8 @@
 typedef enum {
 	BooleanType,
 	StringType,
-    ObjectType
+    ObjectType,
+    FloatType
 } ValueType;
 
 @class TreeNode;
@@ -26,10 +27,12 @@ typedef enum {
 	NSString				*itemRef;				///< Identifier of the item referenced in the condition.
 	id						item;					///< The item whose property is to be tested.
 	NSString				*property;				///< Name of the property being tested.
+    NSString                *lastComponent;         ///< The final component of the property specification.
 	NSString				*operatorName;			///< The operator to be applied.
 	NSString				*stringValue;			///< String describing the value being compared.
 	BOOL                    booleanValue;           ///< Boolean value to be compared.
     id                      objectValue;            ///< Object to be compared.
+    CGFloat                 floatValye;             ///< Float value to be compared.
     ValueType               valueType;              ///< The value's type.
 
 }
@@ -41,6 +44,7 @@ typedef enum {
 @property (nonatomic, retain) NSString *stringValue;
 @property (readwrite) BOOL booleanValue;
 @property (nonatomic, retain) id objectValue;
+@property (readwrite) float floatValue;
 @property (readwrite) ValueType valueType;
 
 - (id) initWithNode:(TreeNode *)node;

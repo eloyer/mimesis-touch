@@ -21,6 +21,7 @@
 
 @synthesize topic;
 @synthesize transparency;
+@synthesize storedTransparency;
 @synthesize emotions;
 
 #pragma mark -
@@ -123,6 +124,65 @@
     }
     
     return event;
+}
+
+// TODO: Move current version to GeNIE project
+
+/**
+ * Returns the emotion with the greatest internal strength.
+ * @return The strongest internal emotion.
+ */
+- (Emotion *) strongestInternalEmotion {
+    
+    Emotion *emotion;
+    
+    NSArray *emotionArray = [emotions allValues];
+    int i;
+    int n = [emotions count];
+    CGFloat maxStrength = 0.0;
+    int emotionIndex;
+    
+    for (i=0; i<n; i++) {
+        emotion = [emotionArray objectAtIndex:i];
+        if (emotion.internalStrength > maxStrength) {
+            maxStrength = emotion.internalStrength;
+            emotionIndex = i;
+        }
+    }
+    
+    return [emotionArray objectAtIndex:emotionIndex];
+}
+
+/**
+ * Returns the emotion with the greatest external strength.
+ * @return The strongest external emotion.
+ */
+- (Emotion *) strongestExternalEmotion {
+    
+    Emotion *emotion;
+    
+    NSArray *emotionArray = [emotions allValues];
+    int i;
+    int n = [emotions count];
+    CGFloat maxStrength = 0.0;
+    int emotionIndex;
+    
+    for (i=0; i<n; i++) {
+        emotion = [emotionArray objectAtIndex:i];
+        if (emotion.externalStrength > maxStrength) {
+            maxStrength = emotion.externalStrength;
+            emotionIndex = i;
+        }
+    }
+    
+    return [emotionArray objectAtIndex:emotionIndex];
+}
+
+/**
+ * Stores the current transparency value for later retrieval.
+ */
+- (void) storeTransparency {
+    self.storedTransparency = transparency;
 }
 
 @end

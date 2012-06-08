@@ -154,7 +154,8 @@ static NarrativeModel *sharedInstance = nil;
  */
 - (void) forward:(SEL)selector object:(id)object {
     //loop through the list of  observers
-    for (id observer in observers) {
+    NSArray *temp = [NSArray arrayWithArray:observers]; // work with a copy of the array so it doesn't get mutated while being iterated
+    for (id observer in temp) {
         //check if the observer repsonds to this method selector, and call the method
         if ([observer respondsToSelector:selector])
             [observer performSelector:selector withObject:object];

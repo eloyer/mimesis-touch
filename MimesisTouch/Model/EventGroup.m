@@ -34,6 +34,8 @@
 #pragma mark -
 #pragma mark Instance methods
 
+// TODO add modifications to main GeNIE repo
+
 /**
  * Initializes a new EventGroup.
  * @param node A TreeNode representing the XML in the narrative script that defines the event group.
@@ -146,10 +148,10 @@
 		
 		// TODO: add error checking in case event is not in the event group
 		
-		//DLog(@"set current event: %@", event.identifier);
-		
 		[currentEvents addObject:event];
 		[[NarrativeModel sharedInstance] forward:_cmd object:event]; // inform model observers
+		
+		NSLog(@"%@ SET CURRENT EVENT %@ total events: %i", identifier, event.identifier, [currentEvents count]);
 		
 		[event play];
 		
@@ -164,7 +166,8 @@
 - (void) handleEventAtomEnd:(NSNotification *)notification {
 	
 	Event *event;
-	for (event in currentEvents) {
+    NSArray *temp = [NSArray arrayWithArray:currentEvents]; // work with a copy of the array so it doesn't get mutated while being iterated
+	for (event in temp) {
 		if ([event.eventAtoms containsObject:[notification object]] || [event.immediateEventAtoms containsObject:[notification object]]) {
 			[event handleEventAtomEnd:notification];
 		}
@@ -178,9 +181,11 @@
  */
 - (void) handleNestedEventStart:(NSNotification *)notification {
     
-    [currentEvents addObject:[notification object]];
-    
-    //DLog(@"add nested event");
+    NarrativeModel *model = [NarrativeModel sharedInstance];
+    if (self == model.currentSetting.currentEventGroup) {
+        [currentEvents addObject:[notification object]];
+        NSLog(@"%@ NESTED EVENT START", identifier);
+    }
     
 }
 
@@ -194,6 +199,7 @@
 	
 	// if no other events are playing, and there are no ending conditions, then end the event group
 	if (([immediateEvents count] == 0) && ([currentEvents count] == 0) && ([endConditions count] == 0)) {
+        NSLog(@"%@ EVENT GROUP END A", identifier);
         [self end];
 	}
 	
@@ -250,6 +256,7 @@
 		
 		// end the event group if necessary
 		if (eventGroupWillEnd) {
+            NSLog(@"%@ EVENT GROUP END B", identifier);
 			[self end];
 
 		// otherwise, check to see if a new event can be started
@@ -262,17 +269,19 @@
 			int i;
 			int n = [eventArray count];
             
-            DLog(@"----");
+            NSLog(@"CHECKING %i EVENTS TO SEE IF ONE CAN BE STARTED:", n);
             
             // gather all the events that are eligible to be triggered
 			for (i=0; i<n; i++) {
 				event = [eventArray objectAtIndex:i];
 				if ((event.weight > 0) && [event startConditionsHaveBeenMet]) { // ignore events with zero weight
                     [eligibleEvents addObject:event];
-                    //NSLog(@"eligible: %@", event.identifier);
+                    NSLog(@"Event %@ is eligible, with weight of %i.", event.identifier, event.weight);
                     totalWeight += event.weight;
 				}
 			}
+            
+           NSLog(@"Total weight of all events = %i", totalWeight);
             
             // make a weighted choice of one event
             if ([eligibleEvents count] > 0) {
@@ -283,6 +292,7 @@
                     event = [eligibleEvents objectAtIndex:i];
                     weightCount += event.weight;
                     if (randomWeight < weightCount) {
+                        NSLog(@"SELECTED EVENT %@", event.identifier);
                         [self setCurrentEvent:event];
                         break;
                     }

@@ -26,6 +26,8 @@
 #pragma mark -
 #pragma mark Instance methods
 
+// TODO implement changes in main GeNIE repo
+
 /**
  * Initializes a new NarratorView.
  * @param cntrllr Instance of the narrative controller.
@@ -54,6 +56,8 @@
         
         // view is initially hidden
         self.position = ccp(0, -60);
+        
+        eventAtomQueue = [[NSMutableArray alloc] init];
 		
 	}
 	
@@ -65,6 +69,7 @@
 	[captionLayer release];
     [background removeFromParentAndCleanup:TRUE];
     [background release];
+    [eventAtomQueue release];
 	[super dealloc];
 }
 
@@ -72,10 +77,25 @@
 #pragma mark Utility methods
 
 /**
- * Takes any action relevant to the execution of the specified event atom.
+ * Narrates the specified event atom, or places it in a queue if
+ * something is already being narrated.
  * @param eventAtom The event atom being executed.
  */
 - (void) executeEventAtom:(EventAtom *)eventAtom {
+
+    if (!isNarrating) {
+        [self narrateEventAtom:eventAtom];
+    } else {
+        [eventAtomQueue addObject:eventAtom];
+    }
+		
+}
+
+/**
+ * Narrates the specified event atom.
+ * @param eventAtom The event atom to be narrated.
+ */
+- (void) narrateEventAtom:(EventAtom *)eventAtom {
 	
 	NSString *contentString;
 	NarrativeModel *model = [NarrativeModel sharedInstance];
@@ -83,20 +103,20 @@
 	Actor *recipient;
     
     //DLog(@"----execute atom %@", eventAtom.command);
-
+    
 	// narrate an actor saying something
 	if ([eventAtom.command isEqualToString:@"say"]) {
         currentEventAtom = [eventAtom retain];
 		originator = (Actor *)currentEventAtom.item;
 		[self narrate:currentEventAtom.content duration:3.5];
-    
-    // narrate an actor thinking something
+        
+        // narrate an actor thinking something
     } else if ([eventAtom.command isEqualToString:@"think"]) {
         currentEventAtom = [eventAtom retain];
         originator = (Actor *)currentEventAtom.item;
         [self narrate:[NSString stringWithFormat:@"<< %@ >>", currentEventAtom.content] duration:3.5];
 		
-	// narrate one actor looking at another
+        // narrate one actor looking at another
 	} else if ([eventAtom.command isEqualToString:@"lookAt"]) {
         currentEventAtom = [eventAtom retain];
 		originator = (Actor *)currentEventAtom.item;
@@ -106,7 +126,7 @@
 			[self narrate:contentString duration:1.0];
 		}
 		
-	// narrate one actor looking away from another
+        // narrate one actor looking away from another
 	} else if ([eventAtom.command isEqualToString:@"lookAwayFrom"]) {
         currentEventAtom = [eventAtom retain];
 		originator = (Actor *)currentEventAtom.item;
@@ -133,8 +153,7 @@
         [icon runAction:[CCFadeIn actionWithDuration:0.25]];
         if (lastActor != NULL) [lastActor release];
         lastActor = [originator retain];
-    }
-		
+    }    
 }
 
 /**
@@ -161,7 +180,23 @@
         [self stopAllActions];
         [self runAction:[CCEaseExponentialInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(0, 0)]]];
     }
+    
+    isNarrating = TRUE;
 	
+}
+
+/**
+ * Narrates the next event atom in the queue (if any).
+ */
+- (void) narrateEventAtomFromQueue {
+    
+    EventAtom *eventAtom;
+    
+    if ([eventAtomQueue count] > 0) {
+        eventAtom = [eventAtomQueue objectAtIndex:0];
+        [eventAtomQueue removeObject:eventAtom];
+        [self narrateEventAtom:eventAtom];
+    }
 }
 
 /**
@@ -170,6 +205,8 @@
 - (void) handleNarrateEnd {
     lastEndDate = [[NSDate date] retain];
  	[controller handleEventAtomEnd:currentEventAtom];
+    isNarrating = FALSE;
+    [self narrateEventAtomFromQueue];
 }
 
 /**

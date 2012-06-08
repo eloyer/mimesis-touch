@@ -31,16 +31,18 @@
 		A215D1D91554303F00F63ADE /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1CF1554303E00F63ADE /* iTunesArtwork.png */; };
 		A215D1DA1554303F00F63ADE /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1D01554303F00F63ADE /* iTunesArtwork@2x.png */; };
 		A215D1DC1554307400F63ADE /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1DB1554307400F63ADE /* Icon-72@2x.png */; };
-		A238C05615583D5900F6D37C /* mimesis_launch_landscape_1x.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05215583D5900F6D37C /* mimesis_launch_landscape_1x.png */; };
-		A238C05715583D5900F6D37C /* mimesis_launch_landscape_iphone_1x.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05315583D5900F6D37C /* mimesis_launch_landscape_iphone_1x.png */; };
-		A238C05815583D5900F6D37C /* mimesis_launch_landscape_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05415583D5900F6D37C /* mimesis_launch_landscape_iphone.png */; };
-		A238C05915583D5900F6D37C /* mimesis_launch_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05515583D5900F6D37C /* mimesis_launch_landscape.png */; };
 		A238C05B15583D6300F6D37C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05A15583D6300F6D37C /* Default.png */; };
 		A238C05D15583D6700F6D37C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05C15583D6700F6D37C /* Default@2x.png */; };
 		A238C05F15583D7200F6D37C /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05E15583D7200F6D37C /* Default-Landscape~ipad.png */; };
 		A238C06115583D7600F6D37C /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C06015583D7600F6D37C /* Default-Landscape@2x~ipad.png */; };
 		A238C0701558604600F6D37C /* octopus.plist in Resources */ = {isa = PBXBuildFile; fileRef = A238C06E1558604600F6D37C /* octopus.plist */; };
 		A238C0711558604600F6D37C /* octopus.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C06F1558604600F6D37C /* octopus.png */; };
+		A2458ACE156AA819004F77A6 /* octopus_eye.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2458ACC156AA819004F77A6 /* octopus_eye.plist */; };
+		A2458ACF156AA819004F77A6 /* octopus_eye.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458ACD156AA819004F77A6 /* octopus_eye.png */; };
+		A2458AD3156AA902004F77A6 /* ThoughtSpaceShot.m in Sources */ = {isa = PBXBuildFile; fileRef = A2458AD2156AA902004F77A6 /* ThoughtSpaceShot.m */; };
+		A2458AD5156AAE14004F77A6 /* thought_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458AD4156AAE14004F77A6 /* thought_background.png */; };
+		A2458ADC156AF048004F77A6 /* OctopusInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = A2458ADB156AF047004F77A6 /* OctopusInternal.m */; };
+		A2458AE0156AFA2F004F77A6 /* oct_cu_head.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */; };
 		A29F55BF1551F12300888F59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55BE1551F12300888F59 /* QuartzCore.framework */; };
 		A29F55C11551F12300888F59 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C01551F12300888F59 /* OpenGLES.framework */; };
 		A29F55C31551F12300888F59 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C21551F12300888F59 /* OpenAL.framework */; };
@@ -49,7 +51,6 @@
 		A29F55C91551F12300888F59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C81551F12300888F59 /* UIKit.framework */; };
 		A29F55CB1551F12300888F59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55CA1551F12300888F59 /* Foundation.framework */; };
 		A29F55CD1551F12300888F59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55CC1551F12300888F59 /* CoreGraphics.framework */; };
-		A29F55D11551F12300888F59 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F55D01551F12300888F59 /* Default.png */; };
 		A29F55D31551F12300888F59 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F55D21551F12300888F59 /* fps_images.png */; };
 		A29F55E71551F12300888F59 /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F55E61551F12300888F59 /* CCAction.m */; };
 		A29F55EA1551F12300888F59 /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F55E91551F12300888F59 /* CCActionCamera.m */; };
@@ -179,6 +180,7 @@
 		A29F57861551F1F500888F59 /* icon-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F57831551F1F500888F59 /* icon-pause.png */; };
 		A29F57871551F1F500888F59 /* narration_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F57841551F1F500888F59 /* narration_bg.png */; };
 		A29F578D1551F47500888F59 /* narrative_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = A29F578C1551F47500888F59 /* narrative_data.xml */; };
+		A2C8F435156572F0001685D6 /* PropertyChangeTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C8F434156572F0001685D6 /* PropertyChangeTracker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -211,16 +213,20 @@
 		A215D1CF1554303E00F63ADE /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		A215D1D01554303F00F63ADE /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		A215D1DB1554307400F63ADE /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
-		A238C05215583D5900F6D37C /* mimesis_launch_landscape_1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mimesis_launch_landscape_1x.png; sourceTree = "<group>"; };
-		A238C05315583D5900F6D37C /* mimesis_launch_landscape_iphone_1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mimesis_launch_landscape_iphone_1x.png; sourceTree = "<group>"; };
-		A238C05415583D5900F6D37C /* mimesis_launch_landscape_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mimesis_launch_landscape_iphone.png; sourceTree = "<group>"; };
-		A238C05515583D5900F6D37C /* mimesis_launch_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mimesis_launch_landscape.png; sourceTree = "<group>"; };
 		A238C05A15583D6300F6D37C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		A238C05C15583D6700F6D37C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		A238C05E15583D7200F6D37C /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		A238C06015583D7600F6D37C /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		A238C06E1558604600F6D37C /* octopus.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = octopus.plist; sourceTree = "<group>"; };
 		A238C06F1558604600F6D37C /* octopus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octopus.png; sourceTree = "<group>"; };
+		A2458ACC156AA819004F77A6 /* octopus_eye.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = octopus_eye.plist; sourceTree = "<group>"; };
+		A2458ACD156AA819004F77A6 /* octopus_eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octopus_eye.png; sourceTree = "<group>"; };
+		A2458AD1156AA902004F77A6 /* ThoughtSpaceShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThoughtSpaceShot.h; path = "Custom Views/ThoughtSpaceShot.h"; sourceTree = "<group>"; };
+		A2458AD2156AA902004F77A6 /* ThoughtSpaceShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThoughtSpaceShot.m; path = "Custom Views/ThoughtSpaceShot.m"; sourceTree = "<group>"; };
+		A2458AD4156AAE14004F77A6 /* thought_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thought_background.png; sourceTree = "<group>"; };
+		A2458ADA156AF047004F77A6 /* OctopusInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OctopusInternal.h; path = "Custom Views/OctopusInternal.h"; sourceTree = "<group>"; };
+		A2458ADB156AF047004F77A6 /* OctopusInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OctopusInternal.m; path = "Custom Views/OctopusInternal.m"; sourceTree = "<group>"; };
+		A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oct_cu_head.png; sourceTree = "<group>"; };
 		A29F55BA1551F12300888F59 /* MimesisTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimesisTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A29F55BE1551F12300888F59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A29F55C01551F12300888F59 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -230,7 +236,6 @@
 		A29F55C81551F12300888F59 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A29F55CA1551F12300888F59 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A29F55CC1551F12300888F59 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A29F55D01551F12300888F59 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		A29F55D21551F12300888F59 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
 		A29F55E01551F12300888F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		A29F55E51551F12300888F59 /* CCAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCAction.h; path = libs/cocos2d/CCAction.h; sourceTree = "<group>"; };
@@ -505,6 +510,8 @@
 		A29F57831551F1F500888F59 /* icon-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-pause.png"; sourceTree = "<group>"; };
 		A29F57841551F1F500888F59 /* narration_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = narration_bg.png; sourceTree = "<group>"; };
 		A29F578C1551F47500888F59 /* narrative_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = narrative_data.xml; path = Resources/narrative_data.xml; sourceTree = "<group>"; };
+		A2C8F433156572F0001685D6 /* PropertyChangeTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyChangeTracker.h; sourceTree = "<group>"; };
+		A2C8F434156572F0001685D6 /* PropertyChangeTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyChangeTracker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -537,8 +544,12 @@
 				A215D1A41551FFFF00F63ADE /* MimesisNarrativeView.m */,
 				A215D1BD1553A1F100F63ADE /* Octopus.h */,
 				A215D1BE1553A1F100F63ADE /* Octopus.m */,
+				A2458ADA156AF047004F77A6 /* OctopusInternal.h */,
+				A2458ADB156AF047004F77A6 /* OctopusInternal.m */,
 				A215D1C41553B02100F63ADE /* Anglerfish.h */,
 				A215D1C51553B02100F63ADE /* Anglerfish.m */,
+				A2458AD1156AA902004F77A6 /* ThoughtSpaceShot.h */,
+				A2458AD2156AA902004F77A6 /* ThoughtSpaceShot.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -586,6 +597,7 @@
 				A29F57261551F12500888F59 /* HelloWorldLayer.h */,
 				A29F57271551F12500888F59 /* HelloWorldLayer.m */,
 				A29F57291551F12500888F59 /* GameConfig.h */,
+				A215D1961551FBF400F63ADE /* mimesis_narrative.xml */,
 				A29F55CF1551F12300888F59 /* Resources */,
 				A29F55E31551F12300888F59 /* libs */,
 				A29F571C1551F12500888F59 /* Supporting Files */,
@@ -612,26 +624,24 @@
 				A215D1CF1554303E00F63ADE /* iTunesArtwork.png */,
 				A215D1D01554303F00F63ADE /* iTunesArtwork@2x.png */,
 				A29F57821551F1F500888F59 /* generic_icon.png */,
-				A238C05215583D5900F6D37C /* mimesis_launch_landscape_1x.png */,
-				A238C05315583D5900F6D37C /* mimesis_launch_landscape_iphone_1x.png */,
-				A238C05415583D5900F6D37C /* mimesis_launch_landscape_iphone.png */,
-				A238C05515583D5900F6D37C /* mimesis_launch_landscape.png */,
 				A29F57831551F1F500888F59 /* icon-pause.png */,
 				A29F57841551F1F500888F59 /* narration_bg.png */,
-				A29F55D01551F12300888F59 /* Default.png */,
 				A29F55D21551F12300888F59 /* fps_images.png */,
 				A29F55E01551F12300888F59 /* Info.plist */,
 				A29F578C1551F47500888F59 /* narrative_data.xml */,
-				A215D1961551FBF400F63ADE /* mimesis_narrative.xml */,
 				A215D1991551FD9800F63ADE /* ocean_background.png */,
+				A2458AD4156AAE14004F77A6 /* thought_background.png */,
 				A215D1B01553526900F63ADE /* anglerfish_icon-hd.png */,
 				A215D1B11553526900F63ADE /* anglerfish_icon.png */,
 				A215D1B21553526A00F63ADE /* octopus_icon-hd.png */,
 				A215D1B31553526A00F63ADE /* octopus_icon.png */,
 				A215D1C01553B00400F63ADE /* anglerfish-hd.png */,
 				A215D1C11553B00400F63ADE /* anglerfish.png */,
+				A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */,
 				A238C06E1558604600F6D37C /* octopus.plist */,
 				A238C06F1558604600F6D37C /* octopus.png */,
+				A2458ACC156AA819004F77A6 /* octopus_eye.plist */,
+				A2458ACD156AA819004F77A6 /* octopus_eye.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -995,6 +1005,8 @@
 				A29F57491551F1B500888F59 /* NarrativeModel.m */,
 				A29F574A1551F1B500888F59 /* Prop.h */,
 				A29F574B1551F1B500888F59 /* Prop.m */,
+				A2C8F433156572F0001685D6 /* PropertyChangeTracker.h */,
+				A2C8F434156572F0001685D6 /* PropertyChangeTracker.m */,
 				A29F574C1551F1B500888F59 /* Sentiment.h */,
 				A29F574D1551F1B500888F59 /* Sentiment.m */,
 				A29F574E1551F1B500888F59 /* Setting.h */,
@@ -1089,7 +1101,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A29F55D11551F12300888F59 /* Default.png in Resources */,
 				A29F55D31551F12300888F59 /* fps_images.png in Resources */,
 				A29F57851551F1F500888F59 /* generic_icon.png in Resources */,
 				A29F57861551F1F500888F59 /* icon-pause.png in Resources */,
@@ -1114,16 +1125,16 @@
 				A215D1D91554303F00F63ADE /* iTunesArtwork.png in Resources */,
 				A215D1DA1554303F00F63ADE /* iTunesArtwork@2x.png in Resources */,
 				A215D1DC1554307400F63ADE /* Icon-72@2x.png in Resources */,
-				A238C05615583D5900F6D37C /* mimesis_launch_landscape_1x.png in Resources */,
-				A238C05715583D5900F6D37C /* mimesis_launch_landscape_iphone_1x.png in Resources */,
-				A238C05815583D5900F6D37C /* mimesis_launch_landscape_iphone.png in Resources */,
-				A238C05915583D5900F6D37C /* mimesis_launch_landscape.png in Resources */,
 				A238C05B15583D6300F6D37C /* Default.png in Resources */,
 				A238C05D15583D6700F6D37C /* Default@2x.png in Resources */,
 				A238C05F15583D7200F6D37C /* Default-Landscape~ipad.png in Resources */,
 				A238C06115583D7600F6D37C /* Default-Landscape@2x~ipad.png in Resources */,
 				A238C0701558604600F6D37C /* octopus.plist in Resources */,
 				A238C0711558604600F6D37C /* octopus.png in Resources */,
+				A2458ACE156AA819004F77A6 /* octopus_eye.plist in Resources */,
+				A2458ACF156AA819004F77A6 /* octopus_eye.png in Resources */,
+				A2458AD5156AAE14004F77A6 /* thought_background.png in Resources */,
+				A2458AE0156AFA2F004F77A6 /* oct_cu_head.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,6 +1274,9 @@
 				A215D1A51551FFFF00F63ADE /* MimesisNarrativeView.m in Sources */,
 				A215D1BF1553A1F100F63ADE /* Octopus.m in Sources */,
 				A215D1C61553B02100F63ADE /* Anglerfish.m in Sources */,
+				A2C8F435156572F0001685D6 /* PropertyChangeTracker.m in Sources */,
+				A2458AD3156AA902004F77A6 /* ThoughtSpaceShot.m in Sources */,
+				A2458ADC156AF048004F77A6 /* OctopusInternal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1327,6 +1341,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Erik Loyer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MimesisTouch/Prefix.pch;
@@ -1335,6 +1350,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "203B55F6-6680-42E9-AA89-4552411B6662";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -46,12 +46,14 @@
 		[self addChild:mainMenu];
 		
 		// set up game menu
+        /*
 		CCMenuItemImage *pauseMenuItem = [CCMenuItemImage itemFromNormalImage:@"icon-pause.png" selectedImage:@"icon-pause.png" target:controller selector:@selector(pauseNarrative)];
 		gameMenu = [CCMenu menuWithItems:pauseMenuItem, nil];
 		pauseMenuItem.anchorPoint = ccp(0, 1);
 		gameMenu.anchorPoint = ccp(0, 1);
 		gameMenu.position = ccp(5, winSize.height - 5);
 		[self addChild:gameMenu];
+         */
 		
 	}
 	

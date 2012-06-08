@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Globals.h"
+#import "PropertyChangeTracker.h"
 
 
 @class TreeNode;
@@ -19,7 +20,9 @@
 @class Event;
 @class Topic;
 
-@interface Actor : NSObject {
+// TODO add changes to main GeNIE repo
+
+@interface Actor : NSObject <PropertyChangeTrackerDelegate> {
 	
 	NSString				*identifier;					///< Unique identifier for the actor.
 	NSString				*actorName;						///< Display name of the actor.
@@ -27,9 +30,10 @@
     NSString                *objectivePronoun;              ///< Pronoun that describes the actor as an object.
     NSString                *iconFilename;                  ///< Filename for actor icon (icons should be 52x52 for non-retina displays).
 	NSString				*mood;                          ///< Name of the actor's current emotional state.
-	NSMutableArray			*changedProperties;				///< Array of recently changed properties.
+	//NSMutableArray			*changedProperties;				///< Array of recently changed properties.
     NSMutableDictionary     *sentiments;                    ///< Dictionary of feelings of the character has about particular topics.
     Topic                   *currentTopic;                  ///< Topic the character is thinking about (may be nil).
+    PropertyChangeTracker   *propTracker;                   ///< Class which tracks changes to properties.
 
 }
 
@@ -50,6 +54,7 @@
 - (NSString*) mood;
 - (void) setMood:(NSString *)newMood;
 - (void) modifyTransparency:(CGFloat)amount;
+- (void) modifyEmotion:(NSString *)emotionId forSentiment:(NSString *)sentimentId amount:(CGFloat)amount internal:(BOOL)internal;
 - (Topic*) currentTopic;
 - (void) setCurrentTopic:(Topic *)topic;
 

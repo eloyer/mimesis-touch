@@ -18,13 +18,16 @@
     Octopus         *octopus;               // actor view for the octopus
     Anglerfish      *anglerfish;            // actor view for the anglerfish
     CGFloat         initialPinchVelocity;   // velocity at start of pinch
+    NSMutableArray  *gestureRecognizers;    // gesture recognizers for the view
 
 }
 
+- (UITapGestureRecognizer *)watchForTap:(SEL)selector taps:(int)tapsRequired touches:(int)touchesRequired;
 - (UIPanGestureRecognizer *)watchForPan:(SEL)selector number:(int)tapsRequired;
 - (UISwipeGestureRecognizer *)watchForSwipe:(SEL)selector direction:(UISwipeGestureRecognizerDirection)direction number:(int)touchesRequired;
 - (UIPinchGestureRecognizer *)watchForPinch:(SEL)selector;
 - (void)unwatch:(UIGestureRecognizer *)gr;
+- (void)tapping:(UITapGestureRecognizer *)recognizer;
 - (void)panning:(UIPanGestureRecognizer *)recognizer;
 - (void)swiping:(UISwipeGestureRecognizer *)recognizer;
 - (void)pinching:(UIPinchGestureRecognizer *)recognizer;

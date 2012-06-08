@@ -11,6 +11,12 @@
 #import "NarrativeModel.h"
 #import "Setting.h"
 #import "Octopus.h"
+#import "Sentiment.h"
+#import "Emotion.h"
+#import "Event.h"
+#import "EventGroup.h"
+#import "Shot.h"
+#import "NarrativeController.h"
 
 @implementation WideShot
 
@@ -50,11 +56,10 @@
 			anglerfish = [[Anglerfish alloc] initWithModel:anglerfishActor controller:controller];
 			[self addChild:anglerfish];
 		}		
-        
-        //[self watchForPan:@selector(panning:) number:1];
-        [self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionUp number:1];
-        [self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionDown number:1];
-        [self watchForPinch:@selector(pinching:)];
+        gestureRecognizers = [[NSMutableArray alloc] init];
+        [gestureRecognizers addObject:[self watchForTap:@selector(tapping:) taps:1 touches:1]];
+        [gestureRecognizers addObject:[self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionDown number:2]];
+        [gestureRecognizers addObject:[self watchForPinch:@selector(pinching:)]];
         
 	}
 	
@@ -62,11 +67,26 @@
 }
 
 - (void) dealloc {
+    for (UIGestureRecognizer* gr in gestureRecognizers) {
+        [self unwatch:gr];
+    }
+    [gestureRecognizers release];
+    [background removeAllChildrenWithCleanup:TRUE];
+    [octopus release];
+    [anglerfish release];
 	[super dealloc];
 }
 
 #pragma mark -
 #pragma mark Utility methods
+
+- (UITapGestureRecognizer *)watchForTap:(SEL)selector taps:(int)tapsRequired touches:(int)touchesRequired {
+    UITapGestureRecognizer *recognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:selector] autorelease];
+    recognizer.numberOfTapsRequired = tapsRequired;
+    recognizer.numberOfTouchesRequired = touchesRequired;
+    [[[CCDirector sharedDirector] openGLView] addGestureRecognizer:recognizer];
+    return recognizer;
+}
 
 - (UIPanGestureRecognizer *)watchForPan:(SEL)selector number:(int)tapsRequired {
     UIPanGestureRecognizer *recognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:selector] autorelease];
@@ -91,6 +111,42 @@
 
 - (void)unwatch:(UIGestureRecognizer *)gr {
     [[[CCDirector sharedDirector] openGLView] removeGestureRecognizer:gr];
+}
+
+- (void)tapping:(UITapGestureRecognizer *)recognizer {
+    
+    CGPoint p;
+    
+    switch( recognizer.state ) {
+        case UIGestureRecognizerStatePossible:
+        case UIGestureRecognizerStateBegan:
+            break;
+        case UIGestureRecognizerStateChanged:
+            break;
+        case UIGestureRecognizerStateFailed:
+            break;
+        case UIGestureRecognizerStateEnded:
+            p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
+            /*CGSize winSize = [[CCDirector sharedDirector] winSize];
+            if (p.x < 20) {
+                if ((p.y < 20) || (p.y > (winSize.height - 20))) {
+                    [controller pauseNarrative];
+                }
+            } else if (p.x > (winSize.width - 20)) {
+                if ((p.y < 20) || (p.y > (winSize.height - 20))) {
+                    [controller pauseNarrative];
+                }
+            } else*/ if ([octopus containsPoint:p]) {
+                NarrativeModel *model = [NarrativeModel sharedInstance];
+                Event *event = [model parseItemRef:@"express"];
+                [model.currentSetting.currentEventGroup setCurrentEvent:event];
+                [octopus poke];
+            }
+            break;
+        case UIGestureRecognizerStateCancelled:
+            break;
+    }
+    
 }
 
 - (void)panning:(UIPanGestureRecognizer *)recognizer {
@@ -130,6 +186,8 @@
     //CGPoint p;
     //CGPoint v;
     
+    // NEED TO CREATE WAY TO INC/DEC MOOD EVEN IF NOT IN THE RIGHT VIEW
+    
     switch( recognizer.state ) {
         case UIGestureRecognizerStatePossible:
         case UIGestureRecognizerStateBegan:
@@ -146,18 +204,19 @@
             break;
         case UIGestureRecognizerStateEnded:
             NSLog(@"swipe ended");
-            switch (recognizer.direction) {
+            switch (recognizer.numberOfTouchesRequired) {
                     
-                case UISwipeGestureRecognizerDirectionUp:
-                    [octopus.actor setMood:@"aggressive"];                
+                case 2:
+                    if (recognizer.direction == UISwipeGestureRecognizerDirectionDown) {
+                        Shot *adjacentShot = [shot adjacentShotForKey:@"enterThoughts"];
+                         if (adjacentShot != nil) {
+                            [controller setShot:adjacentShot];
+                        }
+                    }
                     break;
-                    
-                case UISwipeGestureRecognizerDirectionDown:
-                    [octopus.actor setMood:@"oblivious"];                
-                    break;
-                    
             }
             break;
+            
         case UIGestureRecognizerStateCancelled:
             //(do something when the pan ends)
             //(the below gets the velocity; good for letting player "fling" things)
@@ -170,21 +229,15 @@
 
 - (void)pinching:(UIPinchGestureRecognizer *)recognizer {
     
-    //CGPoint p;
-    //CGFloat v;
-    
     switch( recognizer.state ) {
             
         case UIGestureRecognizerStatePossible:
         case UIGestureRecognizerStateBegan:
-            //p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
-            //(do something when the pan begins)
-            //NSLog(@"pinch began");
             initialPinchVelocity = 0;
+            [octopus startTransparencyGesture];
             break;
             
         case UIGestureRecognizerStateChanged:
-            //NSLog(@"pinch in progress %f", recognizer.velocity);
             if (initialPinchVelocity == 0) {
                 initialPinchVelocity = recognizer.velocity;
             }
@@ -199,20 +252,16 @@
             break;
             
         case UIGestureRecognizerStateEnded:
-            //NSLog(@"pinch ended");
             [octopus endTransparencyGesture];
             if (recognizer.scale > 1) {
                 [octopus.actor modifyTransparency:0.1];
             } else {
                 [octopus.actor modifyTransparency:-0.1];
             }
+            [octopus updatePose];
             break;
             
         case UIGestureRecognizerStateCancelled:
-            //(do something when the pan ends)
-            //(the below gets the velocity; good for letting player "fling" things)
-            //v = [recognizer velocityInView:[CCDirector sharedDirector].openGLView];
-            //NSLog(@"pinch cancelled");
             break;
             
     }

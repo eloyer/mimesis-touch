@@ -37,6 +37,8 @@
 #pragma mark -
 #pragma mark Instance methods
 
+// TODO add changes to main GeNIE repo.
+
 /**
  * Initializes a new Actor.
  * @param node A TreeNode representing the XML in the narrative script that defines the actor.
@@ -50,7 +52,8 @@
 		TreeNode *data;
 		NSArray *dataArray;
 		
-		self.changedProperties = [[NSMutableArray alloc] init];
+		//self.changedProperties = [[NSMutableArray alloc] init];
+        propTracker = [[PropertyChangeTracker alloc] initWithDelegate:self];
 		
 		// if identifier is not provided, generate one
 		if ([node hasAttribute:@"id"]) {
@@ -86,8 +89,9 @@
     self.objectivePronoun = nil;
     self.iconFilename = nil;
 	[mood release];
-	self.changedProperties = nil;
+	//self.changedProperties = nil;
     self.sentiments = nil;
+    [propTracker release];
 	[super dealloc];
 }
 
@@ -161,7 +165,15 @@
                 sentiment.transparency = [[content objectForKey:@"value"] floatValue];
             }
 			[eventAtom handleEnd];
-           
+            
+        // store the transparancey of one of the actor's sentiments
+        } else if ([eventAtom.command isEqualToString:@"storeTransparency"]) {
+            content = [self parseCommand:eventAtom];
+            if (content) {
+                sentiment = [content objectForKey:@"sentiment"];
+                [sentiment storeTransparency];
+            }
+			[eventAtom handleEnd];
 		}
 		
 	}
@@ -205,13 +217,24 @@
         
         if ([components count] == 2) {
             sentiment = [sentiments objectForKey:[components objectAtIndex:0]];
-            aFloat = [[components objectAtIndex:1] floatValue];
+            if ([[components objectAtIndex:1] isEqualToString:@"random"]) {
+                aFloat = (rand() % 100) * .01;
+            } else {
+                aFloat = [[components objectAtIndex:1] floatValue];
+            }
             value = [NSNumber numberWithFloat:fmin(1, fmax(0, aFloat))];
             if (sentiment) {
                 result = [NSDictionary dictionaryWithObjectsAndKeys:sentiment, @"sentiment", value, @"value", nil];
             }
         }
         
+    // command = storeTransparency
+    // The sentiment must be specified
+    } else if ([eventAtom.command isEqualToString:@"storeTransparency"]) {
+        sentiment = [sentiments objectForKey:[components objectAtIndex:0]];
+        if (sentiment) {
+            result = [NSDictionary dictionaryWithObjectsAndKeys:sentiment, @"sentiment", nil];
+        }
     }
     
     return result;
@@ -235,15 +258,15 @@
     return event;
 }
 
+#pragma mark -
+#pragma mark Delegate methods
+
 /**
  * Adds the specified property to the list of changed properties.
  * @param propertyName The name of the property that was changed.
  */
 - (void) addChangedProperty:(NSString *)propertyName {
-	if (![changedProperties containsObject:propertyName]) {
-		[changedProperties addObject:propertyName];
-        //NSLog(@"add changed property: %@", propertyName);
-	}
+    [propTracker _addChangedProperty:propertyName];
 }
 
 /**
@@ -252,11 +275,7 @@
  * @param propertyName The name of the property that was changed.
  */
 - (BOOL) propertyWasChanged:(NSString *)propertyName {
-	BOOL result = [changedProperties containsObject:propertyName];
-	if (result) {
-		[changedProperties removeObject:propertyName];
-	}
-	return result;
+    return [propTracker _propertyWasChanged:propertyName];
 }
 
 #pragma mark -
@@ -306,18 +325,18 @@
                     emotion.internalStrength++;
                     EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ inward %@ %@ increased.", [objectivePronoun capitalizedString], emotion.description, currentTopic.description]];
                     [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
-                    DLog(@"%@ %@ about %@: %f", actorName, mood, currentTopic.identifier, emotion.internalStrength);
+                    //DLog(@"%@ %@ about %@: %f", actorName, mood, currentTopic.identifier, emotion.internalStrength);
                     
                 // apply moods set during "external" shots to the actor's external emotion
                 } else {
                     emotion.externalStrength++;
                     EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ outward %@ %@ increased.", [objectivePronoun capitalizedString], emotion.description, currentTopic.description]];
                     [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
-                    DLog(@"%@ %@ about %@: %f", actorName, mood, currentTopic.identifier, emotion.externalStrength);
+                   // DLog(@"%@ %@ about %@: %f", actorName, mood, currentTopic.identifier, emotion.externalStrength);
                 }
                 
                 // remember that the property was changed
-                [self addChangedProperty:[NSString stringWithFormat:@"sentiment:%@", sentiment.topic.identifier]];
+                [self addChangedProperty:[NSString stringWithFormat:@"sentiment.%@", sentiment.topic.identifier]];
             }
         }
     }
@@ -353,6 +372,20 @@
             }
         }
     }    
+}
+
+// TODO: Add this back to the main GeNIE repo
+
+- (void) modifyEmotion:(NSString *)emotionId forSentiment:(NSString *)sentimentId amount:(CGFloat)amount internal:(BOOL)internal {
+    
+    Sentiment *sentiment = [sentiments objectForKey:sentimentId];
+    if (sentiment) {
+        Emotion *emotion = [sentiment.emotions objectForKey:emotionId];
+        if (emotion) {
+            [emotion modifyStrength:amount internal:internal];
+        }
+    }
+    
 }
 
 /**

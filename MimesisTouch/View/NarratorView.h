@@ -18,6 +18,7 @@
 #import "cocos2d.h"
 #import "NarrativeController.h"
 
+// TODO implement changes in main GeNIE repo
 
 @class Actor;
 @class EventAtom;
@@ -31,12 +32,16 @@
     CCSprite                    *icon;                      ///< Current actor icon.
     Actor                       *lastActor;                 ///< Last actor to be narrated.
     NSDate                      *lastEndDate;               ///< End date of the last say action.
+    NSMutableArray              *eventAtomQueue;            ///< Queue of event atoms waiting to be executed.
+    BOOL                        isNarrating;                ///< Is the view currently narrating something?
 
 }
 
 - (id) initWithController:(NarrativeController *)cntrllr;
 - (void) executeEventAtom:(EventAtom *)eventAtom;
 - (void) narrate:(NSString *)content duration:(CGFloat)duration;
+- (void) narrateEventAtom:(EventAtom *)eventAtom;
+- (void) narrateEventAtomFromQueue;
 - (void) handleNarrateEnd;
 - (CCSprite*) iconForActor:(Actor *)actor;
 - (void) tryToHideView;

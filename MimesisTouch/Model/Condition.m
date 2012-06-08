@@ -25,6 +25,7 @@
 @synthesize stringValue;
 @synthesize booleanValue;
 @synthesize objectValue;
+@synthesize floatValue;
 @synthesize valueType;
 
 #pragma mark -
@@ -70,6 +71,29 @@
 	NarrativeModel *model = [NarrativeModel sharedInstance];
 	self.item = [model parseItemRef:itemRef];
     
+    // Properties are specified in the following format: [propertyName.identifier]:[propertyName]
+    // There can be 0 - many instances of [propertyName.identifier] in the property specification.
+    // Example: sentiment.discriminationExists:emotion.aggressive:internalStrength
+    NSArray *propertySpecs = [property componentsSeparatedByString:@":"];
+    NSArray *components;
+    NSDictionary *dictionary;
+    int i;
+    int n = [propertySpecs count];
+    if (n > 1) {
+        for (i=0; i<n; i++) {
+            components = [[propertySpecs objectAtIndex:i] componentsSeparatedByString:@"."];
+            if ([components count] > 1) {
+                dictionary = [item valueForKey:[components objectAtIndex:0]];
+                self.item = [dictionary objectForKey:[components objectAtIndex:1]];
+            } else if (i < (n - 1)) {
+                self.item = [item valueForKey:[components objectAtIndex:0]];
+            }
+            lastComponent = [[propertySpecs objectAtIndex:i] retain];
+        }
+    } else {
+        lastComponent = [property retain];
+    }
+    
     // booleans
     if ([property isEqualToString:@"isCompleted"] || 
         [operatorName isEqualToString:@"changed"] || 
@@ -84,6 +108,11 @@
         self.valueType = ObjectType;
         self.objectValue = [model parseItemRef:stringValue];
         
+    // numbers
+    } else if ([lastComponent isEqualToString:@"transparency"] || [lastComponent isEqualToString:@"storedTransparency"] || [lastComponent isEqualToString:@"playCount"]) {
+        self.valueType = FloatType;
+        self.floatValue = [stringValue floatValue];
+        
     // strings
     } else {
         self.valueType = StringType;
@@ -91,13 +120,16 @@
     
 }
 
+// TODO: Add these changes and those in .h to main GeNIE repo
+
 /**
  * Returns true if the condition is currently satisfied.
  * @return The current value to which the condition evaluates.
  */
 - (bool) hasBenMet {
 	
-	bool result;
+	bool result = false;
+    CGFloat floatPropertyValue;
 	
     // equality / inequality
 	if ([operatorName isEqualToString:@"=="] || [operatorName isEqualToString:@"!="]) {
@@ -109,18 +141,23 @@
         switch (valueType) {
                 
             case BooleanType:
-                booleanPropertyValue = [[item valueForKey:property] boolValue];
+                booleanPropertyValue = [[item valueForKey:lastComponent] boolValue];
                 result = (booleanPropertyValue == booleanValue);
                 break;
                 
             case StringType:
-                stringPropertyValue = [item valueForKey:property];
+                stringPropertyValue = [item valueForKey:lastComponent];
                 result = [stringPropertyValue isEqualToString:stringValue];
                 break;
                 
             case ObjectType:
-                objectPropertyValue = [item valueForKey:property];
+                objectPropertyValue = [item valueForKey:lastComponent];
                 result = (objectPropertyValue == objectValue);
+                break;
+                
+            case FloatType:
+                floatPropertyValue = [[item valueForKey:lastComponent] floatValue];
+                result = (floatPropertyValue == floatValue);
                 break;
                 
         }
@@ -129,12 +166,35 @@
             result = !result;
         }
         
+    // less than / greater than
+    } else if (valueType == FloatType) {
+        
+        floatPropertyValue = [[item valueForKey:lastComponent] floatValue];
+        
+        if ([operatorName isEqualToString:@">"]) {
+            result = (floatPropertyValue > floatValue);
+            
+        } else if ([operatorName isEqualToString:@">="]) {
+            result = (floatPropertyValue >= floatValue);
+            
+        } else if ([operatorName isEqualToString:@"<"]) {
+            result = (floatPropertyValue < floatValue);
+           
+        } else if ([operatorName isEqualToString:@"<="]) {
+            result = (floatPropertyValue <= floatValue);
+            
+        }
+        
     // changed value
 	} else if ([operatorName isEqualToString:@"changed"]) {
-		result = [item propertyWasChanged:property];
+		result = [item propertyWasChanged:lastComponent];
 	}
     
-    if (result) DLog(@"%@ %@ %@ %@", itemRef, property, operatorName, stringValue);
+    if (result) {
+        NSLog(@"CONDITION TRUE: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
+    } else {
+        //NSLog(@"CONDITION FALSE: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
+    }
 	
 	return result;
 }
