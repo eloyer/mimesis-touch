@@ -43,6 +43,7 @@
 		A2458AD5156AAE14004F77A6 /* thought_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458AD4156AAE14004F77A6 /* thought_background.png */; };
 		A2458ADC156AF048004F77A6 /* OctopusInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = A2458ADB156AF047004F77A6 /* OctopusInternal.m */; };
 		A2458AE0156AFA2F004F77A6 /* oct_cu_head.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */; };
+		A297A0AB1582C927000EEAEC /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A297A0AA1582C927000EEAEC /* README.txt */; };
 		A29F55BF1551F12300888F59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55BE1551F12300888F59 /* QuartzCore.framework */; };
 		A29F55C11551F12300888F59 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C01551F12300888F59 /* OpenGLES.framework */; };
 		A29F55C31551F12300888F59 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C21551F12300888F59 /* OpenAL.framework */; };
@@ -227,6 +228,7 @@
 		A2458ADA156AF047004F77A6 /* OctopusInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OctopusInternal.h; path = "Custom Views/OctopusInternal.h"; sourceTree = "<group>"; };
 		A2458ADB156AF047004F77A6 /* OctopusInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OctopusInternal.m; path = "Custom Views/OctopusInternal.m"; sourceTree = "<group>"; };
 		A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oct_cu_head.png; sourceTree = "<group>"; };
+		A297A0AA1582C927000EEAEC /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		A29F55BA1551F12300888F59 /* MimesisTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimesisTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A29F55BE1551F12300888F59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A29F55C01551F12300888F59 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -601,6 +603,7 @@
 				A29F55CF1551F12300888F59 /* Resources */,
 				A29F55E31551F12300888F59 /* libs */,
 				A29F571C1551F12500888F59 /* Supporting Files */,
+				A297A0AA1582C927000EEAEC /* README.txt */,
 			);
 			path = MimesisTouch;
 			sourceTree = "<group>";
@@ -1135,6 +1138,7 @@
 				A2458ACF156AA819004F77A6 /* octopus_eye.png in Resources */,
 				A2458AD5156AAE14004F77A6 /* thought_background.png in Resources */,
 				A2458AE0156AFA2F004F77A6 /* oct_cu_head.png in Resources */,
+				A297A0AB1582C927000EEAEC /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
