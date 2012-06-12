@@ -43,6 +43,8 @@
 		A2458AD5156AAE14004F77A6 /* thought_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458AD4156AAE14004F77A6 /* thought_background.png */; };
 		A2458ADC156AF048004F77A6 /* OctopusInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = A2458ADB156AF047004F77A6 /* OctopusInternal.m */; };
 		A2458AE0156AFA2F004F77A6 /* oct_cu_head.png in Resources */ = {isa = PBXBuildFile; fileRef = A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */; };
+		A292BC3B1586B9B500EE7713 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A292BC381586B9B500EE7713 /* TreeNode.m */; };
+		A292BC3C1586B9B500EE7713 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A292BC3A1586B9B500EE7713 /* XMLParser.m */; };
 		A297A0AE1582D0BF000EEAEC /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = A297A0AD1582D0BF000EEAEC /* README.markdown */; };
 		A29F55BF1551F12300888F59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55BE1551F12300888F59 /* QuartzCore.framework */; };
 		A29F55C11551F12300888F59 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A29F55C01551F12300888F59 /* OpenGLES.framework */; };
@@ -175,8 +177,6 @@
 		A29F57781551F1B500888F59 /* PropView.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F575E1551F1B500888F59 /* PropView.m */; };
 		A29F57791551F1B500888F59 /* ShotView.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F57601551F1B500888F59 /* ShotView.m */; };
 		A29F577A1551F1B500888F59 /* TopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F57621551F1B500888F59 /* TopicView.m */; };
-		A29F57801551F1DD00888F59 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F577D1551F1DD00888F59 /* TreeNode.m */; };
-		A29F57811551F1DD00888F59 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A29F577F1551F1DD00888F59 /* XMLParser.m */; };
 		A29F57851551F1F500888F59 /* generic_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F57821551F1F500888F59 /* generic_icon.png */; };
 		A29F57861551F1F500888F59 /* icon-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F57831551F1F500888F59 /* icon-pause.png */; };
 		A29F57871551F1F500888F59 /* narration_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F57841551F1F500888F59 /* narration_bg.png */; };
@@ -228,6 +228,10 @@
 		A2458ADA156AF047004F77A6 /* OctopusInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OctopusInternal.h; path = "Custom Views/OctopusInternal.h"; sourceTree = "<group>"; };
 		A2458ADB156AF047004F77A6 /* OctopusInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OctopusInternal.m; path = "Custom Views/OctopusInternal.m"; sourceTree = "<group>"; };
 		A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oct_cu_head.png; sourceTree = "<group>"; };
+		A292BC371586B9B500EE7713 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
+		A292BC381586B9B500EE7713 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeNode.m; sourceTree = "<group>"; };
+		A292BC391586B9B500EE7713 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		A292BC3A1586B9B500EE7713 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		A297A0AD1582D0BF000EEAEC /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		A29F55BA1551F12300888F59 /* MimesisTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MimesisTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A29F55BE1551F12300888F59 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -504,10 +508,6 @@
 		A29F57601551F1B500888F59 /* ShotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShotView.m; sourceTree = "<group>"; };
 		A29F57611551F1B500888F59 /* TopicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicView.h; sourceTree = "<group>"; };
 		A29F57621551F1B500888F59 /* TopicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicView.m; sourceTree = "<group>"; };
-		A29F577C1551F1DD00888F59 /* TreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
-		A29F577D1551F1DD00888F59 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeNode.m; sourceTree = "<group>"; };
-		A29F577E1551F1DD00888F59 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
-		A29F577F1551F1DD00888F59 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
 		A29F57821551F1F500888F59 /* generic_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = generic_icon.png; sourceTree = "<group>"; };
 		A29F57831551F1F500888F59 /* icon-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-pause.png"; sourceTree = "<group>"; };
 		A29F57841551F1F500888F59 /* narration_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = narration_bg.png; sourceTree = "<group>"; };
@@ -1046,10 +1046,10 @@
 		A29F577B1551F1DD00888F59 /* Erica Sadun */ = {
 			isa = PBXGroup;
 			children = (
-				A29F577C1551F1DD00888F59 /* TreeNode.h */,
-				A29F577D1551F1DD00888F59 /* TreeNode.m */,
-				A29F577E1551F1DD00888F59 /* XMLParser.h */,
-				A29F577F1551F1DD00888F59 /* XMLParser.m */,
+				A292BC371586B9B500EE7713 /* TreeNode.h */,
+				A292BC381586B9B500EE7713 /* TreeNode.m */,
+				A292BC391586B9B500EE7713 /* XMLParser.h */,
+				A292BC3A1586B9B500EE7713 /* XMLParser.m */,
 			);
 			path = "Erica Sadun";
 			sourceTree = "<group>";
@@ -1272,8 +1272,6 @@
 				A29F57781551F1B500888F59 /* PropView.m in Sources */,
 				A29F57791551F1B500888F59 /* ShotView.m in Sources */,
 				A29F577A1551F1B500888F59 /* TopicView.m in Sources */,
-				A29F57801551F1DD00888F59 /* TreeNode.m in Sources */,
-				A29F57811551F1DD00888F59 /* XMLParser.m in Sources */,
 				A215D19E1551FDE600F63ADE /* WideShot.m in Sources */,
 				A215D1A51551FFFF00F63ADE /* MimesisNarrativeView.m in Sources */,
 				A215D1BF1553A1F100F63ADE /* Octopus.m in Sources */,
@@ -1281,6 +1279,8 @@
 				A2C8F435156572F0001685D6 /* PropertyChangeTracker.m in Sources */,
 				A2458AD3156AA902004F77A6 /* ThoughtSpaceShot.m in Sources */,
 				A2458ADC156AF048004F77A6 /* OctopusInternal.m in Sources */,
+				A292BC3B1586B9B500EE7713 /* TreeNode.m in Sources */,
+				A292BC3C1586B9B500EE7713 /* XMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -160,7 +160,7 @@
  		</actor>
         
         
-        <!-- EVENT GROUPS -->
+        <!-- EVENT GROUPS  -->
         
     	<eventGroup id="a" type="anglerfishOrientation">
  			<initialEvent eventRef="octopusSetup"/>
