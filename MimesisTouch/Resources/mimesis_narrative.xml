@@ -8,8 +8,11 @@
         
         <!-- SHOTS -->
         
-		<initialShot shotRef="wideShot"/>
+		<initialShot shotRef="playerConfigShot"/>
         
+        <shot id="playerConfigShot">
+            <adjacentShot direction="startNarrative" shotRef="wideShot"/>
+        </shot>
 	   	<shot id="wideShot">
    			<adjacentShot direction="enterThoughts" shotRef="thoughtSpaceShot"/>
         </shot> 
@@ -21,6 +24,7 @@
         <!-- EVENT STRUCTURE -->
 		
 		<eventStructure>   
+			<eventClause type="configuration" minCount="1" maxCount="1" exitTo="anglerfishOrientation"/>   
 			<eventClause type="anglerfishOrientation" minCount="1" maxCount="1" exitTo="anglerfishDialogue"/>   
 			<eventClause type="anglerfishDialogue" minCount="1" maxCount="1" exitTo="anglerfishEnding"/>
 			<eventClause type="anglerfishEnding" minCount="1" maxCount="1"/>
@@ -161,6 +165,16 @@
         
         
         <!-- EVENT GROUPS  -->
+        
+    	<eventGroup id="a" type="configuration">
+ 			<initialEvent eventRef="welcome"/>
+            <event id="welcome" maxCount="1">
+                <eventAtom itemRef="narrator" command="say" content="Welcome to Mimesis."/>
+            </event>
+            <endConditions>
+                <condition itemRef="ocean" property="currentShot" operator="==" value="wideShot"/>
+            </endConditions>
+		</eventGroup>
         
     	<eventGroup id="a" type="anglerfishOrientation">
  			<initialEvent eventRef="octopusSetup"/>

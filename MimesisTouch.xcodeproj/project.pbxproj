@@ -33,6 +33,7 @@
 		A215D1DC1554307400F63ADE /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A215D1DB1554307400F63ADE /* Icon-72@2x.png */; };
 		A22205271586C0DA009BCB22 /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A22205241586C0DA009BCB22 /* TreeNode.m */; };
 		A22205281586C0DA009BCB22 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A22205261586C0DA009BCB22 /* XMLParser.m */; };
+		A222052B1586C37A009BCB22 /* PlayerConfigShot.m in Sources */ = {isa = PBXBuildFile; fileRef = A222052A1586C37A009BCB22 /* PlayerConfigShot.m */; };
 		A238C05B15583D6300F6D37C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05A15583D6300F6D37C /* Default.png */; };
 		A238C05D15583D6700F6D37C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05C15583D6700F6D37C /* Default@2x.png */; };
 		A238C05F15583D7200F6D37C /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = A238C05E15583D7200F6D37C /* Default-Landscape~ipad.png */; };
@@ -218,6 +219,8 @@
 		A22205241586C0DA009BCB22 /* TreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeNode.m; sourceTree = "<group>"; };
 		A22205251586C0DA009BCB22 /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		A22205261586C0DA009BCB22 /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		A22205291586C37A009BCB22 /* PlayerConfigShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerConfigShot.h; path = "Custom Views/PlayerConfigShot.h"; sourceTree = "<group>"; };
+		A222052A1586C37A009BCB22 /* PlayerConfigShot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerConfigShot.m; path = "Custom Views/PlayerConfigShot.m"; sourceTree = "<group>"; };
 		A238C05A15583D6300F6D37C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		A238C05C15583D6700F6D37C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		A238C05E15583D7200F6D37C /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 				A215D1C51553B02100F63ADE /* Anglerfish.m */,
 				A2458AD1156AA902004F77A6 /* ThoughtSpaceShot.h */,
 				A2458AD2156AA902004F77A6 /* ThoughtSpaceShot.m */,
+				A22205291586C37A009BCB22 /* PlayerConfigShot.h */,
+				A222052A1586C37A009BCB22 /* PlayerConfigShot.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -1281,6 +1286,7 @@
 				A2458ADC156AF048004F77A6 /* OctopusInternal.m in Sources */,
 				A22205271586C0DA009BCB22 /* TreeNode.m in Sources */,
 				A22205281586C0DA009BCB22 /* XMLParser.m in Sources */,
+				A222052B1586C37A009BCB22 /* PlayerConfigShot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

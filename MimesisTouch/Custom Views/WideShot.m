@@ -127,6 +127,7 @@
             break;
         case UIGestureRecognizerStateEnded:
             p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
+            p = [[CCDirector sharedDirector] convertToGL: p];
             /*CGSize winSize = [[CCDirector sharedDirector] winSize];
             if (p.x < 20) {
                 if ((p.y < 20) || (p.y > (winSize.height - 20))) {
@@ -157,12 +158,12 @@
     switch( recognizer.state ) {
         case UIGestureRecognizerStatePossible:
         case UIGestureRecognizerStateBegan:
-            p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
+            //p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
             //(do something when the pan begins)
             NSLog(@"pan began");
             break;
         case UIGestureRecognizerStateChanged:
-            p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
+            //p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
             //(do something while the pan is in progress)
             NSLog(@"pan in progress");
             break;
@@ -174,7 +175,7 @@
         case UIGestureRecognizerStateCancelled:
             //(do something when the pan ends)
             //(the below gets the velocity; good for letting player "fling" things)
-            v = [recognizer velocityInView:[CCDirector sharedDirector].openGLView];
+            //v = [recognizer velocityInView:[CCDirector sharedDirector].openGLView];
             NSLog(@"pan cancelled");
             break;
     }

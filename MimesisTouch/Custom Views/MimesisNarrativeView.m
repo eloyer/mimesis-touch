@@ -11,6 +11,7 @@
 #import "IconNarratorView.h"
 #import "Shot.h"
 #import "WideShot.h"
+#import "PlayerConfigShot.h"
 #import "ThoughtSpaceShot.h"
 #import "AdministrativeView.h"
 
@@ -60,8 +61,14 @@
 	
 	if (shot != currentShotView.shot) {
 		
+		// PLAYER CONFIG SHOT
+		if ([shot.identifier isEqualToString:@"playerConfigShot"]) {
+			[self cleanupShotView];
+			currentShotView = [[PlayerConfigShot alloc] initWithModel:shot controller:controller];
+			[self addChild:currentShotView];
+		
 		// WIDE SHOT
-		if ([shot.identifier isEqualToString:@"wideShot"]) {
+		} else if ([shot.identifier isEqualToString:@"wideShot"]) {
 			[self cleanupShotView];
 			currentShotView = [[WideShot alloc] initWithModel:shot controller:controller];
 			[self addChild:currentShotView];
