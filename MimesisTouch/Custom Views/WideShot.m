@@ -256,8 +256,10 @@
             [octopus endTransparencyGesture];
             if (recognizer.scale > 1) {
                 [octopus.actor modifyTransparency:0.1];
+                [octopus showCurrentEmotion];
             } else {
                 [octopus.actor modifyTransparency:-0.1];
+                [octopus showCurrentEmotion];
             }
             [octopus updatePose];
             break;

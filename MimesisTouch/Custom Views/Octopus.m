@@ -82,6 +82,12 @@
         transparencyVelocity = 0.0;
         maxTransparencyVelocity = 0.0;
         isTransparencyGestureActive = false;
+        
+        emotionLabel = [CCLabelTTF labelWithString:@"Oblivious" fontName:@"Helvetica-Bold" fontSize:36];
+        emotionLabel.position = ccp(winSize.width * .25, octopus.position.y - 50);
+        emotionLabel.color = ccRED;
+        emotionLabel.opacity = 0;
+        [self addChild:emotionLabel];
 		
 		[self scheduleUpdate];
         
@@ -148,6 +154,32 @@
             [self updatePose];
         }
     }
+    
+}
+
+- (void) showCurrentEmotion {
+    
+    Sentiment *sentiment = [actor.sentiments objectForKey:@"discriminationExists"];
+    Emotion *emotion;
+    
+    if (sentiment.transparency > 0.5) {
+        emotion = [sentiment strongestInternalEmotion];
+    } else {
+        emotion = [sentiment strongestExternalEmotion];
+    }
+    
+    if ([emotion.name isEqualToString:@"oblivious"]) {
+        emotionLabel.color = ccc3(35, 108, 182);
+    } else if ([emotion.name isEqualToString:@"confused"]) {
+        emotionLabel.color = ccc3(101, 234, 0);
+    } else if ([emotion.name isEqualToString:@"suspicious"]) {
+        emotionLabel.color = ccc3(248, 221, 0);
+    } else if ([emotion.name isEqualToString:@"aggressive"]) {
+        emotionLabel.color = ccc3(236, 24, 5);
+    }
+    
+    [emotionLabel setString:emotion.name];
+    emotionLabel.opacity = 255;
     
 }
 
@@ -232,6 +264,8 @@
     sinValue += (dt * 3);
     octopus.position = ccp(octopus.position.x, (winSize.height * .5) + (10 * sin(sinValue)));
     octopus.scale += (1.0 - octopus.scale) * (dt * animSpeed);
+    
+    emotionLabel.opacity += (0 - emotionLabel.opacity) * (.5 * dt);
 	
 }
 

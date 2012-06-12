@@ -20,6 +20,7 @@
     bool                isTransparencyGestureActive;        // contains true if a transparency gesture is currently being executed
     CGSize              winSize;                            // size of the window
     CGFloat             sinValue;                           // value for sin wave bobbing
+    CCLabelTTF          *emotionLabel;                      // displays the current emotion
    
 }
 
@@ -28,6 +29,7 @@
 - (void) endTransparencyGesture;
 - (void) poke;
 - (BOOL) containsPoint:(CGPoint)point;
+- (void) showCurrentEmotion;
 - (void) updatePoseForSprite:(CCSprite *)sprite withTransparency:(CGFloat)t;
 - (void) updatePose;
 

@@ -55,6 +55,7 @@
 - (void) setMood:(NSString *)newMood;
 - (void) modifyTransparency:(CGFloat)amount;
 - (void) modifyEmotion:(NSString *)emotionId forSentiment:(NSString *)sentimentId amount:(CGFloat)amount internal:(BOOL)internal;
+- (void) setEmotion:(NSString *)emotionId forSentiment:(NSString *)sentimentId strength:(CGFloat)strength internal:(BOOL)internal;
 - (Topic*) currentTopic;
 - (void) setCurrentTopic:(Topic *)topic;
 

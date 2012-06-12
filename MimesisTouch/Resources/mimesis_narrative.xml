@@ -68,7 +68,7 @@
 		<actor id="octopus" name="Octopus" subjectivePronoun="she" objectivePronoun="her">
             <sentiment topicRef="discriminationExists" transparency="0.5">
 
-                <emotion name="oblivious" internalStrength="0" externalStrength="1" description="disregard for any suspicions of">
+                <emotion name="oblivious" internalStrength="0" externalStrength="5" description="disregard for any suspicions of">
                     <demonstration operator=">" value="3">
                         <event>
                             <eventAtom itemRef="octopus" command="think" content="I should just move on, and drift away."/>
@@ -91,7 +91,7 @@
                     </demonstration>
                 </emotion>
                 
-                <emotion name="confused" internalStrength="1" externalStrength="0" description="uncertainty about">
+                <emotion name="confused" internalStrength="5" externalStrength="0" description="uncertainty about">
                     <demonstration operator=">" value="3">
                         <event>
                             <eventAtom itemRef="octopus" command="think" content="No one will lift a finger to help me...or bother me."/>
@@ -114,7 +114,7 @@
                     </demonstration>
                 </emotion>
                 
-                <emotion name="suspicious" internalStrength="0" externalStrength="1" description="suspicions about">
+                <emotion name="suspicious" internalStrength="0" externalStrength="5" description="suspicions about">
                     <demonstration operator=">" value="3">
                         <event>
                             <eventAtom itemRef="octopus" command="think" content="I don't belong here. I need to get back to the warmth of the sun."/>
@@ -137,7 +137,7 @@
                     </demonstration>
                 </emotion>
                 
-                <emotion name="aggressive" internalStrength="1" externalStrength="0" description="certainty about">
+                <emotion name="aggressive" internalStrength="5" externalStrength="0" description="certainty about">
                     <demonstration operator=">" value="3">
                         <event>
                             <eventAtom itemRef="octopus" command="think" content="This midnight world is selfish."/>

@@ -36,6 +36,7 @@
 
 - (id) initWithNode:(TreeNode *)node;
 - (void) modifyStrength:(CGFloat)amount internal:(BOOL)internal;
+- (void) setStrength:(CGFloat)strength internal:(BOOL)internal;
 - (Event *) getEvent:(BOOL)isInternal;
 
 @end

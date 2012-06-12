@@ -115,13 +115,17 @@
                     switch (recognizer.direction) {
                             
                         case UISwipeGestureRecognizerDirectionDown:              
-                            [octopusInternal.actor modifyEmotion:@"suspicious" forSentiment:@"discriminationExists" amount:1 internal:false];
-                            [octopusInternal.actor modifyEmotion:@"aggressive" forSentiment:@"discriminationExists" amount:1 internal:true];
+                            [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:5 internal:false];
+                            [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:5 internal:true];
+                            [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:0 internal:false];
+                            [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:0 internal:true];
                             break;
                             
-                        case UISwipeGestureRecognizerDirectionUp:
-                            [octopusInternal.actor modifyEmotion:@"oblivious" forSentiment:@"discriminationExists" amount:1 internal:false];
-                            [octopusInternal.actor modifyEmotion:@"confused" forSentiment:@"discriminationExists" amount:1 internal:true];
+                        case UISwipeGestureRecognizerDirectionUp:          
+                            [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:0 internal:false];
+                            [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:0 internal:true];
+                            [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:5 internal:false];
+                            [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:5 internal:true];
                             break;
                             
                     }

@@ -376,6 +376,13 @@
 
 // TODO: Add this back to the main GeNIE repo
 
+/**
+ * Alters the strength of the specified emotion.
+ * @param emotionId The emotion's identifier.
+ * @param sentimentId The identifier of the sentiment containing the emotion to be modified.
+ * @param amount The amount by which the emotion's strength is to be modified.
+ * @param internal If true, the internal strength of the emotion will be modified, as opposed to the external strength.
+ */
 - (void) modifyEmotion:(NSString *)emotionId forSentiment:(NSString *)sentimentId amount:(CGFloat)amount internal:(BOOL)internal {
     
     Sentiment *sentiment = [sentiments objectForKey:sentimentId];
@@ -383,6 +390,25 @@
         Emotion *emotion = [sentiment.emotions objectForKey:emotionId];
         if (emotion) {
             [emotion modifyStrength:amount internal:internal];
+        }
+    }
+    
+}
+
+/**
+ * Set the strength of the specified emotion to a new value.
+ * @param emotionId The emotion's identifier.
+ * @param sentimentId The identifier of the sentiment containing the emotion to be modified.
+ * @param strength The new value of the emotion's strength.
+ * @param internal If true, the internal strength of the emotion will be modified, as opposed to the external strength.
+ */
+- (void) setEmotion:(NSString *)emotionId forSentiment:(NSString *)sentimentId strength:(CGFloat)strength internal:(BOOL)internal {
+    
+    Sentiment *sentiment = [sentiments objectForKey:sentimentId];
+    if (sentiment) {
+        Emotion *emotion = [sentiment.emotions objectForKey:emotionId];
+        if (emotion) {
+            [emotion setStrength:strength internal:internal];
         }
     }
     

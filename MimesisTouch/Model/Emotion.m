@@ -108,6 +108,21 @@
 }
 
 /**
+ * Modifies the internal or external strength of the emotion by the specified amount.
+ * @param strength The new value of the emotion's strength.
+ * @param internal If true, the modification will be applied to the emotion's internal strength (external otherwise).
+ */
+- (void) setStrength:(CGFloat)strength internal:(BOOL)internal {
+    if (internal) {
+        internalStrength = strength;
+        [self addChangedProperty:@"internalStrength"];
+    } else {
+        externalStrength = strength;
+        [self addChangedProperty:@"externalStrength"];
+    }
+}
+
+/**
  * Returns an event matching the current intensity (either internal or external) of
  * this emotion.
  * @param isInternal Should the event come from the actor's internal incarnation of the emotion?
