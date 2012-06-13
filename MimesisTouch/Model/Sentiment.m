@@ -129,6 +129,39 @@
 // TODO: Move current version to GeNIE project
 
 /**
+ * Returns the emotion with the greatest strength. Current transparency value determines
+ * whether internal or external strength is evaluated.
+ * @return The strongest emotion.
+ */
+- (Emotion *) strongestEmotion {
+    
+    Emotion *emotion;
+    
+    NSArray *emotionArray = [emotions allValues];
+    int i;
+    int n = [emotions count];
+    CGFloat maxStrength = 0.0;
+    int emotionIndex;
+    
+    for (i=0; i<n; i++) {
+        emotion = [emotionArray objectAtIndex:i];
+        if (transparency > .5) {
+            if (emotion.externalStrength > maxStrength) {
+                maxStrength = emotion.externalStrength;
+                emotionIndex = i;
+            }
+        } else {
+            if (emotion.internalStrength > maxStrength) {
+                maxStrength = emotion.internalStrength;
+                emotionIndex = i;
+            }
+        }
+    }
+    
+    return [emotionArray objectAtIndex:emotionIndex];
+}
+
+/**
  * Returns the emotion with the greatest internal strength.
  * @return The strongest internal emotion.
  */

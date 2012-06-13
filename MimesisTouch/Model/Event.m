@@ -243,7 +243,7 @@
     
     //DLog(@"result: %@ %@ %@ %@", startConditionsOperator, (startConditionsMet) ? @"true" : @"false", (allConditionsMet) ? @"true" : @"false", (anyConditionMet) ? @"true" : @"false");
     
-    NSLog(@"%@ START CONDITIONS MET", identifier);
+    if (startConditionsMet) NSLog(@"-------- %@ START CONDITIONS MET", identifier);
     
 	return startConditionsMet;
 }

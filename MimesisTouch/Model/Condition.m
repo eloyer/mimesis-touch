@@ -14,6 +14,7 @@
 #import "NarrativeModel.h"
 #import "TreeNode.h"
 #import "Globals.h"
+#import "Sentiment.h"
 
 
 @implementation Condition
@@ -130,6 +131,8 @@
 	
 	bool result = false;
     CGFloat floatPropertyValue;
+    
+    NSLog(@"CONDITION TEST: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
 	
     // equality / inequality
 	if ([operatorName isEqualToString:@"=="] || [operatorName isEqualToString:@"!="]) {

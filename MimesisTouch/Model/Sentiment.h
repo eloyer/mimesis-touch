@@ -32,6 +32,7 @@
 
 - (id) initWithNode:(TreeNode *)node;
 - (Event *) getEvent;
+- (Emotion *) strongestEmotion;
 - (Emotion *) strongestInternalEmotion;
 - (Emotion *) strongestExternalEmotion;
 - (void) storeTransparency;

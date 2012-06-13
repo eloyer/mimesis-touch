@@ -323,20 +323,20 @@
                 // apply moods set during "internal" shots to the actor's internal emotion
                 if (model.currentSetting.currentShot.isInternal) {
                     emotion.internalStrength++;
-                    EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ inward %@ %@ increased.", [objectivePronoun capitalizedString], emotion.description, currentTopic.description]];
-                    [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
+                    /*EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ inward %@ %@ increased.", [objectivePronoun capitalizedString], emotion.description, currentTopic.description]];
+                    [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];*/
                     //DLog(@"%@ %@ about %@: %f", actorName, mood, currentTopic.identifier, emotion.internalStrength);
                     
                 // apply moods set during "external" shots to the actor's external emotion
                 } else {
                     emotion.externalStrength++;
-                    EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ outward %@ %@ increased.", [objectivePronoun capitalizedString], emotion.description, currentTopic.description]];
-                    [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
+                    /*EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ outward %@ %@ increased.", [objectivePronoun capitalizedString], emotion.description, currentTopic.description]];
+                    [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];*/
                    // DLog(@"%@ %@ about %@: %f", actorName, mood, currentTopic.identifier, emotion.externalStrength);
                 }
                 
                 // remember that the property was changed
-                [self addChangedProperty:[NSString stringWithFormat:@"sentiment.%@", sentiment.topic.identifier]];
+                [self addChangedProperty:[NSString stringWithFormat:@"sentiments.%@", sentiment.topic.identifier]];
             }
         }
     }
@@ -362,14 +362,15 @@
             
             // if transparency is decreasing, have the narrator say something to that effect
             if (sentiment.transparency < lastTransparency) {
-                EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ buried %@ true feelings about %@ deeper inside.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
-                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
+                /*EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ buried %@ true feelings about %@ deeper inside.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
+                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];*/
                 
-           // if transparency is increasing, have the narrator say something to that effect
-           } else if (sentiment.transparency > lastTransparency) {
-                EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ let %@ true feelings about %@ come closer to the surface.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
-                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
+            // if transparency is increasing, have the narrator say something to that effect
+            } else if (sentiment.transparency > lastTransparency) {
+                /*EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ let %@ true feelings about %@ come closer to the surface.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
+                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];*/
             }
+            [self addChangedProperty:[NSString stringWithFormat:@"sentiments.%@", sentiment.topic.identifier]];
         }
     }    
 }
@@ -391,6 +392,7 @@
         if (emotion) {
             [emotion modifyStrength:amount internal:internal];
         }
+        [self addChangedProperty:[NSString stringWithFormat:@"sentiments.%@", sentiment.topic.identifier]];
     }
     
 }
@@ -410,6 +412,7 @@
         if (emotion) {
             [emotion setStrength:strength internal:internal];
         }
+        [self addChangedProperty:[NSString stringWithFormat:@"sentiments.%@", sentiment.topic.identifier]];
     }
     
 }
