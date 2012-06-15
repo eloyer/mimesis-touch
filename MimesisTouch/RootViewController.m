@@ -15,6 +15,10 @@
 
 #import "RootViewController.h"
 #import "GameConfig.h"
+#import "NarrativeModel.h"
+#import "Setting.h"
+#import "Shot.h"
+#import "ThoughtSpaceShot.h"
 
 @implementation RootViewController
 
@@ -41,6 +45,32 @@
  }
  */
 
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self resignFirstResponder];
+    [super viewWillDisappear:animated];
+}
+
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    
+    if (motion == UIEventSubtypeMotionShake) {
+        /*NarrativeModel *model = [NarrativeModel sharedInstance];
+        ThoughtSpaceShot *tsshot = (ThoughtSpaceShot *)[model parseItemRef:@"thoughtSpaceShot"];
+        if (model.currentSetting.currentShot == tsshot) {
+            [tsshot suspectDiscrimination];
+        }*/
+    }
+    
+}
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

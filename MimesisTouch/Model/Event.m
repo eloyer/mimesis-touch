@@ -207,7 +207,7 @@
 	BOOL anyConditionMet;
 	BOOL allConditionsMet;
     
-    NSLog(@"%@ check start conditions met", identifier);
+    //NSLog(@"%@ check start conditions met", identifier);
 	
 	if (playCount < maxCount) {
 		

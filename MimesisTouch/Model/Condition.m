@@ -132,7 +132,7 @@
 	bool result = false;
     CGFloat floatPropertyValue;
     
-    NSLog(@"CONDITION TEST: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
+    //NSLog(@"CONDITION TEST: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
 	
     // equality / inequality
 	if ([operatorName isEqualToString:@"=="] || [operatorName isEqualToString:@"!="]) {
@@ -194,7 +194,7 @@
 	}
     
     if (result) {
-        NSLog(@"CONDITION TRUE: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
+        //NSLog(@"CONDITION TRUE: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
     } else {
         //NSLog(@"CONDITION FALSE: %@ %@ %@ %@", itemRef, property, operatorName, stringValue);
     }

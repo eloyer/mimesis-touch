@@ -14,7 +14,11 @@
     CCSprite                *head;                      // the octopus' head
     CCSpriteBatchNode       *eyeSpriteSheet;            // batch node for the octopus' eye
     CCSprite                *eye;                       // the octopus' eye
+    CCLabelTTF              *emotionLabel;              // displays the current emotion
   
 }
+
+- (void) updatePose;
+- (void) showCurrentEmotion;
 
 @end

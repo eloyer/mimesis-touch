@@ -43,7 +43,7 @@
 	if (![changedProperties containsObject:propertyName]) {
 		[changedProperties addObject:propertyName];
         [propertyAges addObject:[NSNumber numberWithInt:0]];
-        NSLog(@"add changed property: %@", propertyName);
+        //NSLog(@"add changed property: %@", propertyName);
 	}
 }
 
@@ -54,7 +54,7 @@
  */
 - (BOOL) _propertyWasChanged:(NSString *)propertyName {
 	BOOL result = [changedProperties containsObject:propertyName];
-    NSLog(@"check for changed property: %@", propertyName);
+    //NSLog(@"check for changed property: %@", propertyName);
 	/*if (result) {
 		[changedProperties removeObject:propertyName];
 	}*/

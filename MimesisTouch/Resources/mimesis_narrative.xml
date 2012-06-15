@@ -8,14 +8,14 @@
         
         <!-- SHOTS -->
         
-		<initialShot shotRef="playerConfigShot"/>
+		<initialShot shotRef="wideShot"/>
         
         <shot id="playerConfigShot">
             <adjacentShot direction="startNarrative" shotRef="wideShot"/>
         </shot>
 	   	<shot id="wideShot">
    			<adjacentShot direction="enterThoughts" shotRef="thoughtSpaceShot"/>
-        </shot> 
+        </shot>
 		<shot id="thoughtSpaceShot" muted="true" internal="true">
       		<adjacentShot direction="exitThoughts" shotRef="wideShot"/>
 		</shot>
@@ -24,14 +24,27 @@
         <!-- EVENT STRUCTURE -->
 		
 		<eventStructure>   
-			<eventClause type="configuration" minCount="1" maxCount="1" exitTo="anglerfishOrientation"/>   
+			<!--<eventClause type="configuration" minCount="1" maxCount="1" exitTo="anglerfishOrientation"/>-->   
 			<eventClause type="anglerfishOrientation" minCount="1" maxCount="1" exitTo="anglerfishDialogue1"/>   
 			<eventClause type="anglerfishDialogue1" minCount="1" maxCount="1" exitTo="anglerfishDialogue2"/>
 			<eventClause type="anglerfishDialogue2" minCount="1" maxCount="1" exitTo="anglerfishDialogue3"/>
 			<eventClause type="anglerfishDialogue3" minCount="1" maxCount="1" exitTo="anglerfishDialogue4"/>
 			<eventClause type="anglerfishDialogue4" minCount="1" maxCount="1" exitTo="anglerfishEnding"/>
-			<eventClause type="anglerfishEnding" minCount="1" maxCount="1"/>
-   		</eventStructure> 
+			<eventClause type="anglerfishEnding" minCount="1" maxCount="1" exitTo="sharkOrientation"/>
+ 			<eventClause type="sharkOrientation" minCount="1" maxCount="1" exitTo="sharkDialogue1"/>   
+			<eventClause type="sharkDialogue1" minCount="1" maxCount="1" exitTo="sharkDialogue2"/>
+			<eventClause type="sharkDialogue2" minCount="1" maxCount="1" exitTo="sharkDialogue3"/>
+			<eventClause type="sharkDialogue3" minCount="1" maxCount="1" exitTo="sharkDialogue4"/>
+			<eventClause type="sharkDialogue4" minCount="1" maxCount="1" exitTo="sharkDialogue5"/>
+			<eventClause type="sharkDialogue5" minCount="1" maxCount="1" exitTo="sharkEnding"/>
+			<eventClause type="sharkEnding" minCount="1" maxCount="1" exitTo="seahorseOrientation"/>
+			<eventClause type="seahorseOrientation" minCount="1" maxCount="1" exitTo="seahorseDialogue1"/>   
+			<eventClause type="seahorseDialogue1" minCount="1" maxCount="1" exitTo="seahorseDialogue2"/>
+			<eventClause type="seahorseDialogue2" minCount="1" maxCount="1" exitTo="seahorseDialogue3"/>
+			<eventClause type="seahorseDialogue3" minCount="1" maxCount="1" exitTo="seahorseDialogue4"/>
+			<eventClause type="seahorseDialogue4" minCount="1" maxCount="1" exitTo="seahorseEnding"/>
+			<eventClause type="seahorseEnding" minCount="1" maxCount="1"/>
+  		</eventStructure> 
 		
  
         <!-- PROPS -->
@@ -47,6 +60,12 @@
 		</actor>
 		
 		<actor id="anglerfish" name="Anglerfish" subjectivePronoun="he" objectivePronoun="his">
+ 		</actor>
+		
+		<actor id="shark" name="Shark" subjectivePronoun="he" objectivePronoun="his">
+ 		</actor>
+		
+		<actor id="seahorse" name="Seahorse" subjectivePronoun="he" objectivePronoun="his">
  		</actor>
         
         <!--
@@ -179,15 +198,20 @@
             </endConditions>
 		</eventGroup>
         
+        <!-- *************************** -->
+        <!-- *** ANGLERFISH DIALOGUE *** -->
+        <!-- *************************** -->
+        
     	<eventGroup id="anglerfish_a" type="anglerfishOrientation">
- 			<initialEvent eventRef="octopusSetup"/>
-            <event id="octopusSetup" maxCount="1">
+ 			<initialEvent eventRef="octopusAnglerfishSetup"/>
+            <event id="octopusAnglerfishSetup" maxCount="1">
                 <eventAtom itemRef="octopus" command="setTransparency" content="discriminationExists:random"/>
                 <eventAtom itemRef="octopus" command="storeTransparency" content="discriminationExists"/>
+                <eventAtom itemRef="anglerfish" command="enter"/>
             </event>
-            <event id="introduction" random="true" maxCount="1">
+            <event id="octopusAnglerfishIntroduction" random="true" maxCount="1">
                 <startConditions>
-                    <condition itemRef="octopusSetup" property="isCompleted" operator="==" value="true"/>
+                    <condition itemRef="octopusAnglerfishSetup" property="isCompleted" operator="==" value="true"/>
                 </startConditions>
                 <eventAtom itemRef="narrator" command="say" content="Deep sea, amidst blackness and occasional phosphorescent blooms."/>
                 <eventAtom itemRef="narrator" command="say" content="In the deep dark, there is no light except in the cold glow of the anglerfish’s bioluminescence."/>
@@ -195,23 +219,23 @@
                 <eventAtom itemRef="narrator" command="say" content="The sea is lonely, dark, and deep."/>
             </event>
             <endConditions>
-                <condition itemRef="introduction" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="octopusAnglerfishIntroduction" property="isCompleted" operator="==" value="true"/>
             </endConditions>
 		</eventGroup>
         
-        <!-- FIRST EXCHANGE -->
+        <!-- FIRST ANGLERFISH EXCHANGE -->
         
         <eventGroup id="anglerfish_b" type="anglerfishDialogue1">
             <initialEvent eventRef="npcq1"/>
             
-            <event id="npcq1" random="true" maxCount="1">
+            <event id="ang_npcq1" random="true" maxCount="1">
                 <eventAtom itemRef="anglerfish" command="say" content="What brings you into my light? Where is yours?" topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="Looking for a mate too? Turn your light on then!" topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="How can you catch food if you're not shining?" topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="I barely saw you. Aren't you bioluminescent?" topic="discriminationExists"/>
             </event>
             
-            <event id="pc1_obliviousness" maxCount="1">
+            <event id="ang_pc1_obliviousness" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
@@ -220,16 +244,16 @@
                 <eventAtom itemRef="octopus" command="say" content="I am not looking for a mate."/>
             </event>
             
-            <event id="pc1_confusion" maxCount="1">
+            <event id="ang_pc1_confusion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
                 </startConditions>
-                <eventAtom itemRef="octopus" command="think" content="Is it dangling that light to attact my attention?"/>
+                <eventAtom itemRef="octopus" command="think" content="Is it dangling that light to attract my attention?"/>
                 <eventAtom itemRef="octopus" command="say" content="Why would I be looking for a mate here? And why would I need to glow?"/>
             </event>
             
-            <event id="pc1_suspicion" maxCount="1">
+            <event id="ang_pc1_suspicion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
@@ -238,7 +262,7 @@
                 <eventAtom itemRef="octopus" command="say" content="I'm only lost."/>
             </event>
             
-            <event id="pc1_aggression" maxCount="1">
+            <event id="ang_pc1_aggression" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
@@ -248,26 +272,26 @@
             </event>
              
             <endConditions operator="or">
-                <condition itemRef="pc1_obliviousness" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc1_confusion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc1_suspicion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc1_aggression" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc1_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc1_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc1_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc1_aggression" property="isCompleted" operator="==" value="true"/>
             </endConditions>
         </eventGroup>
         
-        <!-- SECOND EXCHANGE -->
+        <!-- SECOND ANGLERFISH EXCHANGE -->
         
         <eventGroup id="anglerfish_c" type="anglerfishDialogue2">
             <initialEvent eventRef="npcq2"/>
             
-            <event id="npcq2" random="true" maxCount="1">
+            <event id="ang_npcq2" random="true" maxCount="1">
                 <eventAtom itemRef="anglerfish" command="say" content="Your dull colors are unnecessary here." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="Ugly as you are, you won't get any mate. Come look at my light close up." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="You look quite odd. Maybe you'll find a mate, one day. Check out my light a little closer." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="Come a little closer, stand in my light, I want to see how plain you are." topic="discriminationExists"/>
             </event>
             
-            <event id="pc2_obliviousness" maxCount="1">
+            <event id="ang_pc2_obliviousness" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
@@ -276,7 +300,7 @@
                 <eventAtom itemRef="octopus" command="say" content="Don't worry, I am not angling for your mate, sister!"/>
             </event>
             
-            <event id="pc2_confusion" maxCount="1">
+            <event id="ang_pc2_confusion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
@@ -285,7 +309,7 @@
                 <eventAtom itemRef="octopus" command="say" content="I am not angling for a mate, why would I be?"/>
             </event>
             
-            <event id="pc2_suspicion" maxCount="1">
+            <event id="ang_pc2_suspicion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
@@ -294,7 +318,7 @@
                 <eventAtom itemRef="octopus" command="say" content="Why do you want me to move close to your light -- and mouth?"/>
             </event>
             
-            <event id="pc2_aggression" maxCount="1">
+            <event id="ang_pc2_aggression" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
@@ -304,26 +328,26 @@
             </event>
             
             <endConditions operator="or">
-                <condition itemRef="pc2_obliviousness" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc2_confusion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc2_suspicion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc2_aggression" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc2_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc2_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc2_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc2_aggression" property="isCompleted" operator="==" value="true"/>
             </endConditions>
         </eventGroup>
         
-        <!-- THIRD EXCHANGE -->
+        <!-- THIRD ANGLERFISH EXCHANGE -->
         
         <eventGroup id="anglerfish_d" type="anglerfishDialogue3">
             <initialEvent eventRef="npcq3"/>
             
-            <event id="npcq3" random="true" maxCount="1">
+            <event id="ang_npcq3" random="true" maxCount="1">
                 <eventAtom itemRef="anglerfish" command="say" content="My prey will come to me, that's what a pretty light does for you." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="I am fine where I am. You can drift along -- no one will even see you." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="I will not light your way then." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="Light your own way out of here then." topic="discriminationExists"/>
             </event>
             
-            <event id="pc3_obliviousness" maxCount="1">
+            <event id="ang_pc3_obliviousness" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
@@ -332,7 +356,7 @@
                 <eventAtom itemRef="octopus" command="say" content="Sorry, I'll be swimming on now.!"/>
             </event>
             
-            <event id="pc3_confusion" maxCount="1">
+            <event id="ang_pc3_confusion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
@@ -341,7 +365,7 @@
                 <eventAtom itemRef="octopus" command="say" content="I hope you find a mate soon, maybe you'll be more congenial."/>
             </event>
             
-            <event id="pc3_suspicion" maxCount="1">
+            <event id="ang_pc3_suspicion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
@@ -350,7 +374,7 @@
                 <eventAtom itemRef="octopus" command="say" content="I think you were trying to devour me."/>
             </event>
             
-            <event id="pc3_aggression" maxCount="1">
+            <event id="ang_pc3_aggression" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
@@ -360,39 +384,26 @@
             </event>
             
             <endConditions operator="or">
-                <condition itemRef="pc3_obliviousness" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc3_confusion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc3_suspicion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc3_aggression" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc3_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc3_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc3_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc3_aggression" property="isCompleted" operator="==" value="true"/>
             </endConditions>
         </eventGroup>
-        
-            <!-- octopus says something
-            <event id="express" weight="0">
-                <eventAtom itemRef="octopus" command="expressSentiment" content="discriminationExists"/>
-            </event>-->
-            
-            <!-- filler -->
-            <!--<event id="nothing" weight="3">
-                <eventAtom itemRef="system" command="wait"/>
-            </event>
-            <event id="passingTime">
-                <eventAtom itemRef="narrator" command="say" content="Time continued to pass."/>
-            </event>-->
-        
-        <!-- FOURTH EXCHANGE -->
+         
+        <!-- FOURTH ANGLERFISH EXCHANGE -->
         
         <eventGroup id="anglerfish_e" type="anglerfishDialogue4">
             <initialEvent eventRef="npc_lastword"/>
             
-            <event id="npc_lastword" random="true" maxCount="1">
+            <event id="ang_npc_lastword" random="true" maxCount="1">
                 <eventAtom itemRef="anglerfish" command="say" content="In these cold waters light is a dangerous tool." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="Here in the deep darkness, light can mean safety...or death." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="Call no attention to yourself -- you may just survive." topic="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="say" content="My light lets me fend for myself. So can you." topic="discriminationExists"/>
             </event>
             
-            <event id="pc4_obliviousness" maxCount="1">
+            <event id="ang_pc4_obliviousness" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
@@ -400,7 +411,7 @@
                 <eventAtom itemRef="octopus" command="think" content="I should just move on and swim away."/>
             </event>
             
-            <event id="pc4_confusion" maxCount="1">
+            <event id="ang_pc4_confusion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
@@ -408,7 +419,7 @@
                 <eventAtom itemRef="octopus" command="think" content="I am not sure whether that was all about finding mates or if I was being hunted."/>
             </event>
             
-            <event id="pc4_suspicion" maxCount="1">
+            <event id="ang_pc4_suspicion" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
@@ -416,7 +427,7 @@
                 <eventAtom itemRef="octopus" command="think" content="That creature was trying to consume me. I need to get back to the warmth of the sun."/>
             </event>
             
-            <event id="pc4_aggression" maxCount="1">
+            <event id="ang_pc4_aggression" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
@@ -425,40 +436,39 @@
             </event>
             
             <endConditions operator="or">
-                <condition itemRef="pc4_obliviousness" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc4_confusion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc4_suspicion" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="pc4_aggression" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc4_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc4_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc4_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_pc4_aggression" property="isCompleted" operator="==" value="true"/>
             </endConditions>
         </eventGroup>
         
-        <!-- ENDING -->
+        <!-- ANGLERFISH ENDING -->
             
         <eventGroup id="anglerfish_f" type="anglerfishEnding">
             
-            <!-- narrated endings -->
-            <event id="assimilationEnd" weight="50" maxCount="1">
+            <event id="ang_assimilationEnd" weight="50" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator=">" value="0.5"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator=">" value="0.5"/>
                 </startConditions>
                 <eventAtom itemRef="narrator" command="say" content="As you drift onwards, you wish you could glow, just as the anglerfish suggested."/>
             </event>
-            <event id="bitterActivismEnd" weight="50" maxCount="1">
+            <event id="ang_bitterActivismEnd" weight="50" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator=">" value="0.5"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator="&lt;=" value="0.5"/>
                 </startConditions>
                 <eventAtom itemRef="narrator" command="say" content="Perhaps you should focus on your own waters, but you can't help but try to enlighten fish like that -- even if it costs you."/>
             </event>
-            <event id="naiveActivismEnd" weight="50" maxCount="1">
+            <event id="ang_naiveActivismEnd" weight="50" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator="&lt;=" value="0.5"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator=">" value="0.5"/>
                 </startConditions>
                 <eventAtom itemRef="narrator" command="say" content="You resist the anglerfish's advice. You shall overcome the overwhelming coldness, light or no light!"/>
             </event>
-            <event id="isolationEnd" weight="50" maxCount="1">
+            <event id="ang_isolationEnd" weight="50" maxCount="1">
                 <startConditions>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator="&lt;=" value="0.5"/>
                     <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator="&lt;=" value="0.5"/>
@@ -467,14 +477,638 @@
             </event>
             
             <endConditions operator="or">
-                <condition itemRef="assimilationEnd" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="bitterActivismEnd" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="naiveActivismEnd" property="isCompleted" operator="==" value="true"/>
-                <condition itemRef="isolationEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_assimilationEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_bitterActivismEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_naiveActivismEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="ang_isolationEnd" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- ********************** -->
+        <!-- *** SHARK DIALOGUE *** -->
+        <!-- ********************** -->
+        
+    	<eventGroup id="shark_a" type="sharkOrientation">
+ 			<initialEvent eventRef="octopusSharkSetup"/>
+            <event id="octopusSharkSetup" maxCount="1">
+                <eventAtom itemRef="octopus" command="storeTransparency" content="discriminationExists"/>
+                <eventAtom itemRef="anglerfish" command="exit"/>
+                <eventAtom itemRef="shark" command="enter"/>
+            </event>
+            <event id="octopusSharkIntroduction" random="true" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopusSharkSetup" property="isCompleted" operator="==" value="true"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="Though it is lighter here, strange beasts lurk in the shadows."/>
+                <eventAtom itemRef="narrator" command="say" content="Before you can turn around, a wall of water rushes over you."/>
+            </event>
+            <endConditions>
+                <condition itemRef="octopusSharkIntroduction" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+		</eventGroup>
+        
+        <!-- FIRST SHARK EXCHANGE -->
+        
+        <eventGroup id="shark_b" type="sharkDialogue1">
+            <initialEvent eventRef="npcq1"/>
+            
+            <event id="shk_npcq1" random="true" maxCount="1">
+                <eventAtom itemRef="shark" command="say" content="What are you doing here?" topic="discriminationExists"/>
+                <eventAtom itemRef="shark" command="say" content="Hello, who are you?!" topic="discriminationExists"/>
+                <eventAtom itemRef="shark" command="say" content="So, just swimming through here?" topic="discriminationExists"/>
+                <eventAtom itemRef="shark" command="say" content="You're a bad one, aren't you? *chuckling in a friendly manner*" topic="discriminationExists"/>
+            </event>
+            
+            <event id="shk_pc1_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I am sure glad to meet someone nice here."/>
+                <eventAtom itemRef="octopus" command="say" content="I'm just passing through."/>
+            </event>
+            
+            <event id="shk_pc1_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Does she have something against me?"/>
+                <eventAtom itemRef="octopus" command="say" content="Oh, um...I'm just passing through."/>
+            </event>
+            
+            <event id="shk_pc1_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="This shark seems quick to judgement."/>
+                <eventAtom itemRef="octopus" command="say" content="I'm sorry, is there a problem?"/>
+            </event>
+            
+            <event id="shk_pc1_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="She's already treating me this way...?"/>
+                <eventAtom itemRef="octopus" command="say" content="You are very judgemental, it seems."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="shk_pc1_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc1_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc1_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc1_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- SECOND SHARK EXCHANGE -->
+        
+        <eventGroup id="shark_c" type="sharkDialogue2">
+            <initialEvent eventRef="npcq2"/>
+            
+            <event id="shk_npcq2" random="true" maxCount="1">
+                <eventAtom itemRef="shark" command="say" content="No problem, just try to stay out of trouble." topic="discriminationExists"/>
+            </event>
+            
+            <event id="shk_pc2_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="What does she mean by “trouble”? I couldn't have stirred up sediment in this zone..."/>
+                <eventAtom itemRef="octopus" command="say" content="I certainly won't cause any trouble!"/>
+            </event>
+            
+            <event id="shk_pc2_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Is this a dangerous zone?"/>
+                <eventAtom itemRef="octopus" command="say" content="Do many creatures get into trouble here?"/>
+            </event>
+            
+            <event id="shk_pc2_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Is it this creature's job to warn visitors?"/>
+                <eventAtom itemRef="octopus" command="say" content="Why do you think I would get into trouble?"/>
+            </event>
+            
+            <event id="shk_pc2_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Here we go again, she's expecting ink before any trouble arises."/>
+                <eventAtom itemRef="octopus" command="say" content="It seems like you are the one looking for trouble."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="shk_pc2_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc2_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc2_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc2_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- THIRD SHARK EXCHANGE -->
+        
+        <eventGroup id="shark_d" type="sharkDialogue3">
+            <initialEvent eventRef="npcq3"/>
+            
+            <event id="shk_npcq3" random="true" maxCount="1">
+                <eventAtom itemRef="shark" command="say" content="Oh, it's just that sometimes with eight-tentacled beasts, they get into things..." topic="discriminationExists"/>
+                <eventAtom itemRef="shark" command="say" content="I'm just letting you know not to let trouble swim in here with you." topic="discriminationExists"/>
+                <eventAtom itemRef="shark" command="say" content="Strangers sometimes bring trouble as they drift in on the currents." topic="discriminationExists"/>
+            </event>
+            
+            <event id="shk_pc3_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="So, it's good to know the only predators here must be visitors."/>
+                <eventAtom itemRef="octopus" command="say" content="That's fine, then. You don't have to worry about a little sucker like me."/>
+            </event>
+            
+            <event id="shk_pc3_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="She expects me to ink her."/>
+                <eventAtom itemRef="octopus" command="say" content="Oh, um, these waters look trouble-free to me."/>
+            </event>
+            
+            <event id="shk_pc3_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Wait, so is she saying that *I'm* just going to swim in here and ink other creatures on sight?"/>
+                <eventAtom itemRef="octopus" command="say" content="Doesn't it take a troublemaker to stir the currents?"/>
+            </event>
+            
+            <event id="shk_pc3_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="*I* bring trouble with *me*? I'm not the interrogator baring rows and rows of teeth!"/>
+                <eventAtom itemRef="octopus" command="say" content="If trouble comes for me, it's not my responsibility if a creature gets inked."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="shk_pc3_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc3_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc3_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc3_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- FOURTH SHARK EXCHANGE -->
+        
+        <eventGroup id="shark_e" type="sharkDialogue4">
+            <initialEvent eventRef="npc_lastword"/>
+            
+            <event id="shk_npcq4" random="true" maxCount="1">
+                <eventAtom itemRef="shark" command="say" content="We had another octopus down here, and he was quite a character." topic="discriminationExists"/>
+            </event>
+            
+            <event id="shk_pc4_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="What? Never mind...."/>
+                <eventAtom itemRef="octopus" command="say" content="Could I just ask you the best way to get to the sunlight?"/>
+            </event>
+            
+            <event id="shk_pc4_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I don't want to deal with a creature thinking I'm going to ruin anything."/>
+                <eventAtom itemRef="octopus" command="say" content="It's cold here - can you help me get to the warmth?"/>
+            </event>
+            
+            <event id="shk_pc4_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="That face does not look helpful. Not with those teeth bared."/>
+                <eventAtom itemRef="octopus" command="think" content="I just want to get to the sunlight; I guess I'll be on my way."/>
+            </event>
+            
+            <event id="shk_pc4_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I don't want to engage like this with a creature that looks like it's about to tear me to shreds."/>
+                <eventAtom itemRef="octopus" command="think" content="I'm going to leave now, and you're going to let me."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="shk_pc4_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc4_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc4_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc4_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- FIFTH SHARK EXCHANGE -->
+        
+        <eventGroup id="shark_f" type="sharkDialogue5">
+            <initialEvent eventRef="npc_lastword"/>
+            
+            <event id="shk_npc_lastword" random="true" maxCount="1">
+                <eventAtom itemRef="shark" command="say" content="I think I had better swim onward to hunt. It's safer that way." topic="discriminationExists"/>
+            </event>
+            
+            <event id="shk_pc5_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I'm pleased that the shark was a good guide."/>
+            </event>
+            
+            <event id="shk_pc5_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Was she... watching me? No, the shark was just being helpful."/>
+            </event>
+            
+            <event id="shk_pc5_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Just whose safety was she concerned about?"/>
+            </event>
+            
+            <event id="shk_pc5_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="This is ridiculous, I don't need an escort, especially not a troublemaker like her."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="shk_pc5_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc5_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc5_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_pc5_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- SHARK ENDING -->
+        
+        <eventGroup id="shark_g" type="sharkEnding">
+            
+            <event id="shk_assimilationEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator=">" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator=">" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="You wonder if you really are as risky as the shark made you out to be."/>
+            </event>
+            <event id="shk_bitterActivismEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator=">" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator="&lt;=" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="You swim away, bitterly aware that you may have to teach other ignorant creatures in this zone."/>
+            </event>
+            <event id="shk_naiveActivismEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator="&lt;=" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator=">" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="You are proud of yourself for standing up to the shark."/>
+            </event>
+            <event id="shk_isolationEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator="&lt;=" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator="&lt;=" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="Cold, you drift ever upward, no solidarity to be found in this zone."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="shk_assimilationEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_bitterActivismEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_naiveActivismEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="shk_isolationEnd" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>     
+        
+        <!-- ************************* -->
+        <!-- *** SEAHORSE DIALOGUE *** -->
+        <!-- ************************* -->
+        
+    	<eventGroup id="seahorse_a" type="seahorseOrientation">
+ 			<initialEvent eventRef="octopusSeahorseSetup"/>
+            <event id="octopusSeahorseSetup" maxCount="1">
+                <eventAtom itemRef="octopus" command="storeTransparency" content="discriminationExists"/>
+                <eventAtom itemRef="shark" command="exit"/>
+                <eventAtom itemRef="seahorse" command="enter"/>
+            </event>
+            <event id="octopusSeahorseIntroduction" random="true" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopusSeahorseSetup" property="isCompleted" operator="==" value="true"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="The sun filters through the clear water - you are home here.."/>
+                <eventAtom itemRef="narrator" command="say" content="The sea is lighter here, showing off your bright colors."/>
+                <eventAtom itemRef="narrator" command="say" content="You remember the feel of these currents on your skin."/>
+            </event>
+            <endConditions>
+                <condition itemRef="octopusSeahorseIntroduction" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+		</eventGroup>
+        
+        <!-- FIRST SEAHORSE EXCHANGE -->
+        
+        <eventGroup id="seahorse_b" type="seahorseDialogue1">
+            <initialEvent eventRef="npcq1"/>
+            
+            <event id="sea_npcq1" random="true" maxCount="1">
+                <eventAtom itemRef="seahorse" command="say" content="How are you doing, stranger?" topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="What brings you to these waters?" topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="Has anyone told you that you're pretty in the light?" topic="discriminationExists"/>
+            </event>
+            
+            <event id="sea_pc1_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I'm just glad to be home."/>
+                <eventAtom itemRef="octopus" command="say" content="Hello! I'm glad to see a familiar face!"/>
+            </event>
+            
+            <event id="sea_pc1_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="What does he mean?"/>
+                <eventAtom itemRef="octopus" command="say" content="Hello, are you talking to me?"/>
+            </event>
+            
+            <event id="sea_pc1_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="s it assuming I'm a drifter? This is my home."/>
+                <eventAtom itemRef="octopus" command="say" content="I'm from here..."/>
+            </event>
+            
+            <event id="sea_pc1_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="This creature is the one acting like it's not from here. This is my home!"/>
+                <eventAtom itemRef="octopus" command="say" content="This is my home, so I'm no stranger to the reeds and tidal waters."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="sea_pc1_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc1_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc1_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc1_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- SECOND SEAHORSE EXCHANGE -->
+        
+        <eventGroup id="seahorse_c" type="seahorseDialogue2">
+            <initialEvent eventRef="npcq2"/>
+            
+            <event id="sea_npcq2" random="true" maxCount="1">
+                <eventAtom itemRef="seahorse" command="say" content="Oh, I'm sorry. I don't think I've seen you undulating around here before." topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="Sorry! I don't see very many octopuses." topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="Oh, well, your stripes are so different." topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="Sorry, we don't get very many octopuses around here." topic="discriminationExists"/>
+            </event>
+            
+            <event id="sea_pc2_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="He's nice to have apologized."/>
+                <eventAtom itemRef="octopus" command="say" content="That's okay. No harm done. We both are from the tidal zone."/>
+            </event>
+            
+            <event id="sea_pc2_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="But...I'm sure most seahorses have seen octopuses before, we live in the same zone."/>
+                <eventAtom itemRef="octopus" command="say" content="It's just strange that you've never seen octopuses here."/>
+            </event>
+            
+            <event id="sea_pc2_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Is he sending a message -- trying to get me to leave my own home?"/>
+                <eventAtom itemRef="octopus" command="say" content="I just don't know why you are treating me like I am not from this zone."/>
+            </event>
+            
+            <event id="sea_pc2_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="This seahorse is ignorant of the reality of his surroundings."/>
+                <eventAtom itemRef="octopus" command="say" content="I've lived here my entire life, have you? You don't act like it."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="sea_pc2_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc2_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc2_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc2_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- THIRD SEAHORSE EXCHANGE -->
+        
+        <eventGroup id="seahorse_d" type="seahorseDialogue3">
+            <initialEvent eventRef="npcq3"/>
+            
+            <event id="sea_npcq3" random="true" maxCount="1">
+                <eventAtom itemRef="seahorse" command="say" content="Right, well anyway, your patterns are lovely. They're very exotic." topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="Moving on, can I just say I've never seen colors quite like that on an octopus?" topic="discriminationExists"/>
+            </event>
+            
+            <event id="sea_pc3_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="That's cute, he's so nice!."/>
+                <eventAtom itemRef="octopus" command="say" content="Thanks! I'm not very special, though."/>
+            </event>
+            
+            <event id="sea_pc3_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="What did I do to seem like I am not a regular mimic octopus living here?"/>
+                <eventAtom itemRef="octopus" command="say" content="I'm no different from your typical mimic octopus."/>
+            </event>
+            
+            <event id="sea_pc3_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Has he really never seen a mimic octopus before?"/>
+                <eventAtom itemRef="octopus" command="say" content="I'm a regular mimic octopus. You seem unusually curious."/>
+            </event>
+            
+            <event id="sea_pc3_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="Didn't we just establish that I'm not a freak? I live here too!"/>
+                <eventAtom itemRef="octopus" command="say" content="You should learn that a curly tail is no less unusual than eight tentacles or bright stripes."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="sea_pc3_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc3_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc3_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc3_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- FOURTH SEAHORSE EXCHANGE -->
+        
+        <eventGroup id="seahorse_e" type="seahorseDialogue4">
+            <initialEvent eventRef="npc_lastword"/>
+            
+            <event id="sea_npc_lastword" random="true" maxCount="1">
+                <eventAtom itemRef="seahorse" command="say" content="Okay! Have fun doing whatever it is that you do!" topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="Mimic octopuses are pretty cool." topic="discriminationExists"/>
+                <eventAtom itemRef="seahorse" command="say" content="I hope you get where you need to be, don't mind my admiring your suction cups -- they're just cool." topic="discriminationExists"/>
+            </event>
+            
+            <event id="sea_pc4_obliviousness" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I'm glad he's so open."/>
+            </event>
+            
+            <event id="sea_pc4_confusion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="confused"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I know he means these statements as compliments, but..."/>
+            </event>
+            
+            <event id="sea_pc4_suspicion" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="suspicious"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="I still don't think he gets it. I'm no stranger to these waters."/>
+            </event>
+            
+            <event id="sea_pc4_aggression" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists" operator="changed" value="true"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="aggressive"/>
+                </startConditions>
+                <eventAtom itemRef="octopus" command="think" content="He can swim in his own world, I don't care."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="sea_pc4_obliviousness" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc4_confusion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc4_suspicion" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_pc4_aggression" property="isCompleted" operator="==" value="true"/>
+            </endConditions>
+        </eventGroup>
+        
+        <!-- SEAHORSE ENDING -->
+        
+        <eventGroup id="seahorse_f" type="seahorseEnding">
+            
+            <event id="sea_assimilationEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator=">" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator=">" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="You float home, changing your colors for every fish that you see."/>
+            </event>
+            <event id="sea_bitterActivismEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator=">" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator="&lt;=" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="Though you want to be recognized, you know it will be a bitter struggle to reacclimate yourself."/>
+            </event>
+            <event id="sea_naiveActivismEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator="&lt;=" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator=">" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="You have changed on your journey: now you know that others will only learn if you share your experiences openly."/>
+            </event>
+            <event id="sea_isolationEnd" weight="50" maxCount="1">
+                <startConditions>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:storedTransparency" operator="&lt;=" value="0.5"/>
+                    <condition itemRef="octopus" property="sentiments.discriminationExists:transparency" operator="&lt;=" value="0.5"/>
+                </startConditions>
+                <eventAtom itemRef="narrator" command="say" content="You continue warily through the light ocean, not sure if you will find your family."/>
+            </event>
+            
+            <endConditions operator="or">
+                <condition itemRef="sea_assimilationEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_bitterActivismEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_naiveActivismEnd" property="isCompleted" operator="==" value="true"/>
+                <condition itemRef="sea_isolationEnd" property="isCompleted" operator="==" value="true"/>
             </endConditions>
         </eventGroup>
         
 	</setting>
+    
+    <!-- octopus says something
+     <event id="express" weight="0">
+     <eventAtom itemRef="octopus" command="expressSentiment" content="discriminationExists"/>
+     </event>-->
+    
+    <!-- filler -->
+    <!--<event id="nothing" weight="3">
+     <eventAtom itemRef="system" command="wait"/>
+     </event>
+     <event id="passingTime">
+     <eventAtom itemRef="narrator" command="say" content="Time continued to pass."/>
+     </event>-->
     
     <!-- 
      could have a "playIfConditionsMet" command that only plays the targeted event if its conditions are met 

@@ -91,6 +91,8 @@
 		
 }
 
+// TODO: Move changes back to main repo
+
 /**
  * Narrates the specified event atom.
  * @param eventAtom The event atom to be narrated.
@@ -102,13 +104,17 @@
 	Actor *originator = NULL;
 	Actor *recipient;
     
-    //DLog(@"----execute atom %@", eventAtom.command);
+    DLog(@"----narrate atom %@", eventAtom.command);
     
 	// narrate an actor saying something
 	if ([eventAtom.command isEqualToString:@"say"]) {
         currentEventAtom = [eventAtom retain];
 		originator = (Actor *)currentEventAtom.item;
-		[self narrate:currentEventAtom.content duration:3.5];
+        if ([originator.identifier isEqualToString:@"narrator"]) {
+            [self narrate:currentEventAtom.content duration:3.5];
+        } else {
+            [self narrate:[NSString stringWithFormat:@"“%@”", currentEventAtom.content] duration:3.5];
+        }
         
         // narrate an actor thinking something
     } else if ([eventAtom.command isEqualToString:@"think"]) {

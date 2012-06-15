@@ -12,6 +12,7 @@
 #import "Emotion.h"
 #import "EventAtom.h"
 #import "NarrativeModel.h"
+#import "SimpleAudioEngine.h"
 
 @implementation OctopusInternal
 
@@ -46,6 +47,12 @@
         eye.position = ccp(25, 75);
         
         [eyeSpriteSheet addChild:eye];
+        
+        emotionLabel = [CCLabelTTF labelWithString:@"Oblivious" fontName:@"Helvetica-Bold" fontSize:36];
+        emotionLabel.position = ccp(0, winSize.height * .25);
+        emotionLabel.color = ccRED;
+        emotionLabel.opacity = 0;
+        [self addChild:emotionLabel];
 		
 		[self scheduleUpdate];
         
@@ -66,6 +73,34 @@
 
 #pragma mark -
 #pragma mark Utility methods
+
+- (void) showCurrentEmotion {
+    
+    Sentiment *sentiment = [actor.sentiments objectForKey:@"discriminationExists"];
+    Emotion *emotion;
+    
+    if (sentiment.transparency > 0.5) {
+        emotion = [sentiment strongestInternalEmotion];
+    } else {
+        emotion = [sentiment strongestExternalEmotion];
+    }
+    
+    if ([emotion.name isEqualToString:@"oblivious"]) {
+        emotionLabel.color = ccc3(35, 108, 182);
+    } else if ([emotion.name isEqualToString:@"confused"]) {
+        emotionLabel.color = ccc3(101, 234, 0);
+    } else if ([emotion.name isEqualToString:@"suspicious"]) {
+        emotionLabel.color = ccc3(248, 221, 0);
+    } else if ([emotion.name isEqualToString:@"aggressive"]) {
+        emotionLabel.color = ccc3(236, 24, 5);
+    }
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"%@.mp3", emotion.name]];
+    
+    [emotionLabel setString:emotion.name];
+    emotionLabel.opacity = 255;
+    
+}
 
 /**
  * Updates the pose of the view to match the actor's internal state.
@@ -97,6 +132,8 @@
     CGFloat ratio = fmin(10, emotion.internalStrength) / 10.0;
     int randAmount = round(20 * ratio);
     eye.position = ccp(25 + (random() % randAmount) - (randAmount / 2), 25 + (random() % randAmount) - (randAmount / 2));
+    
+    emotionLabel.opacity += (0 - emotionLabel.opacity) * (.5 * dt);
 
 }
 

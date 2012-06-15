@@ -91,6 +91,8 @@
     //CGPoint p;
     //CGPoint v;
     
+    Shot *adjacentShot;
+    
     // NEED TO CREATE WAY TO INC/DEC MOOD EVEN IF NOT IN THE RIGHT VIEW
     
     switch( recognizer.state ) {
@@ -115,26 +117,19 @@
                     switch (recognizer.direction) {
                             
                         case UISwipeGestureRecognizerDirectionDown:              
-                            [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:5 internal:false];
-                            [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:5 internal:true];
-                            [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:0 internal:false];
-                            [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:0 internal:true];
+                            [self suspectDiscrimination];
                             break;
                             
                         case UISwipeGestureRecognizerDirectionUp:          
-                            [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:0 internal:false];
-                            [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:0 internal:true];
-                            [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:5 internal:false];
-                            [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:5 internal:true];
+                            [self unsuspectDiscrimination];
                             break;
                             
                     }
-                    [octopusInternal updatePose];
                     break;
                     
                 case 2:
                     if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
-                        Shot *adjacentShot = [shot adjacentShotForKey:@"exitThoughts"];
+                        adjacentShot = [shot adjacentShotForKey:@"exitThoughts"];
                         if (adjacentShot != nil) {
                             [controller setShot:adjacentShot];
                         }
@@ -151,6 +146,35 @@
             break;
     }
     
+}
+
+- (void) suspectDiscrimination {
+    [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:5 internal:false];
+    [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:5 internal:true];
+    [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:0 internal:false];
+    [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:0 internal:true];
+    [octopusInternal updatePose];
+    [octopusInternal showCurrentEmotion];
+    [self performSelector:@selector(exitThoughts) withObject:NULL afterDelay:1.0];
+}
+
+- (void) unsuspectDiscrimination {
+    [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:0 internal:false];
+    [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:0 internal:true];
+    [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:5 internal:false];
+    [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:5 internal:true];
+    [octopusInternal updatePose];
+    [octopusInternal showCurrentEmotion];
+    [self performSelector:@selector(exitThoughts) withObject:NULL afterDelay:1.0];
+}
+
+- (void) exitThoughts {
+    
+    Shot *adjacentShot = [shot adjacentShotForKey:@"exitThoughts"];
+    if (adjacentShot != nil) {
+        [controller setShot:adjacentShot];
+    }
+
 }
 
 @end

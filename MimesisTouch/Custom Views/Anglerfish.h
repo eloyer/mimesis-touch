@@ -11,8 +11,9 @@
 @interface Anglerfish : ActorView {
     
 	CCSprite			*sprite;				// anglerfish sprite
-    CGSize              winSize;                            // size of the window
-    CGFloat             sinValue;                           // value for sin wave bobbing
+    CGSize              winSize;                // size of the window
+    CGFloat             sinValue;               // value for sin wave bobbing
+    BOOL                onStage;                // contains true if the view is currently visible
     
 }
 

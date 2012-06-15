@@ -34,6 +34,7 @@
     NSMutableDictionary     *sentiments;                    ///< Dictionary of feelings of the character has about particular topics.
     Topic                   *currentTopic;                  ///< Topic the character is thinking about (may be nil).
     PropertyChangeTracker   *propTracker;                   ///< Class which tracks changes to properties.
+    BOOL                    onStage;                        ///< Contains true if the actor is currently participating in the setting.
 
 }
 
@@ -44,6 +45,7 @@
 @property (nonatomic, retain) NSString *iconFilename;
 @property (nonatomic, retain) NSMutableArray *changedProperties;
 @property (nonatomic, retain) NSMutableDictionary *sentiments;
+@property (readwrite) BOOL onStage;
 
 - (id) initWithNode:(TreeNode *)node;
 - (void) executeEventAtom:(EventAtom *)eventAtom;

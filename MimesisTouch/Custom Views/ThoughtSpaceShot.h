@@ -21,5 +21,8 @@
 - (UISwipeGestureRecognizer *)watchForSwipe:(SEL)selector direction:(UISwipeGestureRecognizerDirection)direction number:(int)touchesRequired;
 - (void)unwatch:(UIGestureRecognizer *)gr;
 - (void)swiping:(UISwipeGestureRecognizer *)recognizer;
+- (void) suspectDiscrimination;
+- (void) unsuspectDiscrimination;
+- (void) exitThoughts;
 
 @end

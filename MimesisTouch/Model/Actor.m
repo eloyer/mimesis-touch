@@ -33,6 +33,7 @@
 @synthesize iconFilename;
 @synthesize changedProperties;
 @synthesize sentiments;
+@synthesize onStage;
 
 #pragma mark -
 #pragma mark Instance methods
@@ -68,6 +69,8 @@
 		self.objectivePronoun = [node attributeForKey:@"objectivePronoun"];
         self.iconFilename = [node attributeForKey:@"icon"];
         
+        self.onStage = false;
+        
         // parse sentiments
 		self.sentiments = [[NSMutableDictionary alloc] init];
 		Sentiment *sentiment;
@@ -76,6 +79,8 @@
 			sentiment = [[Sentiment alloc] initWithNode:data];
 			[sentiments setObject:sentiment forKey:sentiment.topic.identifier];
 		}
+        
+        
 		
 	}
 	
@@ -97,6 +102,8 @@
 
 #pragma mark -
 #pragma mark Utility methods
+
+// TODO: Add changes to main repo
 
 /**
  * Takes any action relevant to the execution of the specified event atom.
@@ -174,6 +181,15 @@
                 [sentiment storeTransparency];
             }
 			[eventAtom handleEnd];
+            
+        } else if ([eventAtom.command isEqualToString:@"enter"]) {
+            self.onStage = true;
+			[eventAtom handleEnd];
+            
+        } else if ([eventAtom.command isEqualToString:@"exit"]) {
+            self.onStage = false;
+			[eventAtom handleEnd];
+            
 		}
 		
 	}

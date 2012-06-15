@@ -56,25 +56,50 @@
 			anglerfish = [[Anglerfish alloc] initWithModel:anglerfishActor controller:controller];
 			[self addChild:anglerfish];
 		}		
-        gestureRecognizers = [[NSMutableArray alloc] init];
-        [gestureRecognizers addObject:[self watchForTap:@selector(tapping:) taps:1 touches:1]];
-        [gestureRecognizers addObject:[self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionDown number:2]];
-        [gestureRecognizers addObject:[self watchForPinch:@selector(pinching:)]];
         
+		// shark actor view
+		Actor *sharkActor = [model.currentSetting.actors objectForKey:@"shark"];
+		if (sharkActor != nil) {
+			shark = [[Shark alloc] initWithModel:sharkActor controller:controller];
+			[self addChild:shark];
+		}		
+        
+		// seahorse actor view
+		Actor *seahorseActor = [model.currentSetting.actors objectForKey:@"seahorse"];
+		if (seahorseActor != nil) {
+			seahorse = [[Seahorse alloc] initWithModel:seahorseActor controller:controller];
+			[self addChild:seahorse];
+		}		
+
+        gestureRecognizers = [[NSMutableArray alloc] init];
+        [self setupGestureRecognizers];
+        
+        [[NarrativeModel sharedInstance] addObserver:self];        
 	}
 	
 	return self;
 }
 
 - (void) dealloc {
-    for (UIGestureRecognizer* gr in gestureRecognizers) {
-        [self unwatch:gr];
-    }
+    [self killGestureRecognizers];
     [gestureRecognizers release];
     [background removeAllChildrenWithCleanup:TRUE];
     [octopus release];
     [anglerfish release];
 	[super dealloc];
+}
+
+- (void)setupGestureRecognizers {
+    [gestureRecognizers addObject:[self watchForTap:@selector(tapping:) taps:1 touches:1]];
+    [gestureRecognizers addObject:[self watchForSwipe:@selector(swiping:) direction:UISwipeGestureRecognizerDirectionDown number:2]];
+    [gestureRecognizers addObject:[self watchForPinch:@selector(pinching:)]];
+}
+
+- (void)killGestureRecognizers {
+    for (UIGestureRecognizer* gr in gestureRecognizers) {
+        [self unwatch:gr];
+    }
+    [gestureRecognizers removeAllObjects];
 }
 
 #pragma mark -
@@ -128,26 +153,48 @@
         case UIGestureRecognizerStateEnded:
             p = [recognizer locationInView:[CCDirector sharedDirector].openGLView];
             p = [[CCDirector sharedDirector] convertToGL: p];
-            /*CGSize winSize = [[CCDirector sharedDirector] winSize];
-            if (p.x < 20) {
-                if ((p.y < 20) || (p.y > (winSize.height - 20))) {
-                    [controller pauseNarrative];
+            CGSize winSize = [[CCDirector sharedDirector] winSize];
+            NarrativeModel *model = [NarrativeModel sharedInstance];
+            if (!model.isPaused) {
+                if (p.x < 20) {
+                    if ((p.y < 20) || (p.y > (winSize.height - 20))) {
+                        [controller pauseNarrative];
+                    }
+                } else if (p.x > (winSize.width - 20)) {
+                    if ((p.y < 20) || (p.y > (winSize.height - 20))) {
+                        [controller pauseNarrative];
+                    }
+                } else if ([octopus containsPoint:p]) {
+                    Shot *adjacentShot = [shot adjacentShotForKey:@"enterThoughts"];
+                    if (adjacentShot != nil) {
+                        [controller setShot:adjacentShot];
+                    }
+                    /*
+                     NarrativeModel *model = [NarrativeModel sharedInstance];
+                     Event *event = [model parseItemRef:@"express"];
+                     [model.currentSetting.currentEventGroup setCurrentEvent:event];
+                     [octopus poke];*/
                 }
-            } else if (p.x > (winSize.width - 20)) {
-                if ((p.y < 20) || (p.y > (winSize.height - 20))) {
-                    [controller pauseNarrative];
-                }
-            } else*/ if ([octopus containsPoint:p]) {
-                NarrativeModel *model = [NarrativeModel sharedInstance];
-                Event *event = [model parseItemRef:@"express"];
-                [model.currentSetting.currentEventGroup setCurrentEvent:event];
-                [octopus poke];
             }
             break;
         case UIGestureRecognizerStateCancelled:
             break;
     }
     
+}
+
+/**
+ * Shows the main menu when the game is paused; the game menu when unpaused.
+ * @param state The current game state; menus will be shown/hidden accordingly.
+ */
+- (void) setPausedState:(NSString *)state {
+    BOOL stateVal = [state boolValue];
+    NSLog(@"pause state");
+	if (stateVal) {
+		[self killGestureRecognizers];
+	} else {
+		[self setupGestureRecognizers];
+	}
 }
 
 - (void)panning:(UIPanGestureRecognizer *)recognizer {
@@ -255,10 +302,10 @@
         case UIGestureRecognizerStateEnded:
             [octopus endTransparencyGesture];
             if (recognizer.scale > 1) {
-                [octopus.actor modifyTransparency:0.1];
+                [octopus.actor modifyTransparency:0.2];
                 [octopus showCurrentEmotion];
             } else {
-                [octopus.actor modifyTransparency:-0.1];
+                [octopus.actor modifyTransparency:-0.2];
                 [octopus showCurrentEmotion];
             }
             [octopus updatePose];

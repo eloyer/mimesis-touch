@@ -1,18 +1,18 @@
 //
-//  Anglerfish.m
+//  Seahorse.m
 //  MimesisTouch
 //
-//  Created by Erik Loyer on 5/3/12.
+//  Created by Erik Loyer on 6/14/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "Anglerfish.h"
+#import "Seahorse.h"
 #import "NarrativeModel.h"
 #import "EventAtom.h"
 #import "Actor.h"
 #import "SimpleAudioEngine.h"
 
-@implementation Anglerfish
+@implementation Seahorse
 
 #pragma mark -
 #pragma mark Instance methods
@@ -24,7 +24,7 @@
 		[[NarrativeModel sharedInstance] addObserver:self];
 		
         winSize = [[CCDirector sharedDirector] winSize];
-		sprite = [[CCSprite spriteWithFile:@"anglerfish.png"] retain];
+		sprite = [[CCSprite spriteWithFile:@"seahorse.png"] retain];
 		sprite.position = ccp(winSize.width * .75, winSize.height * .5);
         sprite.visible = actor.onStage;
 		[self addChild:sprite];
@@ -65,7 +65,7 @@
         } else if ([eventAtom.command isEqualToString:@"exit"]) {
             sprite.visible = actor.onStage;
         }
-    }
+    }    
     
 }
 
@@ -80,6 +80,5 @@
     sprite.scale += (1.0 - sprite.scale) * (dt * 2);
 	
 }
-
 
 @end

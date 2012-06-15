@@ -14,6 +14,8 @@
 #import "PlayerConfigShot.h"
 #import "ThoughtSpaceShot.h"
 #import "AdministrativeView.h"
+#import "SimpleAudioEngine.h"
+#import "Setting.h"
 
 @implementation MimesisNarrativeView
 
@@ -41,6 +43,8 @@
 		adminView = [[AdministrativeView alloc] initWithController:controller];
 		[[NarrativeModel sharedInstance] addObserver:adminView];
 		[self addChild:adminView z:10000];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"underwater.mp3"];
 		
 		[self scheduleUpdate];
 		
@@ -81,6 +85,46 @@
 			
 		}
 		
+	}
+	
+}
+
+
+/**
+ * Handles updates to the property indicating whether the narrative
+ * has been started yet or not.
+ * @param state The new state of the 'hasStarted' property, as a string.
+ */
+- (void) setStartedState:(NSString *)state {
+    
+    NSLog(@"set started state yo");
+	
+	BOOL hasStarted = [state boolValue];
+	
+	if (hasStarted) {
+        
+        //if (currentShotView) {
+            [[NarrativeModel sharedInstance] removeObserver:adminView];
+            [adminView removeFromParentAndCleanup:TRUE];
+            //[adminView release];
+            [[NarrativeModel sharedInstance] removeObserver:narratorView];
+            [narratorView removeFromParentAndCleanup:TRUE];
+            //[narratorView release];
+        //}
+		
+        // text commentary on the narrative
+		narratorView = [[IconNarratorView alloc] initWithController:controller];
+		[[NarrativeModel sharedInstance] addObserver:narratorView];
+		[self addChild:narratorView z:9000];
+		
+        // menu interface
+		adminView = [[AdministrativeView alloc] initWithController:controller];
+		[[NarrativeModel sharedInstance] addObserver:adminView];
+		[self addChild:adminView z:10000];
+        
+        NarrativeModel *model = [NarrativeModel sharedInstance];
+        [self setCurrentShot:model.currentSetting.currentShot];
+        
 	}
 	
 }

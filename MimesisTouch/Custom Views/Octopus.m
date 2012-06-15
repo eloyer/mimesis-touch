@@ -12,6 +12,7 @@
 #import "Emotion.h"
 #import "EventAtom.h"
 #import "NarrativeModel.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Octopus
 
@@ -177,6 +178,8 @@
     } else if ([emotion.name isEqualToString:@"aggressive"]) {
         emotionLabel.color = ccc3(236, 24, 5);
     }
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithFormat:@"%@.mp3", emotion.name]];
     
     [emotionLabel setString:emotion.name];
     emotionLabel.opacity = 255;

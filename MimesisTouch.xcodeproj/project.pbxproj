@@ -183,6 +183,23 @@
 		A29F57871551F1F500888F59 /* narration_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A29F57841551F1F500888F59 /* narration_bg.png */; };
 		A29F578D1551F47500888F59 /* narrative_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = A29F578C1551F47500888F59 /* narrative_data.xml */; };
 		A2C8F435156572F0001685D6 /* PropertyChangeTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = A2C8F434156572F0001685D6 /* PropertyChangeTracker.m */; };
+		A2FCE946158ABCCA00943216 /* seahorse_icon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE93E158ABCCA00943216 /* seahorse_icon-hd.png */; };
+		A2FCE947158ABCCA00943216 /* seahorse_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE93F158ABCCA00943216 /* seahorse_icon.png */; };
+		A2FCE94A158ABCCA00943216 /* shark_icon-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE942158ABCCA00943216 /* shark_icon-hd.png */; };
+		A2FCE94B158ABCCA00943216 /* shark_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE943158ABCCA00943216 /* shark_icon.png */; };
+		A2FCE953158ABD8500943216 /* seahorse-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE94F158ABD8400943216 /* seahorse-hd.png */; };
+		A2FCE954158ABD8500943216 /* seahorse.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE950158ABD8400943216 /* seahorse.png */; };
+		A2FCE955158ABD8500943216 /* shark-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE951158ABD8400943216 /* shark-hd.png */; };
+		A2FCE956158ABD8500943216 /* shark.png in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE952158ABD8500943216 /* shark.png */; };
+		A2FCE959158ABDD400943216 /* Shark.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FCE958158ABDD400943216 /* Shark.m */; };
+		A2FCE95C158AEB7800943216 /* Seahorse.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FCE95B158AEB7800943216 /* Seahorse.m */; };
+		A2FCE964158B5C4000943216 /* aggressive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE95D158B5C3F00943216 /* aggressive.mp3 */; };
+		A2FCE965158B5C4000943216 /* confused.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE95E158B5C3F00943216 /* confused.mp3 */; };
+		A2FCE966158B5C4000943216 /* oblivious.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE95F158B5C3F00943216 /* oblivious.mp3 */; };
+		A2FCE967158B5C4000943216 /* sfx1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE960158B5C3F00943216 /* sfx1.mp3 */; };
+		A2FCE968158B5C4000943216 /* sfx2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE961158B5C3F00943216 /* sfx2.mp3 */; };
+		A2FCE969158B5C4000943216 /* suspicious.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE962158B5C4000943216 /* suspicious.mp3 */; };
+		A2FCE96A158B5C4000943216 /* underwater.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2FCE963158B5C4000943216 /* underwater.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -517,6 +534,25 @@
 		A29F578C1551F47500888F59 /* narrative_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = narrative_data.xml; path = Resources/narrative_data.xml; sourceTree = "<group>"; };
 		A2C8F433156572F0001685D6 /* PropertyChangeTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyChangeTracker.h; sourceTree = "<group>"; };
 		A2C8F434156572F0001685D6 /* PropertyChangeTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyChangeTracker.m; sourceTree = "<group>"; };
+		A2FCE93E158ABCCA00943216 /* seahorse_icon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seahorse_icon-hd.png"; sourceTree = "<group>"; };
+		A2FCE93F158ABCCA00943216 /* seahorse_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seahorse_icon.png; sourceTree = "<group>"; };
+		A2FCE942158ABCCA00943216 /* shark_icon-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shark_icon-hd.png"; sourceTree = "<group>"; };
+		A2FCE943158ABCCA00943216 /* shark_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shark_icon.png; sourceTree = "<group>"; };
+		A2FCE94F158ABD8400943216 /* seahorse-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seahorse-hd.png"; sourceTree = "<group>"; };
+		A2FCE950158ABD8400943216 /* seahorse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seahorse.png; sourceTree = "<group>"; };
+		A2FCE951158ABD8400943216 /* shark-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shark-hd.png"; sourceTree = "<group>"; };
+		A2FCE952158ABD8500943216 /* shark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shark.png; sourceTree = "<group>"; };
+		A2FCE957158ABDD400943216 /* Shark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shark.h; path = "Custom Views/Shark.h"; sourceTree = "<group>"; };
+		A2FCE958158ABDD400943216 /* Shark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shark.m; path = "Custom Views/Shark.m"; sourceTree = "<group>"; };
+		A2FCE95A158AEB7800943216 /* Seahorse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Seahorse.h; path = "Custom Views/Seahorse.h"; sourceTree = "<group>"; };
+		A2FCE95B158AEB7800943216 /* Seahorse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Seahorse.m; path = "Custom Views/Seahorse.m"; sourceTree = "<group>"; };
+		A2FCE95D158B5C3F00943216 /* aggressive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aggressive.mp3; sourceTree = "<group>"; };
+		A2FCE95E158B5C3F00943216 /* confused.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = confused.mp3; sourceTree = "<group>"; };
+		A2FCE95F158B5C3F00943216 /* oblivious.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oblivious.mp3; sourceTree = "<group>"; };
+		A2FCE960158B5C3F00943216 /* sfx1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sfx1.mp3; sourceTree = "<group>"; };
+		A2FCE961158B5C3F00943216 /* sfx2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sfx2.mp3; sourceTree = "<group>"; };
+		A2FCE962158B5C4000943216 /* suspicious.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = suspicious.mp3; sourceTree = "<group>"; };
+		A2FCE963158B5C4000943216 /* underwater.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = underwater.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +593,10 @@
 				A2458AD2156AA902004F77A6 /* ThoughtSpaceShot.m */,
 				A22205291586C37A009BCB22 /* PlayerConfigShot.h */,
 				A222052A1586C37A009BCB22 /* PlayerConfigShot.m */,
+				A2FCE957158ABDD400943216 /* Shark.h */,
+				A2FCE958158ABDD400943216 /* Shark.m */,
+				A2FCE95A158AEB7800943216 /* Seahorse.h */,
+				A2FCE95B158AEB7800943216 /* Seahorse.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -627,6 +667,13 @@
 		A29F55CF1551F12300888F59 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2FCE95D158B5C3F00943216 /* aggressive.mp3 */,
+				A2FCE95E158B5C3F00943216 /* confused.mp3 */,
+				A2FCE95F158B5C3F00943216 /* oblivious.mp3 */,
+				A2FCE960158B5C3F00943216 /* sfx1.mp3 */,
+				A2FCE961158B5C3F00943216 /* sfx2.mp3 */,
+				A2FCE962158B5C4000943216 /* suspicious.mp3 */,
+				A2FCE963158B5C4000943216 /* underwater.mp3 */,
 				A238C06015583D7600F6D37C /* Default-Landscape@2x~ipad.png */,
 				A238C05E15583D7200F6D37C /* Default-Landscape~ipad.png */,
 				A238C05C15583D6700F6D37C /* Default@2x.png */,
@@ -656,6 +703,14 @@
 				A215D1B31553526A00F63ADE /* octopus_icon.png */,
 				A215D1C01553B00400F63ADE /* anglerfish-hd.png */,
 				A215D1C11553B00400F63ADE /* anglerfish.png */,
+				A2FCE93E158ABCCA00943216 /* seahorse_icon-hd.png */,
+				A2FCE93F158ABCCA00943216 /* seahorse_icon.png */,
+				A2FCE942158ABCCA00943216 /* shark_icon-hd.png */,
+				A2FCE943158ABCCA00943216 /* shark_icon.png */,
+				A2FCE94F158ABD8400943216 /* seahorse-hd.png */,
+				A2FCE950158ABD8400943216 /* seahorse.png */,
+				A2FCE951158ABD8400943216 /* shark-hd.png */,
+				A2FCE952158ABD8500943216 /* shark.png */,
 				A2458ADF156AFA2F004F77A6 /* oct_cu_head.png */,
 				A238C06E1558604600F6D37C /* octopus.plist */,
 				A238C06F1558604600F6D37C /* octopus.png */,
@@ -1144,6 +1199,21 @@
 				A2458AD5156AAE14004F77A6 /* thought_background.png in Resources */,
 				A2458AE0156AFA2F004F77A6 /* oct_cu_head.png in Resources */,
 				A297A0AE1582D0BF000EEAEC /* README.markdown in Resources */,
+				A2FCE946158ABCCA00943216 /* seahorse_icon-hd.png in Resources */,
+				A2FCE947158ABCCA00943216 /* seahorse_icon.png in Resources */,
+				A2FCE94A158ABCCA00943216 /* shark_icon-hd.png in Resources */,
+				A2FCE94B158ABCCA00943216 /* shark_icon.png in Resources */,
+				A2FCE953158ABD8500943216 /* seahorse-hd.png in Resources */,
+				A2FCE954158ABD8500943216 /* seahorse.png in Resources */,
+				A2FCE955158ABD8500943216 /* shark-hd.png in Resources */,
+				A2FCE956158ABD8500943216 /* shark.png in Resources */,
+				A2FCE964158B5C4000943216 /* aggressive.mp3 in Resources */,
+				A2FCE965158B5C4000943216 /* confused.mp3 in Resources */,
+				A2FCE966158B5C4000943216 /* oblivious.mp3 in Resources */,
+				A2FCE967158B5C4000943216 /* sfx1.mp3 in Resources */,
+				A2FCE968158B5C4000943216 /* sfx2.mp3 in Resources */,
+				A2FCE969158B5C4000943216 /* suspicious.mp3 in Resources */,
+				A2FCE96A158B5C4000943216 /* underwater.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1287,6 +1357,8 @@
 				A22205271586C0DA009BCB22 /* TreeNode.m in Sources */,
 				A22205281586C0DA009BCB22 /* XMLParser.m in Sources */,
 				A222052B1586C37A009BCB22 /* PlayerConfigShot.m in Sources */,
+				A2FCE959158ABDD400943216 /* Shark.m in Sources */,
+				A2FCE95C158AEB7800943216 /* Seahorse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -81,6 +81,7 @@
  * Resumes the narrative.
  */
 - (void) resumeNarrative {
+    NSLog(@"resume narrative");
 	[model setPausedState:@"false"];
 }
 
