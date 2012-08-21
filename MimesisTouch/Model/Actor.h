@@ -20,8 +20,6 @@
 @class Event;
 @class Topic;
 
-// TODO add changes to main GeNIE repo
-
 @interface Actor : NSObject <PropertyChangeTrackerDelegate> {
 	
 	NSString				*identifier;					///< Unique identifier for the actor.
@@ -30,7 +28,6 @@
     NSString                *objectivePronoun;              ///< Pronoun that describes the actor as an object.
     NSString                *iconFilename;                  ///< Filename for actor icon (icons should be 52x52 for non-retina displays).
 	NSString				*mood;                          ///< Name of the actor's current emotional state.
-	//NSMutableArray			*changedProperties;				///< Array of recently changed properties.
     NSMutableDictionary     *sentiments;                    ///< Dictionary of feelings of the character has about particular topics.
     Topic                   *currentTopic;                  ///< Topic the character is thinking about (may be nil).
     PropertyChangeTracker   *propTracker;                   ///< Class which tracks changes to properties.

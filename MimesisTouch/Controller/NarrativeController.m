@@ -30,8 +30,6 @@
 #pragma mark -
 #pragma mark Instance methods
 
-// TODO: Add these changes and those in .h to main GeNIE repo
-
 /**
  * Initializes a new NarrativeController
  * @return The new NarrativeController.
@@ -57,8 +55,6 @@
  * Launches the narrative.
  */
 - (void) startNarrative {
-	
-	// TODO: reset narrative state
 	
 	if (model.hasStarted) {
         NSLog(@"resetting model");

@@ -18,8 +18,6 @@
 #import "cocos2d.h"
 #import "NarrativeController.h"
 
-// TODO implement changes in main GeNIE repo
-
 @class Actor;
 @class EventAtom;
 

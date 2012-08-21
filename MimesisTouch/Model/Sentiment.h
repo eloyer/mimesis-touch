@@ -37,6 +37,4 @@
 - (Emotion *) strongestExternalEmotion;
 - (void) storeTransparency;
 
-// TODO: Move current version to GeNIE project
-
 @end

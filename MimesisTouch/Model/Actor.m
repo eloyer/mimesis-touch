@@ -38,8 +38,6 @@
 #pragma mark -
 #pragma mark Instance methods
 
-// TODO add changes to main GeNIE repo.
-
 /**
  * Initializes a new Actor.
  * @param node A TreeNode representing the XML in the narrative script that defines the actor.
@@ -102,8 +100,6 @@
 
 #pragma mark -
 #pragma mark Utility methods
-
-// TODO: Add changes to main repo
 
 /**
  * Takes any action relevant to the execution of the specified event atom.
@@ -173,7 +169,7 @@
             }
 			[eventAtom handleEnd];
             
-        // store the transparancey of one of the actor's sentiments
+        // store the transparency of one of the actor's sentiments
         } else if ([eventAtom.command isEqualToString:@"storeTransparency"]) {
             content = [self parseCommand:eventAtom];
             if (content) {
@@ -182,10 +178,12 @@
             }
 			[eventAtom handleEnd];
             
+        // record that the actor is now on stage
         } else if ([eventAtom.command isEqualToString:@"enter"]) {
             self.onStage = true;
 			[eventAtom handleEnd];
             
+        // record that the actor is now off stage
         } else if ([eventAtom.command isEqualToString:@"exit"]) {
             self.onStage = false;
 			[eventAtom handleEnd];
@@ -377,21 +375,20 @@
             sentiment.transparency = MIN(1.0, MAX(0.0, sentiment.transparency + amount));
             
             // if transparency is decreasing, have the narrator say something to that effect
-            if (sentiment.transparency < lastTransparency) {
-                /*EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ buried %@ true feelings about %@ deeper inside.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
-                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];*/
+            /*if (sentiment.transparency < lastTransparency) {
+                EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ buried %@ true feelings about %@ deeper inside.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
+                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
                 
             // if transparency is increasing, have the narrator say something to that effect
             } else if (sentiment.transparency > lastTransparency) {
-                /*EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ let %@ true feelings about %@ come closer to the surface.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
-                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];*/
-            }
+                EventAtom *eventAtom = [[EventAtom alloc] initWithItemRef:@"narrator" command:@"say" content:[NSString stringWithFormat:@"%@ let %@ true feelings about %@ come closer to the surface.", [subjectivePronoun capitalizedString], objectivePronoun, currentTopic.description]];
+                [model.currentSetting.currentEventGroup enqueueImmediateEventAtom:eventAtom];
+            }*/
+            
             [self addChangedProperty:[NSString stringWithFormat:@"sentiments.%@", sentiment.topic.identifier]];
         }
     }    
 }
-
-// TODO: Add this back to the main GeNIE repo
 
 /**
  * Alters the strength of the specified emotion.

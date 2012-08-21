@@ -126,8 +126,6 @@
     return event;
 }
 
-// TODO: Move current version to GeNIE project
-
 /**
  * Returns the emotion with the greatest strength. Current transparency value determines
  * whether internal or external strength is evaluated.

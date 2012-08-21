@@ -248,8 +248,6 @@
 	return startConditionsMet;
 }
 
-// TODO: Add this change to the main GeNIE repo
-
 /**
  * Adds an event atom to the queue of atoms to be played immediately, if the queue
  * doesn't contain it already.

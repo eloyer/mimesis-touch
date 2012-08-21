@@ -32,7 +32,7 @@ typedef enum {
 	NSString				*stringValue;			///< String describing the value being compared.
 	BOOL                    booleanValue;           ///< Boolean value to be compared.
     id                      objectValue;            ///< Object to be compared.
-    CGFloat                 floatValye;             ///< Float value to be compared.
+    CGFloat                 floatValue;             ///< Float value to be compared.
     ValueType               valueType;              ///< The value's type.
 
 }
@@ -49,6 +49,7 @@ typedef enum {
 
 - (id) initWithNode:(TreeNode *)node;
 - (void) parseItemAndValue;
+- (void) evaluateProperty;
 - (bool) hasBenMet;
 
 @end

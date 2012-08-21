@@ -426,6 +426,8 @@
  
  Actor
  <ul>
+ <li><b>enter</b> - The actor enters the stage.</li>
+ <li><b>exit</b> - The actor exits the stage.</li>
  <li><b>expressSentiment</b> - The actor expresses their current feelings about the topic specified in the content property. The current transparency of the actor's sentiment about the topic determines whether the emotion expressed will be their internal or external feelings about the topic.</li>
  <li><b>lookAt</b> - The actor looks at the actor specified in the content property (description of the action will be displayed in the NarratorView).</li>
  <li><b>lookAwayFrom</b> - The actor looks away from the actor specified in the content property (description will be displayed in the NarratorView).</li>
@@ -434,6 +436,7 @@
  <li><b>setEmotion</b> - Sets the strength of an actor's emotion to a specific value. The topic, emotion, internal/external disposition, and strength are specified in the content property in the format [topicRef]:[emotionName]:[internal/external]:[strength]. For example: 'hatTopic:dislike:internal:10'.</li>
  <li><b>setMood</b> - Sets the actor's current mood to the string specified in the content property. If the actor's currentTopic property is not nil, and the mood matches the name of an emotion associated with that topic, then either the internal or the external component of the emotion will be incremented, depending on the value of the current shot's 'internal' property.</li>
  <li><b>setTransparency</b> - Sets the transparency of the actor's sentiment on a topic to a specific value. Both the topic and the value are specified in the content property in the format [topicRef]:[value]. For example: 'hatTopic:0.7'.</li>
+ <li><b>storeTransparency</b> - Saves the current transparency of the actor's sentiment specified on the content property for later retrieval.</li>
  <li><b>think</b> - The actor "thinks" the thought specified in the content property (will be displayed in the NarratorView).</li>
  </ul>
  

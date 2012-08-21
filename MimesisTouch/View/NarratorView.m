@@ -26,8 +26,6 @@
 #pragma mark -
 #pragma mark Instance methods
 
-// TODO implement changes in main GeNIE repo
-
 /**
  * Initializes a new NarratorView.
  * @param cntrllr Instance of the narrative controller.
@@ -90,8 +88,6 @@
     }
 		
 }
-
-// TODO: Move changes back to main repo
 
 /**
  * Narrates the specified event atom.

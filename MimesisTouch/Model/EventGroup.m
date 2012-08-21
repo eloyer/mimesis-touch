@@ -34,8 +34,6 @@
 #pragma mark -
 #pragma mark Instance methods
 
-// TODO add modifications to main GeNIE repo
-
 /**
  * Initializes a new EventGroup.
  * @param node A TreeNode representing the XML in the narrative script that defines the event group.

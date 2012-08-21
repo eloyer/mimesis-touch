@@ -1,12 +1,14 @@
 //
 //  PropertyChangeTracker.h
-//  MimesisTouch
+//  GeNIE
 //
 //  Created by Erik Loyer on 5/17/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright 2010-2011 D. Fox Harrell, Principal Investigator / MIT ICE Lab. All rights reserved.
+//  This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. Details: http://creativecommons.org/licenses/by-nc-nd/3.0/
 //
 
-// TODO: Add this to the main GeNIE repo and document
+// The PropertyChangeTracker is a protocol which enables a class to manage a history
+// of changes to its properties.
 
 #import <UIKit/UIKit.h>
 #import "EventAtom.h"

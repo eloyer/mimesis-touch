@@ -293,8 +293,6 @@
 	[self startNextEventGroup];
 }
 
-// TODO: Add these changes to main GeNIE repo
-
 /**
  * Figures out the event group that should be played next and activates it.
  */

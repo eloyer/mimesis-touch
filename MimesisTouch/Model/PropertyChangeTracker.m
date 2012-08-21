@@ -1,12 +1,14 @@
 //
-//  PropertyChangeTracker.m
-//  MimesisTouch
+//  PropertyChangeTracker.h
+//  GeNIE
 //
 //  Created by Erik Loyer on 5/17/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright 2010-2011 D. Fox Harrell, Principal Investigator / MIT ICE Lab. All rights reserved.
+//  This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. Details: http://creativecommons.org/licenses/by-nc-nd/3.0/
 //
 
-// TODO: Add this to the main GeNIE repo and document
+// The PropertyChangeTracker is a protocol which enables a class to manage a history
+// of changes to its properties.
 
 #import "PropertyChangeTracker.h"
 #import "EventAtom.h"
@@ -48,21 +50,20 @@
 }
 
 /**
- * Returns true if the specified property was changed recently, and
- * removes the property from the list of changed properties.
+ * Returns true if the specified property was changed recently.
  * @param propertyName The name of the property that was changed.
  */
 - (BOOL) _propertyWasChanged:(NSString *)propertyName {
 	BOOL result = [changedProperties containsObject:propertyName];
     //NSLog(@"check for changed property: %@", propertyName);
-	/*if (result) {
-		[changedProperties removeObject:propertyName];
-	}*/
 	return result;
 }
 
-// TODO: Add changes to main repo
-
+/**
+ * When an event atom ends, increments the ages of all property change records.
+ * If a change is older than 1 turn, it is removed from the list of changed properties.
+ * @param eventAtom The event atom that just finished playing.
+ */
 - (void) handleEventAtomEnd:(EventAtom *)eventAtom {
     int i;
     int n = [changedProperties count];

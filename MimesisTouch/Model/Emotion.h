@@ -13,8 +13,6 @@
 #import <Foundation/Foundation.h>
 #import "PropertyChangeTracker.h"
 
-// TODO add changes to main GeNIE repo.
-
 @class TreeNode;
 @class Event;
 

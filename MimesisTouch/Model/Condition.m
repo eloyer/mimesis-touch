@@ -99,8 +99,6 @@
     
 }
 
-// TODO: Add these changes and those in .h to main GeNIE repo
-
 /**
  * Evaluates the condition's property.
  */
