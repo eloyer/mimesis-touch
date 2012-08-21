@@ -392,19 +392,26 @@
  The identifier of an item (of any type), a property of which is to be tested as part of the condition.
  
  <h3>property</h3>
- Name of the item's property, the value of which is to be tested as part of the condition.
+ When specified in its simplest form, this attribute contains only the name of the item's property, the value of which is to be tested as part of the condition. If you wish to target lower level objects and properties, you can do so by following the format [propertyName.identifier]:[propertyName]. There can be 0 - many instances of [propertyName.identifier] in the property specification, and the entire property specification will be evaluated at run time each time it is called. 
+  
+ Example: sentiment.discriminationExists:emotion.aggressive:internalStrength
  
  <h3>operator</h3>
- Determines which operator will be used in comparing the current value of the item's property with that specified in the condition's value property. Legal values are <, <=, ==, >=, and >.
+ Determines which operator will be used in comparing the current value of the item's property with that specified in the condition's value property. Legal values are <, <=, ==, >=, >, and 'changed,' which tests to see if the property's value was recently modified.
  
  <h3>value</h3>
  The value that the condition is testing for.
  
- Currently supported combinations of items and properties:
+ Special combinations of items and properties:
  
  Event
  <ul>
- <li><b>isCompleted</b> - Returns true if the event has been played at least once.
+ <li><b>isCompleted</b> - Returns true if the event has been played at least once.</li>
+ </ul>
+  
+ Sentiment
+ <ul>
+ <li><b>storedTransparency</b> - Returns the value of the sentiment's last stored transparency value.</li>
  </ul>
   
  */
