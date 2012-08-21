@@ -293,6 +293,8 @@
 	[self startNextEventGroup];
 }
 
+// TODO: Add these changes to main GeNIE repo
+
 /**
  * Figures out the event group that should be played next and activates it.
  */
@@ -325,8 +327,9 @@
 	}
 	
 	if (eventGroup == nil) {
-		DLog(@"Couldn't find another event group to start.");
-	}
+		DLog(@"Couldn't find another event group to start--de facto end of narrative.");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NarrativeEnd" object:	self];
+    }
     [self setCurrentEventGroup:eventGroup];
 	
 }
@@ -347,8 +350,11 @@
  * Resets the setting.
  */
 - (void) reset {
+    NSArray *eventGroupsArr = [eventGroups allValues];
+    for (EventGroup *eventGroup in eventGroupsArr) {
+        [eventGroup reset];
+    }
 	self.currentShot = nil;
-	[currentEventGroup reset];
 	self.currentEventGroup = nil;
 }
 

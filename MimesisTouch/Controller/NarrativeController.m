@@ -30,6 +30,8 @@
 #pragma mark -
 #pragma mark Instance methods
 
+// TODO: Add these changes and those in .h to main GeNIE repo
+
 /**
  * Initializes a new NarrativeController
  * @return The new NarrativeController.
@@ -37,7 +39,7 @@
 - (id) init {
 	
 	if (self = [super init]) {
-		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNarrativeEnd) name:@"NarrativeEnd" object:nil];
 	}
 	
 	return self;
@@ -59,6 +61,7 @@
 	// TODO: reset narrative state
 	
 	if (model.hasStarted) {
+        NSLog(@"resetting model");
 		[model reset];
 	}
 	
@@ -145,6 +148,14 @@
  */
 - (void) handleEventAtomEnd:(EventAtom *)eventAtom {
 	[eventAtom handleEnd];
+}
+
+/**
+ * Called then the narrative ends; automatically pauses the narrative so users have a
+ * chance to restart it.
+ */
+- (void) handleNarrativeEnd {
+    [self pauseNarrative];
 }
 
 @end

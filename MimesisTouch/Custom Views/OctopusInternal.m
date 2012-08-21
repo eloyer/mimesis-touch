@@ -48,7 +48,7 @@
         
         [eyeSpriteSheet addChild:eye];
         
-        emotionLabel = [CCLabelTTF labelWithString:@"Oblivious" fontName:@"Helvetica-Bold" fontSize:36];
+        emotionLabel = [CCLabelTTF labelWithString:@"Oblivious" fontName:@"Helvetica" fontSize:36];
         emotionLabel.position = ccp(0, winSize.height * .25);
         emotionLabel.color = ccRED;
         emotionLabel.opacity = 0;
@@ -111,9 +111,11 @@
     Emotion *emotion = [sentiment strongestInternalEmotion];
     int frame;
     
+    NSLog(@"new internal pose: %@", emotion.name);
+    
     if ([emotion.name isEqualToString:@"aggressive"]) {
         frame = 0;
-    } else if ([emotion.name isEqualToString:@"confused"]) {
+    } else if ([emotion.name isEqualToString:@"oblivious"]) {
         frame = 2;
     }
     

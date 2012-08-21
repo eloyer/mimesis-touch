@@ -345,7 +345,10 @@ static NarrativeModel *sharedInstance = nil;
  * Resets the narrative.
  */
 - (void) reset {
-	[currentSetting reset];
+    NSArray *settingsArr = [settings allValues];
+    for (Setting *setting in settingsArr) {
+        [setting reset];
+    }
 	self.currentSetting = nil;
 	self.hasStarted = FALSE;
 }

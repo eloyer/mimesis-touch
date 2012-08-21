@@ -151,8 +151,8 @@
 - (void) suspectDiscrimination {
     [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:5 internal:false];
     [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:5 internal:true];
-    [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:0 internal:false];
-    [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:0 internal:true];
+    [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:0 internal:true];
+    [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:0 internal:false];
     [octopusInternal updatePose];
     [octopusInternal showCurrentEmotion];
     [self performSelector:@selector(exitThoughts) withObject:NULL afterDelay:1.0];
@@ -161,8 +161,8 @@
 - (void) unsuspectDiscrimination {
     [octopusInternal.actor setEmotion:@"suspicious" forSentiment:@"discriminationExists" strength:0 internal:false];
     [octopusInternal.actor setEmotion:@"aggressive" forSentiment:@"discriminationExists" strength:0 internal:true];
-    [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:5 internal:false];
-    [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:5 internal:true];
+    [octopusInternal.actor setEmotion:@"oblivious" forSentiment:@"discriminationExists" strength:5 internal:true];
+    [octopusInternal.actor setEmotion:@"confused" forSentiment:@"discriminationExists" strength:5 internal:false];
     [octopusInternal updatePose];
     [octopusInternal showCurrentEmotion];
     [self performSelector:@selector(exitThoughts) withObject:NULL afterDelay:1.0];

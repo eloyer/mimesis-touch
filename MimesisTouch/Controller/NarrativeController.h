@@ -34,5 +34,6 @@
 - (void) nextEventAtom;
 - (void) setAdjacentShotAsCurrent;
 - (void) handleEventAtomEnd:(EventAtom *)eventAtom;
+- (void) handleNarrativeEnd;
 
 @end

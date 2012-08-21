@@ -70,30 +70,8 @@
 - (void) parseItemAndValue {
     
 	NarrativeModel *model = [NarrativeModel sharedInstance];
-	self.item = [model parseItemRef:itemRef];
     
-    // Properties are specified in the following format: [propertyName.identifier]:[propertyName]
-    // There can be 0 - many instances of [propertyName.identifier] in the property specification.
-    // Example: sentiment.discriminationExists:emotion.aggressive:internalStrength
-    NSArray *propertySpecs = [property componentsSeparatedByString:@":"];
-    NSArray *components;
-    NSDictionary *dictionary;
-    int i;
-    int n = [propertySpecs count];
-    if (n > 1) {
-        for (i=0; i<n; i++) {
-            components = [[propertySpecs objectAtIndex:i] componentsSeparatedByString:@"."];
-            if ([components count] > 1) {
-                dictionary = [item valueForKey:[components objectAtIndex:0]];
-                self.item = [dictionary objectForKey:[components objectAtIndex:1]];
-            } else if (i < (n - 1)) {
-                self.item = [item valueForKey:[components objectAtIndex:0]];
-            }
-            lastComponent = [[propertySpecs objectAtIndex:i] retain];
-        }
-    } else {
-        lastComponent = [property retain];
-    }
+	[self evaluateProperty];
     
     // booleans
     if ([property isEqualToString:@"isCompleted"] || 
@@ -124,10 +102,45 @@
 // TODO: Add these changes and those in .h to main GeNIE repo
 
 /**
+ * Evaluates the condition's property.
+ */
+- (void) evaluateProperty {
+    
+	NarrativeModel *model = [NarrativeModel sharedInstance];
+	self.item = [model parseItemRef:itemRef];
+    
+    // Properties are specified in the following format: [propertyName.identifier]:[propertyName]
+    // There can be 0 - many instances of [propertyName.identifier] in the property specification.
+    // Example: sentiment.discriminationExists:emotion.aggressive:internalStrength
+    NSArray *propertySpecs = [property componentsSeparatedByString:@":"];
+    NSArray *components;
+    NSDictionary *dictionary;
+    int i;
+    int n = [propertySpecs count];
+    if (n > 1) {
+        for (i=0; i<n; i++) {
+            components = [[propertySpecs objectAtIndex:i] componentsSeparatedByString:@"."];
+            if ([components count] > 1) {
+                dictionary = [item valueForKey:[components objectAtIndex:0]];
+                self.item = [dictionary objectForKey:[components objectAtIndex:1]];
+            } else if (i < (n - 1)) {
+                self.item = [item valueForKey:[components objectAtIndex:0]];
+            }
+            lastComponent = [[propertySpecs objectAtIndex:i] retain];
+        }
+    } else {
+        lastComponent = [property retain];
+    }
+    
+}
+
+/**
  * Returns true if the condition is currently satisfied.
  * @return The current value to which the condition evaluates.
  */
 - (bool) hasBenMet {
+    
+    [self evaluateProperty];
 	
 	bool result = false;
     CGFloat floatPropertyValue;

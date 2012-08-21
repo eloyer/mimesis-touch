@@ -24,7 +24,6 @@
         <!-- EVENT STRUCTURE -->
 		
 		<eventStructure>   
-			<!--<eventClause type="configuration" minCount="1" maxCount="1" exitTo="anglerfishOrientation"/>-->   
 			<eventClause type="anglerfishOrientation" minCount="1" maxCount="1" exitTo="anglerfishDialogue1"/>   
 			<eventClause type="anglerfishDialogue1" minCount="1" maxCount="1" exitTo="anglerfishDialogue2"/>
 			<eventClause type="anglerfishDialogue2" minCount="1" maxCount="1" exitTo="anglerfishDialogue3"/>
@@ -68,118 +67,19 @@
 		<actor id="seahorse" name="Seahorse" subjectivePronoun="he" objectivePronoun="his">
  		</actor>
         
-        <!--
-         
-            transparency = sensitivity to one's intuition
-            sentiment = discrimination explains behavior
-         
-            high sensitivity, high sentiment = aggressive
-            low sensitivity, high sentiment = suspicion
-            high sensitivity, low sentiment = confused
-            low sensitivity, low sentiment = oblivious
-         
-            pinching = set sensitivity, animates between ranges allowed by sentiment
-         
-            if i agree strongly and disagree weakly, then I can express that in whatever degree i choose, choosing between mild suspicion and high agression
-         the animation only goes in the bounds of how i feel about it
-         
-            tap creature - 'she wondered if the fish had something against her.'
-         
-         -->
-        
 		<actor id="octopus" name="Octopus" subjectivePronoun="she" objectivePronoun="her">
             <sentiment topicRef="discriminationExists" transparency="0.5">
 
-                <emotion name="oblivious" internalStrength="0" externalStrength="5" description="disregard for any suspicions of">
-                    <demonstration operator=">" value="3">
-                        <event>
-                            <eventAtom itemRef="octopus" command="think" content="I should just move on, and drift away."/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="2">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="Why can't you help me?"/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="1">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="How can I leave here?"/>
-                        </event>
-                    </demonstration>
-                    <demonstration>
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="It's so cold here."/>
-                       </event>
-                    </demonstration>
+                <emotion name="oblivious" internalStrength="5" externalStrength="0" description="disregard for any suspicions of">
                 </emotion>
                 
-                <emotion name="confused" internalStrength="5" externalStrength="0" description="uncertainty about">
-                    <demonstration operator=">" value="3">
-                        <event>
-                            <eventAtom itemRef="octopus" command="think" content="No one will lift a finger to help me...or bother me."/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="2">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="Are there monsters in the shadows?"/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="1">
-                        <event>
-                             <eventAtom itemRef="octopus" command="say" content="Can you help me to the lighter waters?"/>
-                        </event>
-                    </demonstration>
-                    <demonstration>
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="Were you going to eat me?"/>
-                        </event>
-                    </demonstration>
+                <emotion name="confused" internalStrength="0" externalStrength="5" description="uncertainty about">
                 </emotion>
                 
                 <emotion name="suspicious" internalStrength="0" externalStrength="5" description="suspicions about">
-                    <demonstration operator=">" value="3">
-                        <event>
-                            <eventAtom itemRef="octopus" command="think" content="I don't belong here. I need to get back to the warmth of the sun."/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="2">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="What are you afraid of?"/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="1">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="What do I need to watch out for?"/>
-                        </event>
-                    </demonstration>
-                    <demonstration>
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="I'm only lost."/>
-                        </event>
-                    </demonstration>
                 </emotion>
                 
                 <emotion name="aggressive" internalStrength="5" externalStrength="0" description="certainty about">
-                    <demonstration operator=">" value="3">
-                        <event>
-                            <eventAtom itemRef="octopus" command="think" content="This midnight world is selfish."/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="2">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="Fine, don't help. I don't need you."/>
-                        </event>
-                    </demonstration>
-                    <demonstration operator=">" value="1">
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="You will help me."/>
-                        </event>
-                    </demonstration>
-                    <demonstration>
-                        <event>
-                            <eventAtom itemRef="octopus" command="say" content="Why don't you help me get out of here?"/>
-                        </event>
-                    </demonstration>
                 </emotion>
                 
             </sentiment>
@@ -188,16 +88,6 @@
         
         <!-- EVENT GROUPS  -->
         
-    	<eventGroup id="config" type="configuration">
- 			<initialEvent eventRef="welcome"/>
-            <event id="welcome" maxCount="1">
-                <eventAtom itemRef="narrator" command="say" content="Welcome to Mimesis."/>
-            </event>
-            <endConditions>
-                <condition itemRef="ocean" property="currentShot" operator="==" value="wideShot"/>
-            </endConditions>
-		</eventGroup>
-        
         <!-- *************************** -->
         <!-- *** ANGLERFISH DIALOGUE *** -->
         <!-- *************************** -->
@@ -205,6 +95,8 @@
     	<eventGroup id="anglerfish_a" type="anglerfishOrientation">
  			<initialEvent eventRef="octopusAnglerfishSetup"/>
             <event id="octopusAnglerfishSetup" maxCount="1">
+                <eventAtom itemRef="shark" command="exit"/>
+                <eventAtom itemRef="seahorse" command="exit"/>
                 <eventAtom itemRef="octopus" command="setTransparency" content="discriminationExists:random"/>
                 <eventAtom itemRef="octopus" command="storeTransparency" content="discriminationExists"/>
                 <eventAtom itemRef="anglerfish" command="enter"/>
@@ -353,7 +245,7 @@
                     <condition itemRef="octopus" property="sentiments.discriminationExists:strongestEmotion:name" operator="==" value="oblivious"/>
                 </startConditions>
                 <eventAtom itemRef="octopus" command="think" content="I wonder what I did wrong... I should have tried to glow."/>
-                <eventAtom itemRef="octopus" command="say" content="Sorry, I'll be swimming on now.!"/>
+                <eventAtom itemRef="octopus" command="say" content="Sorry, I'll be swimming on now!"/>
             </event>
             
             <event id="ang_pc3_confusion" maxCount="1">
@@ -1096,60 +988,5 @@
         </eventGroup>
         
 	</setting>
-    
-    <!-- octopus says something
-     <event id="express" weight="0">
-     <eventAtom itemRef="octopus" command="expressSentiment" content="discriminationExists"/>
-     </event>-->
-    
-    <!-- filler -->
-    <!--<event id="nothing" weight="3">
-     <eventAtom itemRef="system" command="wait"/>
-     </event>
-     <event id="passingTime">
-     <eventAtom itemRef="narrator" command="say" content="Time continued to pass."/>
-     </event>-->
-    
-    <!-- 
-     could have a "playIfConditionsMet" command that only plays the targeted event if its conditions are met 
-     and possibly a command that stops the user from being able to trigger shot changes until restarted, or until time has passed
-     
-     <eventAtom itemRef="girl" command="modifyEmotion" content="manClothes:annoyance:internal:1"/>
-     <eventAtom itemRef="girl" command="setEmotion" content="manClothes:annoyance:internal:0"/>
-     <eventAtom itemRef="girl" command="setTransparency" content="manClothes:.7"/>
-     <eventAtom itemRef="girl" command="expressSentiment" content="manClothes"/>
-     <eventAtom itemRef="system" command="playEvent" content="exclamation"/>
-     
-     <condition itemRef="girl" property="sentiment:hatTopic" operator="changed" value="true"/>
-     
-     transparency - how much the character shows their current emotions
-     internalState - what the character is currently feeling inside
-     externalState - what the character believes she should be feeling
-     visibleState - what the character is currently projecting
-     
-     think command
-     
-     transparency determines whether the emotional state is allowed to show through
-     
-     topic - defines an object of thought/speech/emotion.
-     
-     feeling - defines a character's emotional response to a topic
-     can specify an internal state (optional) - how the character feels inside when the topic comes up
-     can specify an external state (optional) - emotion the character projects when the topic comes up
-     
-     when you manually set a feeling or transparency, it attaches to the last thing that was discussed (probability?)
-     
-     every time you adjust a feeling, you are appending that value - if it's a feeling atom that already exists, then you just increment the value
-     this has the built in effect of making change more difficult to effect, builds in the history
-     
-     would be good to have events that can be triggered when thresholds are crossed - narrator events, for example, when a person's
-     feelings change
-     
-     girl.feelings.internal.manClothes.sad.increment();
-     girl.feelings.increment('internal','manClothes','annoyed');
-     
-     girl.increment('internal','annoyance','manClothes');
-     
-     -->
 	
 </narrative>

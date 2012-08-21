@@ -318,11 +318,11 @@
  */
 - (void) reset {
 	NSArray *eventArr = [events allValues];
-	Event *event;
-	for (event in eventArr) {
+	for (Event *event in eventArr) {
 		[event reset];
 	}
 	[currentEvents removeAllObjects];
+    [immediateEvents removeAllObjects];
 }
 
 @end

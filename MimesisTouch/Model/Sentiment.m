@@ -146,13 +146,13 @@
     for (i=0; i<n; i++) {
         emotion = [emotionArray objectAtIndex:i];
         if (transparency > .5) {
-            if (emotion.externalStrength > maxStrength) {
-                maxStrength = emotion.externalStrength;
+            if (emotion.internalStrength > maxStrength) {
+                maxStrength = emotion.internalStrength;
                 emotionIndex = i;
             }
         } else {
-            if (emotion.internalStrength > maxStrength) {
-                maxStrength = emotion.internalStrength;
+            if (emotion.externalStrength > maxStrength) {
+                maxStrength = emotion.externalStrength;
                 emotionIndex = i;
             }
         }

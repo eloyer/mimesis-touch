@@ -84,7 +84,7 @@
         maxTransparencyVelocity = 0.0;
         isTransparencyGestureActive = false;
         
-        emotionLabel = [CCLabelTTF labelWithString:@"Oblivious" fontName:@"Helvetica-Bold" fontSize:36];
+        emotionLabel = [CCLabelTTF labelWithString:@"Oblivious" fontName:@"Helvetica" fontSize:36];
         emotionLabel.position = ccp(winSize.width * .25, octopus.position.y - 50);
         emotionLabel.color = ccRED;
         emotionLabel.opacity = 0;
@@ -208,13 +208,13 @@
             animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
             frame = (emotionRatio * ((0.5 - t) * 2.0)) * ([animation.frames count] - 1);
         }
-    } else if ([emotion.name isEqualToString:@"confused"]) {
+    } else if ([emotion.name isEqualToString:@"oblivious"]) {
         if (t > .5) {
-            animationName = @"confused";
+            animationName = @"oblivious";
             animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
             frame = (emotionRatio * ((t - 0.5) * 2.0)) * ([animation.frames count] - 1);
         } else {
-            animationName = @"oblivious";
+            animationName = @"confused";
             animation = [[CCAnimationCache sharedAnimationCache] animationByName:animationName];
             frame = (emotionRatio * ((0.5 - t) * 2.0)) * ([animation.frames count] - 1);
         }
